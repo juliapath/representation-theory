@@ -1,0 +1,184 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 18-12-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{3.1.2}
+  Let $F: \mathcal{C} \to \mathcal{D}$ be an equivalence of $R$-categories.
+  \begin{enumerate}
+  \item A morphism $f: A \to B$ is an epimorphism (monomorphism) if and only if
+    $F(f)$ is an epimorphism (monomorphism).
+  \item An object $A \in \mathcal{C}$ is projective (injective) if and only if $F(A)$ is
+    projective (injective).
+  \end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  A contravariant functor $F: \mathcal{C} \to \mathcal{D}$ of $R$-categories is a \textbf{duality}\index{duality},
+  provided $F: \mathcal{C}^\op \to \mathcal{D}$ is an equivalence.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Note that epimorphism in $\mathcal{C}$ correspond to monomorphisms in $\mathcal{C}^\op$.
+Consequently, $A \in \mathcal{C}$ is projective (injective) if and only if $A \in \mathcal{C}^\op$ is
+injective (projective).
+
+Theorem~\ref{3.1.1} and Proposition~\ref{3.1.2} have obvious analogues for
+contravariant functors.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{Morita equivalence}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\Lambda$ and $\Gamma$ be artinian rings, $\mod{\Lambda}$ and $\mod{\Gamma}$ their respective
+categories of finitely generated modules. Suppose that $F: \mod{\Lambda} \to \mod{\Gamma}$ is
+an equivalence. Since $F$ is dense, there is $X \in \mod{\Lambda}$, such that $F(X) \isomorphic \Gamma$.
+Hence $\Gamma^\op = \End_\Gamma(\Gamma) \isomorphic^F \End_\Lambda(X)$. Moreover since $\Gamma$ is a projective
+object in $\mod{\Gamma}$, it follows that $X$ is a projective object in $\mod{\Lambda}$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $R$ be a commutative artinian ring. An $R$-algebra $\Lambda$, is called an
+\textbf{artin $R$-algebra}\index{artin algebra} if $\Lambda$ is a finitely generated $R$-module.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+If $\Lambda$ is an artin $R$-algebra, then $R \to \Lambda$, $r \mapsto r.1$ has image in
+$\Center{\Lambda}$. Hence $\Lambda$ is a finite length module over $\Center{\Lambda}$ ($\Lambda$ is an
+artinian $C(\Lambda)$-module).
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{3.2.1}
+  Let $\Lambda$ be an artin $R$-algebra, $M, N \in \mod{\Lambda}$ finitely generated $\Lambda$-modules.
+  \begin{enumerate}
+  \item $\Hom_\Lambda(M,N)$ is a finitely generated $R$-module.
+  \item $\End_\Lambda(M)$ is an artin $R$-algebra.
+  \end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+  \begin{enumerate}
+  \item We may assume $\Lambda = R$ since $M$ and $N$ are finitely generated $R$-modules (!) and
+    $\Hom_\Lambda(M,N) \subseteq \Hom_R(M,N)$. Note that $\varphi:
+    \Hom_R(R,N) \isomorphismarrow N$ is an isomorphism of $R$-modules. Hence we obtain
+    isomorphisms $\Hom_R(R^n,N) \isomorphismarrow N^n$. Since $M$ is finitely generated, there
+    is an epimorphism $R^n \surjection M$. Hence there is a monomorphism $\Hom_R(M,N) \injection
+    \Hom_R(R^n,N) \isomorphic N^n$. Since $N^n$  has finite length, so does $\Hom_R(M,N)$.
+  \item Follows from (1). \qedhere
+  \end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Throughout, $\Lambda$ denotes an artin $R$-algebra. Given $M \in \mod{\Lambda}$, we denote by
+$\add(M)$ the full subcategory of $\mod{\Lambda}$, whose objects are direct summands
+of finite direct sums of $M$. This is an $R$-subcategory of $\mod{\Lambda}$.
+
+Let $\Gamma := \End_\Lambda(M)^\op$ . Then $\Gamma$ is an artin $R$-algebra and
+\[
+e_M:
+\left\{
+\begin{matrix}
+\mod{\Lambda} &\to& \mod{\Gamma}\\
+N &\mapsto& \Hom_\Lambda(M,N)
+\end{matrix}
+\right.
+\]
+is a left exact functor, that commutes with finite direct sums.
+
+We denote by $\Proj(\Gamma)$ the full subcategory of $\mod{\Gamma}$ whose objects are the
+projective $\Gamma$-modules.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{3.2.2}
+  Let $M \in \mod{\Lambda}$, $\Gamma := \End_\Lambda(M)^\op$.
+  \begin{enumerate}
+  \item If $X \in \add(M)$ and $Y \in \mod{\Lambda}$, then
+    \[ e_M: \Hom_\Lambda(X,Y) \to \Hom_\Gamma(e_M(X),e_M(Y)) \]
+    is an isomorphism.
+  \item If $X \in \add(M)$, then $e_M(X) \in \Proj(\Gamma)$.
+  \item $\restr{e_M}{\add(M)} : \add(M) \to \Proj(\Gamma)$ is an equivalence of
+    $R$-categories.
+  \end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+  \begin{enumerate}
+  \item If $X = M$, then $e_M: \Hom_\Lambda(M,Y) \to \Hom_\Lambda(\Gamma,\Hom_\Gamma(M,Y))$ is given by
+\[
+e_M(f)(\gamma) = f \circ \gamma.
+\]
+Thus $e_M(f) = 0$ implies $0 = e_M(f)(\id_M) = f$. On
+    the other hand, if a morphism $\varphi: \Gamma \to \Hom_\Gamma(M,Y)$ is given, we put $f := \varphi(\id_M)
+    \in \Hom_\Gamma(M,Y)$. Then we obtain for $\gamma \in \Gamma$
+      \[ e_M(f)(\gamma) = f \circ \gamma = \varphi(\id_M)\circ \gamma = \varphi(\gamma) \]
+    Since $e_M$ commutes with finite direct sums, the assertion follows.
+  \item For $X = M$, we have $e_M(X) = \Gamma$. If $X = nM$, then $e_M(X) \isomorphic
+    n\Gamma$. In general, since $X$ is a direct summand of some $nM$, $e_M(X)$ is a
+    direct summand of $n\Gamma$, hence projective.
+  \item Thanks to (1) and (2), the functor is full, faithful (and well-defined).
+    Moreover $e_M(nM) \isomorphic n\Gamma$ for all $n \in \mathbb{N}$.
+     If $P \in \Proj(\Gamma)$ is projective, then there is an $n \in \mathbb{N}$ and $Q
+    \in \Proj(\Gamma)$, such that $n\Gamma \isomorphic P \oplus Q$. We consider the map $\gamma:n\Lambda\twoheadrightarrow Q \hookrightarrow n\Lambda$. We have $\gamma^2 = \gamma$ and $\ker \gamma = P$.
+    Owing to (1) we can find $f: nM \to nM$ such that $\gamma = e_M(f)$. Then we have
+      \[ e_M(f^2) = \gamma^2 = \gamma = e_M(f) \]
+    Hence $f = f^2$. As a result, $\ker f \in \add{M}$. Since $e_M$ is left-exact,
+    we have an exact sequence
+      \[ \begin{tikzcd}
+          (0) \rar& e_M(\ker f) \rar& e_M(nM) \rar["e_M(f)"] & e_M(nM)
+        \end{tikzcd} \]
+    Consequently, $e_M(\ker f) \isomorphic \ker e_M(f) \isomorphic \ker \gamma = P$. Hence $e_M$ is
+    dense. \qedhere
+  \end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We are going to refine this result by studying evaluation functors $e_P$ for
+certain projective modules.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  Let $M \in \mod{\Lambda}$. An exact sequence
+    \[\begin{tikzcd}
+        P_1 \rar& P_0 \rar& M \rar & (0)
+      \end{tikzcd}\]
+  is called a \textbf{projective representation}\index{projective representation} of $M$ provided all $P_i \in \mod{\Lambda}$ are
+  projective.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  Let $P \in \mod{\Lambda}$ be projective. then $\mod{P}$ denotes the full subcategory
+  of $\mod{\Lambda}$, whose objects have a projective presentation
+    \[\begin{tikzcd}
+        P_1 \rar& P_0 \rar& M \rar& (0)
+      \end{tikzcd}\]
+  where $P_i \in \add(P)$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+

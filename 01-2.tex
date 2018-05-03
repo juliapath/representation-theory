@@ -1,0 +1,211 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 26-10-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.2.1}
+Let $M$ be a $\Lambda$-module. Then the following statements are equivalent:
+\begin{enumerate}
+\item $M$ is semi-simple.
+\item If $V\subseteq M$ is a submodule, then there exists a submodule $W\subseteq M$ such $M=V\oplus W$.
+\item There exists a family $(S_i)_{i\in I}$ of simple submodules such that $M=\bigoplus_{i\in I} S_i$.
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{addmargin}[1cm]{0cm}
+
+\hspace*{-1cm}(1) $\Rightarrow$ (2): Consider
+\[
+\mathfrak A := \{ U\subseteq M \mid U \text{ submodule and } U\cap V = (0) \}.
+\]
+Zorn's lemma provides a maximal element $U_0 \in \mathfrak A$. Let $S\subseteq M$ be a simple submodule. Consider
+\[
+U_0+S\subseteq M
+\]
+If $(U_0+S)\cap V=(0)$, then $U_0+S\in \mathfrak A$. By maximality of $U_0$, we get $U_0=U_0+S$, so $S\subseteq U_0\subseteq U_0\oplus V$. Alternatively, there is $0\neq v =u_0+s_0$ with $u_0\in U_0$ and $s_0\in S$. Then $s_0\neq 0$ as $U_0\cap V =(0)$ and $s_0\in U_0+V$, hence $S=\Lambda s_0 \subseteq U_0+V$. Hence 
+\[
+M = \Soc_\Lambda(M) \subseteq U_0 \oplus V
+\]
+as $M$ is semi-simple.
+
+\hspace*{-1cm}(2) $\Rightarrow$ (3): For $m\in M$, the submodule $\Lambda m$ also enjoys property~(2). Let $m\neq 0$. Consider
+\[
+\mathfrak A := \{ U\subseteq \Lambda m \mid m \notin U \}.
+\]
+The set $\mathfrak A$ is non-empty as $(0)\in \mathfrak A$. Zorn's lemma provides a maximal element $U_0\in \mathfrak A$. We find $V_0\subseteq \Lambda m$ such that $U_0\oplus V_0=\Lambda m$. Thus $m=u_0+v_0$ for some $u_0\in U_0$ and $v_0\in V_0$. Let
+\[
+(0)\subsetneq X\subseteq V_0
+\]
+be a submodule. By maximality of $U_0$, we obtain $U_0\oplus X \notin \mathfrak A$, so $m\in U_0\oplus X$. Hence $m=u_1+v_1$ for some $u_1\in U_0$ and $v_1\in V_0$. Then $u_0=u_1$ and $v_0=x_1\in X$. Let $v\in V_0$. Then $v\in \Lambda m$, so $v = \lambda m = \lambda u_0 + \lambda v_0$. Since $\lambda u_0\in U_0$, we obtain $v=\lambda v_0$. Hence $V_0 = X$ and $V_0$ is simple. Now, let $\mathcal S$ be the set of all simple submodules of $M$. Zorn's lemma shows that
+\[
+\mathfrak B := \left\{ \mathcal T \subseteq \mathcal S \ \middle| \ \sum_{S\in\mathcal T} S = \bigoplus_{S\in\mathcal T} S \right\}
+\]
+possesses a maximal element $V\in\mathfrak B$. Write $M=V\oplus W$ and use the above to show that $W=(0)$.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module.
+\begin{enumerate}
+\item The intersection $\Rad_\Lambda(M)$ of all maximal submodules of $M$ is called the \textbf{radical}\index{radical} of $M$.
+\item The descending sequence $(\Rad_\Lambda^i(M))_{i\ge 0}$ defined via
+\[
+\Rad_\Lambda^0(M) := M
+\qq{and}
+\Rad_\Lambda^i(M) := \Rad(\Rad_\Lambda^{i-1}(M))
+\]
+for all $i\ge 1$ is called the \textbf{Loewy series}\index{Loewy series} of $M$.
+\item The module $\Rad_\Lambda^{n-1}(M)/\Rad_\Lambda^{n}(M)$ is called the \textbf{Loewy layer}\index{Loewy layer} of $M$. 
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.2.2}
+Let $M$ be a $\Lambda$-module. If $M$ is semi-simple, so is every submodule $N\subseteq M$. 
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $V\subseteq N$ be a submodule. As it satisfies (2), there is a submodule $M\subseteq M$ such that $M=V\oplus W$. Then $N=V\oplus (W\cap N)$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.2.3}
+Let $M$ be an artinian $\Lambda$-module. Then the following statements are equivalent:
+\begin{enumerate}
+\item $M$ is semi-simple.
+\item $M$ is a finite direct sum of simple submodules.
+\item $\Rad_\Lambda(M)=(0)$.
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{addmargin}[1cm]{0cm}
+
+\hspace*{-1cm}(1) $\Rightarrow$ (2): According to Proposition~\ref{1.2.1}, there exists a family $(S_i)_{i\in I}$ of simple submodules of $M$ such that $M=\bigoplus_{i\in I} S_i$. Let $M_0:=M$ and $I\subseteq \emptyset$. Pick $i_1\in I$. Consider $M_1 := \bigoplus_{i\in I\smallsetminus \{i_1\}} S_i$. Then $M_1\subsetneq M_0$. Proceeding in this fashion, we find finite subsets $I_1\subsetneq I_2\subsetneq \dots\subseteq I$ with $M_1 := \bigoplus_{i\in I\smallsetminus I_n} S_i$ being a descending chain
+\[
+M_0 \supsetneq M_1\supsetneq M_2\supsetneq \dots
+\]
+of submodules of $M$. Since $M$ is artinian, this process will stop after finitely many steps. Hence we have $I=I_n$ for some $n\in\N$. Thus $M=\bigoplus_{i\in I_n} S_i$.
+
+\hspace*{-1cm}(2) $\Rightarrow$ (3): By assumption, $M=\bigoplus_{i\le n} S_i$ with $S_i\subseteq M$ simple. Given $j\in\{1,\dots,n\}$, the module $M_j:= \bigoplus_{i\neq j} S_i$ is maximal and $\bigcap_{j\le n} M_j =(0)$. Hence $\Rad_\Lambda(M)=(0)$.
+
+\hspace*{-1cm}(3) $\Rightarrow$ (1): Let $\mathfrak A := \{ N\subseteq M \mid N \text{ is finite intersection of maximal submodules of } M \}$. Assuming $M\neq (0)$, the condition $\Rad_\Lambda(M)=(0)$ ensures that $\mathfrak A\neq\emptyset$. As $M$ is artinian, $\mathfrak A$ possesses a minimal element $N_0\in\mathfrak A$. Let $X\subseteq M$ be a maximal submodule of $M$. Then the minimality of $N_0$ implies $X\cap N_0=N_0$. Hence
+\[
+N_0\subseteq \Rad_\Lambda(M)=(0)
+\]
+Thus we can find maximal submodules $X_1,\dots,X_n\subseteq M$ such that $(0)=\bigcap_{i\le n} X_i$. Consider the embedding $M\hookrightarrow \bigoplus_{i\le n} M/X_i$. Since the right hand side is semi-simple, Lemma~\ref{1.2.2} shows that $M$ is semi-simple as well.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+Let $\Lambda=\Z$ and $M=\Z$ be the regular module. Then $\Rad_\Lambda(M)=(0)$, but $M$ is not semi-simple.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+The \textbf{Jacobson radical}\index{Jacobson radical} of a ring $\Lambda$ is defined by $J(\Lambda):=\Rad_\Lambda(\Lambda)$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.2.4}
+Let $\Lambda$ be a ring.
+\begin{enumerate}
+\item $J(\Lambda)$ is a two-sided ideal.
+\item If $a\in J(\Lambda)$, then $1-a$ has a left inverse.
+\item \textup{\textbf{Nakayama's lemma.}} Let $M$ be a finitely generated $\Lambda$-module such that
+\[
+J(\Lambda)M=M.
+\]
+Then $M=(0)$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Let $a\in \Lambda$. Then
+\[
+r_a:
+\left\{
+\begin{matrix}
+\Lambda & \to & \Lambda \\
+x & \mapsto & xa
+\end{matrix}
+\right.
+\]
+is $\Lambda$-linear. Thus if $I\trianglelefteq \Lambda$ is a maximal left ideal, then $r_a$ induces an injection $\Lambda/r_a^{-1}(I)\hookrightarrow \Lambda/I$ of $\Lambda$-modules. Hence $r_a^{-1}(I)$ is either maximal or equal to $\Lambda$. Consequently,
+\[
+r_a^{-1}(J(\Lambda))
+ = r_a^{-1}\left(\bigcap_{I \max} I\right)
+ = \bigcap_{I\max} r_a^{-1}(I)
+ \supseteq J(\Lambda).
+\]
+Hence $r_a(J(\Lambda))\subseteq J(\Lambda)$. It follows that $J(\Lambda)$ is an ideal.
+
+\item Let $a\in J(\Lambda)$. Then $1=a+(1-a)$, so that $\Lambda=\Lambda a+\Lambda(1-a)$. If $\Lambda(1-a)\neq \Lambda$, then Zorn's lemma provides a maximal left ideal $I\supseteq \Lambda(1-a)$. Consequently, we have $\Lambda= \Lambda a+\Lambda(1-a) \subseteq J(\Lambda)+I\subseteq I$. $\lightning$ Hence $\Lambda(1-a)=\Lambda$.
+
+\item Let $M$ be finitely generated and assume $M=J(\Lambda)M$. We write $M=\sum_{i\le n}\Lambda m_i$ as well as $m_n=\sum_{i\le n} a_j m_i$, where $a_i\in J(\Lambda)$. We obtain
+\[
+(1-a_n)m_n = \sum_{i=1}^{n-1} a_i m_i.
+\]
+By (2), there is $\lambda\in\Lambda$ such that $\lambda(1-a_n)=1$. We obtain
+\[
+m_n = \sum_{i=1}^{n-1} \lambda a_i m_i.
+\]
+This yields $M=(0)$ by induction.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A ring $\Lambda$ is called \textbf{semi-simple}\index{semi-simple ring} if $J(\Lambda)=(0)$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.2.5}
+Let $\Lambda$ be semi-simple and artinian. Then every $\Lambda$-module is semi-simple.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+In view of Proposition~\ref{1.2.3}, the regular module $\Lambda$ is semi-simple. Let $M$ be a $\Lambda$-module and $m\in M$. Then
+\[
+f_m:
+\left\{
+\begin{matrix}
+\Lambda & \to & \Lambda m \\
+\lambda & \mapsto & \lambda m
+\end{matrix}
+\right.
+\]
+is a surjective linear map. Hence there is a submodule $X\subseteq \Lambda$ such that $\Lambda = X\oplus \ker f_m$ by Proposition~\ref{1.2.1}. We obtain $\Lambda m \cong X$ induced by $f$. By Lemma~\ref{1.2.2}, $X$ is semi-simple. Hence $\Lambda m$ is semi-simple and thus $\Lambda m \subseteq \Soc_\Lambda(M)$. So $M=\Soc_\Lambda(M)$ is semi-simple. 
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------

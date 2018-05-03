@@ -1,0 +1,235 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 27-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A commutative diagram
+\[
+\begin{tikzcd}
+	L\ar[r,"g"]\ar[d,"g'"] & N\ar[d,"f"] \\
+	N'\ar[r,"f'"] & M
+\end{tikzcd}
+\]
+of $\Lambda$-modules is called a \textbf{pull-back diagram}\index{pull-back diagram} if for any pair $h:L'\to N$ and $h':L'\to N'$ of $\Lambda$-linear maps such that $f\circ h = f'\circ h'$ there exists a unique $\Lambda$-linear map $\psi$ such that $g\circ \psi = h$ and $g'\circ \psi = h'$. 
+%
+\[
+\begin{tikzcd}
+L'\ar[drrr,bend left,"h'"]\ar[ddrr,bend right,"h"']\ar[drr,dashed,"\psi"] &   &   &\\
+& & L\ar[r,"g"]\ar[d,"g'"] & N\ar[d,"f"] \\
+& & N'\ar[r,"f'"] & M \\
+\end{tikzcd}
+\]
+% 
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{2.1.3}
+Let
+\[
+\begin{tikzcd}
+	L\ar[r,"g"]\ar[d,"g'"] & N\ar[d,"f"] \\
+	N'\ar[r,"f'"] & M
+\end{tikzcd}
+\]
+be a commutative diagram. The following statements are equivalent:
+\begin{enumerate}
+\item The diagram is a pull-back diagram.
+\item The sequence
+\[
+\begin{tikzcd}
+	(0) \rar  & L \ar[r,"\binom{g}{-g'}"] & N \oplus N' \ar[r,"{(f,f')}"] & M
+\end{tikzcd}
+\]
+is exact.
+\end{enumerate}
+In either case, the induced maps
+\[
+\widetilde g : \ker g \to \ker f'
+\qq{and}
+\widetilde g' : \ker g' \to \ker f
+\]
+are isomorphisms.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{2.1.4}
+Let
+\[
+\begin{tikzcd}
+	M\ar[r,"f"]\ar[d,"f'"] & N\ar[d,"g"] \\
+	N'\ar[r,"g'"] & L	
+\end{tikzcd}\tag{$*$}
+\]
+be a commutative diagram.
+\begin{enumerate}
+\item If $(*)$ is a push-out diagram and $f$ is a epimorphism, then $g'$ is a epimorphism.
+\item If $(*)$ is a pull-back diagram and $f$ is a monomorphism, then $g'$ is a monomorphism.
+\end{enumerate}
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.1.5}
+Suppose that
+\[
+  \begin{tikzcd}
+    (0) \rar  & M' \ar[d, "f'"] \rar["f"] &  M \ar[d, "g"] \rar["h"] & M'' \ar[d, equal] \rar  & (0) \\
+    (0) \rar  & N' \rar["g'"] &  N \rar["h'"] & N'' \rar  & (0)
+  \end{tikzcd}
+\]
+is a commutative diagram with exact rows. Then
+\[
+  \begin{tikzcd}
+	M' \ar[d, "f'"] \rar["f"] &  M \ar[d, "g"] \\
+	N' \rar["g'"] &  N
+  \end{tikzcd}
+\]
+is a push-out diagram.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+  We consider the sequence
+  \[
+    \begin{tikzcd}
+      M' \ar[r,"\binom{f}{-f'}"] & M \oplus  N' \rar["{(g,g')}"] & N \rar  & (0)
+    \end{tikzcd}.\tag{$*$}
+  \]
+  We have to show that the sequence is exact. Let $n \in N$. Then there exists $m \in M$ such that $h'(n) = h(m) = (h' \circ g) (m)$. Thus $n - g(m) \in \ker h' = \im g'$.
+  Hence there is $n' \in N'$ such that $n = g(m) + g'(n')$. As a result $(g,g')$
+  is surjective. Since
+\[(g,g') \circ \binom{f}{-f'} = g \circ f - g' \circ f' = 0,\]
+ we have $\im \binom{f}{-f'} \subseteq  \ker (g,g')$.
+  Let $(m,n') \in \ker (g,g')$. Then
+  \[ 0 = h' \circ (g,g')(m,n')
+       = h' \circ g(m) + h' \circ g'(n')
+       = h' \circ g(m). \]
+  Hence  $h(m) = h' \circ g(m) = 0$, so that there is $m' \in M'$ with $m = f(m')$.
+  Consequently,
+  \[ 0 = g(m) + g'(n') = g\circ f(m') + g'(n')
+    = g'\circ f'(m') + g'(n')
+    = g'(f'(m') + n').\]
+  Hence $f'(m') + n' =0$, so that $n' = -f'(m')$. As a result, $(m,n') \in \im
+  \binom{f}{-f'}$ and the sequence is exact. The result follows from Proposition~\ref{2.1.1}.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}[Schanuel's lemma]\label{2.1.6}
+  Let
+  \[
+  (0) \to N_1 \to P_1 \to M \to (0) \qq{and} (0) \to N_2 \to P_2 \to M \to (0)
+  \]
+  be exact sequences with $P_i$ being projective.
+  Then we have an isomorphism \[N_1\oplus  P_2 \cong N_2 \oplus  P_1.\]
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+  Since $P_1$ is projective, there results a commutative diagram
+  \[
+    \begin{tikzcd}
+      (0) \rar & N_1 \ar[d] \rar & P_1 \ar[d] \rar & M \ar[d, equal] \rar & (0)\\
+      (0) \rar & N_2        \rar & P_2        \rar & M               \rar & (0)
+    \end{tikzcd}
+  \]
+  with exact rows.
+  According to Lemma~\ref{2.1.5} and Proposition~\ref{2.1.1}, this yields an exact sequence
+   \[
+     \begin{tikzcd}
+       (0) \rar & N_1 \rar & N_2 \oplus  P_1 \rar & P_2 \rar & (0)
+     \end{tikzcd}.
+   \]
+  As $P_2$ is projective, the sequence splits, so that $P_2\oplus N_1 \cong N_2\oplus  P_1$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 2.2
+
+\section{The Heller operator and the stable module category}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Throughout this section $\Lambda$ denotes an artinian ring. We let $\mod_\Lambda$ be the
+category of finitely generated $\Lambda$-modules. Recall that $M$ belongs to $\mod_\Lambda$
+if and only if $M$ has finite length.
+
+Let $M \in \mod_\Lambda$. Then there exists $n \in \N$ and a surjection $\Lambda^n \twoheadrightarrow M$. 
+We can therefore find a pair $(P_M,\varepsilon_M)$ consisting of a projective module $P_M$ and a surjection $\varepsilon_M: P_M \surrj M$ such that $\length{P_M}$ is minimal. In this case $(P_M, \varepsilon_M)$ is called a \textbf{projective cover}\index{projective cover} of $M$. We put $\Omega(M) := \Omega_\Lambda(M) = \ker \varepsilon_M$ and call $\Omega(M)$ a \textbf{Heller translate}\index{Heller translate} of $M$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.2.1}
+Let $(P_M,\varepsilon_M)$ be a projective cover of $M$.
+\begin{enumerate}
+\item If $(P,\varepsilon)$ consists of a projective module % (in $\mod_\Lambda$)
+  and a surjection $\varepsilon: P \to M$ then there exists a surjective homomorphism
+  $f: P \to P_M$ such that $\varepsilon = \varepsilon_M \circ f$.
+\[
+\begin{tikzcd}
+& P_M \ar[d,"\varepsilon_M",two heads] \\
+P \ar[ru,"f",two heads] \ar[r,"\varepsilon",two heads] & M 
+\end{tikzcd}
+\]
+\item If $(P'_M, \varepsilon'_M)$ is another projective cover of $M$, then there exists
+  an isomorphism $f:P_M \to P'_M$ such that $\varepsilon'_M \circ f = \varepsilon_M$.
+\end{enumerate} 
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Since $P$ and $P_M$ are projective, there are linear maps $f: P
+        \to P_M$ and $g: P_M \to P$ with $\varepsilon=\varepsilon_M\circ f$ and $\varepsilon_M=\varepsilon\circ g$.
+        We consider $\sigma := f\circ g \in \End_\Lambda(P_M)$.
+\[
+\begin{tikzcd}
+& P_M \ar[d,"\varepsilon_M",two heads] \ar[dl,"g"',bend right] \\
+P \ar[ru,"f"'] \ar[r,"\varepsilon",two heads] & M 
+\end{tikzcd}
+\]        
+        Then we have
+        \[ \varepsilon_M \circ \sigma = \varepsilon \circ g = \varepsilon_M. \tag{$*$} \]
+        Fitting's lemma yields a decomposition $P_M = P_0 \oplus P_1$
+        of $P_M$ into $\sigma$-stable submodules with $\restr \sigma {P_0}$ nilpotent and
+        $\sigma|_{P_1}$ bijective.
+        Let $p \in P_0$. Then there is $ n\in \N$ with $\sigma^n(p) = 0$. By virtue of
+        ($*$) this gives \[0 = \varepsilon_M \circ \sigma^n(p) = \varepsilon_M(p).\] Thus we get that $P_0 \subseteq  \ker \varepsilon_M$ and
+        $\restr {\varepsilon_M}{P_1}$ is surjective.
+        By minimality of $P_M$, we obtain $\length{P_1} = \length{P_M}$, so that
+        $P_1 = P_M$. Hence $\sigma$ is an automorphism, so that $f$ is surjective.
+\item By (1) there is a surjection
+        $f : P_M \twoheadrightarrow P'_M$ with $\varepsilon'_M\circ f = \varepsilon_M$. Since $\length{P_M} =
+        \length{P'_M}$, this map is an isomorphism.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+  If $(P_M,\varepsilon_M)$ and $(P'_M,\varepsilon_M)$ are projective covers of $M$, then we
+  obtain a commutative diagram
+    \[
+      \begin{tikzcd}
+        (0) \rar & \Omega_\Lambda(M) \ar[d, dashrightarrow, "\alpha"] \rar["\iota"]&  P_M \ar[d, "f"] \rar["\varepsilon_M"]& M \ar[d, equal] \rar & (0)\\
+        (0) \rar & \Omega'_\Lambda(M)                            \rar["\iota'"]& P'_M            \rar["\varepsilon'_M"]& M              \rar & (0)
+      \end{tikzcd}.
+    \]
+    We obtain $\alpha$ as follows: Let $x \in \Omega_\Lambda(M)$. Then we have $\varepsilon'_M\circ f\circ\iota(x) = \varepsilon_M \circ \iota(x) = 0$. Hence $f \circ \iota(x) \in \ker \varepsilon'_M = \im \iota'$. So we can put $\alpha(x) := (\iota')^{-1}(f \circ \iota)(x)$.
+    Hence $\alpha$ is an isomorphism, so we have $\Omega_\Lambda(M) \cong \Omega'_\Lambda(M)$.
+\end{remark}

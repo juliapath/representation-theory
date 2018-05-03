@@ -1,0 +1,227 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 30-10-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{1.2.6}
+Let $M$ be a module over an artinian ring $\Lambda$. Then we have
+\[
+J(\Lambda)M = \Rad_\Lambda(M).
+\]
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{itemize}
+\item[„$\subseteq$“] Let $M'\subseteq M$ be a maximal submodule. Then $M/M'$ is simple, so that 
+\[
+J(\Lambda) M/M' = M/M'
+\qq{or}
+J(\Lambda) M/M' = (0).
+\]
+Suppose that $J(\Lambda) M/M' = M/M'$. Since $M/M'$ is finitely generated, Nakayama's lemma tells us $M/M'=(0)$. $\lightning$ Hence $J(\Lambda) M/M' = (0)$, so that $J(\Lambda)M\subseteq M'$. As a result $J(\Lambda)M\subseteq \Rad_\Lambda(M)$. 
+
+\item[„$\supseteq$“] For the reverse inclusion observe that $M/J(\Lambda) M$ is a $\Lambda/J(\Lambda)$-module. Since $\Lambda/J(\Lambda)$ is artinian and $J(\Lambda/J(\Lambda))=(0)$, the ring $\Lambda/J(\Lambda)$ is semi-simple. Lemma~\ref{1.2.5} tells us that $M/J(\Lambda) M$ is a semi-simple $\Lambda$-module. Hence $\Rad_\Lambda(M)\subseteq J(\Lambda)M$.\qedhere
+\end{itemize}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{1.2.7}
+Let $\Lambda$ be an artinian ring.
+\begin{enumerate}
+\item $J(\Lambda)$ is nilpotent.\footnote{This  means $J(\Lambda)^n=(0)$ for some $n\in\N$.}
+\item Every finitely generated $\Lambda$-module has finite length.
+\item $\Lambda$ is noetherian.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Since the sequence $(J(\Lambda)^n)_{n\ge 0}$ is descending, $\Lambda$ being artinian implies that there is $n_0\in\N$ such that $J(\Lambda)^n=J(\Lambda)^{n_0}$ for all $n\ge n_0$. Suppose $J(\Lambda)^{n_0}\neq (0)$. Then
+\[
+\mathfrak A :=\{I\trianglelefteq \Lambda \mid I\text{ left ideal and } J(\Lambda)^{n_0}I\neq (0) \}\neq\emptyset.
+\]
+By the artinian property, $\mathfrak A$ possesses a minimal element $I_0\in\mathfrak A$. Let $a\in I_0$ such that $J(\Lambda)^{n_0}a\ne 0$. Then we have $\Lambda a\subseteq I_0$ and $\Lambda a\in \mathfrak A$, so that minimality forces $\Lambda a=I_0$. We obtain
+\[
+J(\Lambda)^{n_0} J(\Lambda) a = J(\Lambda)^{n_0+1}a = J(\Lambda)^{n_0} a \neq 0.
+\]
+Hence $J(\Lambda) a\in\mathfrak A$, so that $J(\Lambda) I_0 = I_0$ since $\Lambda a=I_0$. By Nakayama's lemma, we obtain $I_0=(0)$. $\lightning$ Thus we have $J(\Lambda)^{n_0}=0$.
+
+\item Let $M$ be a finitely generated $\Lambda$-module. In view of (1), we have a sequence
+\[
+(0) = J(\Lambda)^{n} M \subseteq J(\Lambda)^{n-1} M \subseteq \dots \subseteq J(\Lambda) M \subseteq M
+\]
+of submodules, which is finite, with each factor being a $\Lambda/J(\Lambda)$-module. Hence each factor is semi-simple and finitely generated as a $\Lambda$-module. Now Proposition~\ref{1.2.3} implies that $J(\Lambda)^{n} M / J(\Lambda)^{n-1} M$ has finite length as well.
+
+\item Since the regular $\Lambda$-module is finitely generated, it has finite length by (2). Now apply Lemma~\ref{1.1.3}.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}
+Let $\Lambda$ be an artinian ring. If $\Lambda'\subseteq \Lambda$ is a subring with
+\[
+\Lambda=\Lambda'+J(\Lambda)^2,
+\]
+then $\Lambda'=\Lambda$.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\label{1.2.8}
+Using induction, we will show that $\Lambda'+J(\Lambda)^{n}\subseteq \Lambda' + J(\Lambda)^{n+1}$ for all $n\ge 1$. Assume this to hold for some $n\ge 1$. It suffices to show that $J(\Lambda)^{n+1}\subseteq \Lambda' + J(\Lambda)^{n+2}$. Let $x\in J(\Lambda)^{n}$ and $y\in J(\Lambda)$. By inductive hypothesis, we can write
+\[
+x=a+x' \qq{with} a \in \Lambda'\cap J(\Lambda)^{n} \qq{and} x'\in J(\Lambda)^{n+1}.
+\]
+Similary, we can write
+\[
+y=b+y' \qq{with} b \in \Lambda'\cap J(\Lambda) \qq{and} x'\in J(\Lambda)^{2}.
+\]
+Hence $xy = ab + ay' + x'b + x'y' \equiv ab$ mod $J(\Lambda)^{n+2}$. Thus $J(\Lambda)^{n+1}\subseteq \Lambda' + J(\Lambda)^{n+2}$. The assertion now follows from Theorem~\ref{1.2.7}~(1).
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{The theorem of Wedderburn-Artin}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.3.1}
+Let $\Lambda$ be a ring.
+\begin{enumerate}
+\item If $S\not \cong T$ are simple $\Lambda$-modules, then $\Hom_\Lambda(S,T)=(0)$.
+\item If $S$ is a simple $\Lambda$-module, then $\End_\Lambda(S)$ is a division ring.\footnote{A \textit{division ring}, also called a \textit{skew field}, is a nonzero ring in which every nonzero element has a multiplicative inverse. Division rings differ from fields only in that their multiplication is not required to be commutative.}
+\item If $M$ is a $\Lambda$-module, then we have an isomorphism of rings
+\[
+\End_\Lambda\left(\bigoplus_{i=1}^n M\right) \cong \Mat_n(\End_\Lambda(M)).
+\]
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+The statements (1) and (2) are often called \textbf{Schur's lemma}.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item If $f:S\to T$ is $\Lambda$-linear, then $\ker f\subseteq S$ is a submodule, so $\ker f=S$ or $\ker f=(0)$. Suppose that $f$ is injective. Then we have $\im f=T$ or $\im f=(0)$. $\lightning$
+\item Similar to (1).
+\item We write $\bigoplus_{i\le n} M = M^n$. Let
+\[
+\iota_j:
+\left\{
+\begin{matrix}
+M & \to & M^n \\
+m_j & \mapsto & (0,\dots,m_j,\dots,0)
+\end{matrix}
+\right.
+\qq{and}
+\pr_j:
+\left\{
+\begin{matrix}
+M^n & \to & M \\
+(m_1,\dots,m_n) & \mapsto & m_j
+\end{matrix}
+\right.
+\]
+For $f\in\End_\Lambda(M^n)$ we put $f_{ij}:=\pr_i \circ f \circ i_j$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Wedderburn-Artin]\label{1.3.2}
+Let $\Lambda$ be a semi-simple artinian ring. Then there exists division rings $\Delta_1,\dots,\Delta_m$ and $n_i\in\N$ such that we have an ring isomorphism
+\[
+\Lambda \cong \bigoplus_{i=1}^n \Mat_{n_i}(\Delta_i).
+\]
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+By Proposition~\ref{1.2.3}, there exists pairwise non-isomorphic simple $\Lambda$-modules $S_1,\dots,S_n$ such that $\Lambda \cong \bigoplus_{i\le m} S_i^{n_i}$, where $S_i^{n_i}=\bigoplus_{j\le n_i} S_i$. We put
+\[
+\widetilde \Delta_i := \End_\Lambda(S_i).
+\]
+These are division rings. Using Lemma~\ref{1.3.1}, we obtain ring isomorphisms
+\[
+\End_\Lambda(\Lambda)
+ \cong \bigoplus_{i=1}^m \End(S_i^{n_i})
+ \cong \bigoplus_{i=1}^m \Mat_{n_i} (\widetilde \Delta_i)
+\]
+Since $\Lambda \cong \End_\Lambda(\Lambda)^\op$ as rings, we obtain
+\[
+\Lambda
+ \cong \End_\Lambda(\Lambda)^\op
+ \cong \bigoplus_{i=1}^m \Mat_{n_i} (\widetilde \Delta_i)^\op
+ \cong \bigoplus_{i=1}^m \Mat_{n_i} (\widetilde \Delta_i^\op)
+\]
+Put $\Lambda_i:=\widetilde \Delta_i^\op$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+If $M=X\oplus Y$ and $\Hom_\Lambda(X,Y)=(0)=\Hom_\Lambda(Y,X)$, then
+\[
+\End_\Lambda(M)\cong \End_\Lambda(X)\oplus\End_\Lambda(Y).
+\]
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+
+\section{Projective modules, idempotents and Cartan invariants}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A ring $\Lambda$ is called \textbf{local}\index{local ring} if it has a unique maximal left ideal.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.4.1}
+The following statements are equivalent:
+\begin{enumerate}
+\item $\Lambda$ is local.
+\item $J(\Lambda)=\{a\in\Lambda\mid a \text{ is not left invertible}\}$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+For showing the implication (1) $\Rightarrow$ (2), observe that every non-unit is contained in a maximal ideal by using Zorn's lemma. The implication (2) $\Rightarrow$ (1) is clear.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.4.2}
+Let $M$ be a $\Lambda$-module of finite length.
+\begin{enumerate}
+\item \textbf{\textup{Fitting decomposition.}} If $f\in\End_\Lambda(M)$, then there is $n\in\N$ such that
+\[
+M = \ker(f^n) \oplus \im(f^n).
+\]
+\item If $M$ is indecomposable, then $\End_\Lambda(M)$ is a local ring.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------

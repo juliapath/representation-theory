@@ -1,0 +1,285 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 29-01-2018 and 01-02-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{3.5.3}
+Suppose that $J^2 = (0)$. Then the functor $F: \mod \Lambda \to \mathcal{C}_{T_\Lambda}$ enjoys
+the following properties:
+
+\begin{enumerate}
+\item $M \in \mod \Lambda$ is projective if and only if $F(M) \in \mathcal{C}_{T_\Lambda}$ is
+projective.
+\item $M \in \modpf \Lambda$ if and only if $F(M) \in (\mathcal{C}_{T_\Lambda})_\pf$
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item By definition, we have $F(\Lambda) = (J, \factor \Lambda {J}, f)$, where $f: J \otimes_{\factor \Lambda {J}} \factor \Lambda {J} \to \factor \Lambda {J}$ with $f(x \otimes \overline \lambda)=x\lambda$ is the canonical isomorphism. In view of Corollary~\ref{3.4.3}, $F(\Lambda)$ is projective. Hence $F$ sends projectives to projectives. Suppose $M \in \mod \Lambda$ is such that $F(M)$ is projective. Let $\pi : P \to M$ be a projective cover of $M$. There results a commutative diagram
+\[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \factor P {JP} \rar["{\id} \otimes \overline \pi"] \dar["\wr"'] & J \otimes_{\factor \Lambda {J}} \factor M {J M} \dar["\wr"', "f"] \\
+JP \rar["\restr \pi {J P}"]& J M
+\end{tikzcd}\]
+where $F(M) = (J M, \factor M {J M}, f)$. Without loss of generality we may assume that $M \neq (0)$. Then $\factor M {J M} \neq (0)$. Owing to
+Corollary~\ref{3.4.3}, the map $f$ is an isomorphism. Consequently, $\restr \pi {JP}$ is an isomorphism. Since $\ker \pi = \ker \restr \pi {J P} = (0)$.
+Hence $\pi$ is an isomorphism. So $M$ is projective.
+
+\item Let $M \in \mod \Lambda$ be such that $F(M) \in \mathcal{C}_{T_\Lambda}$ has no non-zero projective direct summands. If $P \mid M$ is a direct summand of $M$, then (1) implies that $F(P) \mid F(M)$ is projective direct summand. Hence $F(P) = (0)$.
+In particular, $P = J P$, so that
+\[
+P = (0).
+\]
+Now assume that $M \in \modpf \Lambda$ and consider $F(M) = (J M, \factor M {JM}, f)$. Let $X \mid F(M)$ be an indecomposable
+projective summand. By Corollary~\ref{3.4.3} there is a projective indecomposable (and thus simple) $\factor \Lambda {J}$-module $P$ such that
+\[
+X = (J \otimes_{\factor \Lambda {J}}
+P, P, \id_{J\otimes_\Lambda P})
+\qq{or}
+X \isomorphic (P, 0, 0).
+\]
+As $X \mid F(M)$, this rules out the second alternative. By Lemma~\ref{3.5.2}~(5) there is $Q \in \mod \Lambda$, such that $F(Q)
+\isomorphic X$. By Lemma~\ref{3.5.3}~(1), $Q$ is projective. Since $F(Q) \mid F(M)$, there are morphisms $\pi: F(M) \to F(Q)$ and $\iota: F(Q) \to F(N)$ such that
+\[
+\pi \circ \iota = \id_{F(Q)}.
+\]
+As $F$ is full, there are morphisms $\sigma: M \to Q$ and $\gamma: Q \to M$ such that
+\[
+\pi = F(\sigma) \qq{and}
+\iota = F(\gamma).
+\]
+ Note that $\sigma$ and $\iota$ are $\Lambda$-linear maps. Hence $F(\sigma \circ \gamma - \id_Q) = 0$. It follows that $(\sigma \circ \gamma - \id_Q)^2 = 0$ by Lemma~\ref{3.5.2}~(2). Hence $\sigma \circ \gamma$ is invertible. In particular, $\sigma$ is surjective. Since $Q$ is projective, we have $Q \mid
+M$, so that $M$ being projective free entails $Q = (0)$. Thus $X = (0)$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{3.5.4}
+Let $\Lambda$ be an artin $R$-algebra with $J^2 = (0)$. Then there exists a
+stable equivalence $\Stable \Lambda \xrightarrow{\sim} \Stable {T_\Lambda}$.
+\end{theorem}
+\begin{proof}
+We shall show that our functor $F: \mod \Lambda \to \mathcal{C}_{T_\Lambda}$ induces a stable
+equivalence $\Stable \Lambda \to \underline{\mathcal{C}}_{T_\Lambda}$. To that end we first prove
+\[
+\PHom_\Lambda(M,N) \isomorphic \Hom_\Lambda(M, J N).\tag{$*$}
+\]
+for all $M,N \in \modpf \Lambda$. Let $f \in \PHom_\Lambda(M,N)$. Then there exists $g: M
+\to P_N$ such that $f = \varepsilon_N \circ g$.
+\[
+\begin{tikzcd}
+& P_N \dar["\varepsilon_N",two heads]\\
+M \ar[ru, "g"] \rar["f"]& N
+\end{tikzcd}
+\]
+We write $P_N \isomorphic P_1 \oplus \cdots \oplus P_n$, with $P_j$ projective indecomposable. Let $\pi_i
+: P_N \to P_i$ be the canonical projection. If $\im(\pi_i \circ g) \not\subseteq J P_i$, then
+$\pi_i \circ g : M \to P_i$ is surjective. Hence $P_i \mid M$, so $P_i = (0)$, which is
+in contradiction to $P_i$ indecomposable. Hence $\im \pi_i \circ g \subseteq J P_i$ for
+all $i \in \{1, \ldots, n\}$. Consequently, $g(M) \subseteq J P_N$. Thus
+\[
+f(M) =\varepsilon_N \circ g(M) \subseteq \varepsilon_N(J P_N) \subseteq J N.
+\]
+Conversely, let $f: M \to N$ be $\Lambda$-linear such that $f(M) \subseteq J N$. Let $\varepsilon_N
+: P_N \to N$ be a projective cover of $N$. Then $\varepsilon_N(J P_N) = JN$. Since $J P_N$ and $J N$ are semi-simple, there exists $\gamma: J N
+\to J P_N$ such that $\restr{\varepsilon_N}{J P_N} \circ \gamma = \id_{J N}$. (Alternative argument: $J N$ is a projective $\factor \Lambda {J}$-module). Let $g := \gamma \circ f$.
+\[\begin{tikzcd}
+& P_N\dar["\varepsilon_N",two heads] & JP_n \ar[l,hook] \ar[d,"\varepsilon_N|_{JP_N}",two heads] \\
+f: M \rar \ar[ur, "g"]& N & JN \ar[l,hook] \ar[u,"\gamma",bend left]
+\end{tikzcd}\]
+Then we have
+\[
+\varepsilon_N \circ g = \restr{\varepsilon_N}{J P_N} \circ g
+= \restr{\varepsilon_N}{J P_N} \circ \gamma \circ f
+= \id_{J N} \circ f = f.
+\]
+Secondly, we prove that the functor
+\[
+\overline F:
+\left\{
+\begin{matrix}
+\Stable \Lambda & \to & \underline{\mathcal{C}}_{T_\Lambda}\\
+M & \mapsto & F(M)\\
+[f] & \mapsto & [F(f)]
+\end{matrix}
+\right.
+\]
+is well-defined. It suffices to show that $F(\PHom_\Lambda(M,N)) \subseteq \PHom_{\mathcal{C}_{T_\Lambda}}(F(M), F(N))$. If
+$f: M \to N$ belongs to $\PHom_\Lambda(M,N)$, there are maps $g: M \to P$ and $h : P \to N$ and a projective module $P$ such that $f = h \circ g$. Hence $F(f) = F(h) \circ F(g)$. According to Lemma~\ref{3.5.3}, $F(P)$ is projective, so that
+\[
+F(f) \in \PHom_{\mathcal{C}_{T_\Lambda}}(F(M), F(N)).
+\]
+In the third place, we show that the functor
+\[
+\overline F : \Stable \Lambda \to \underline{\mathcal{C}}_{T_\Lambda}
+\]
+is an equivalence. We show that $\overline F$ is faithful and full. Let $f \in \Hom_\Lambda(M,N)$ such that $[F(f)] = 0$. Then there exists a projective object $Q \in \mathcal{C}_{T_\Lambda}$ and maps $\alpha : F(M) \to Q$ and $\beta : Q
+\to F(N)$ such that $F(f) = \beta \circ \alpha$. In view of Corollary~\ref{3.4.3} and Lemma~\ref{3.5.2}~(5) write
+\[
+Q \isomorphic Q_0 \oplus Q_1
+\]
+with $Q_1 = F(P_1)$ and $Q_0 = (P_0, 0, 0)$ with $P_0$ being projective. We
+thus can write $\alpha = (\begin{smallmatrix}\alpha_0\\ \alpha_1\end{smallmatrix})$ and $\beta = (\beta_0, \beta_1)$. We
+consider the morphism $\alpha_0 : F(M) \to Q_0$. By definition, $\alpha_0 = (\zeta, \eta)$ is a
+pair of morphisms $\zeta : J M \to P_0$ and $\eta = 0$ such that the diagram
+\[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \factor M {J M} \rar["\eta"]\dar[two heads]& (0)\dar\\
+J M \rar["\zeta"]& P_0
+\end{tikzcd}\]
+commutes. Since the left vertical arrow is surjective, we get $\zeta = 0$. Hence
+$\alpha_0 = 0$. We thus obtain $F(f) = \beta \circ \alpha = \beta_0\circ\alpha_0 + \beta_1\circ\alpha_1 = \beta_1\circ\alpha_1$. By
+Lemma~\ref{3.5.3} the module $P_1$ is projective. Thanks to Lemma~\ref{3.5.2}, the
+functor $F$ is full. Hence we find $g: M \to P$ and $h: P_1 \to N$ with $F(g) = \alpha_1$ and
+$F(h) = \beta_1$. This implies $F(g \circ h - f) = 0$, so that Lemma~\ref{3.5.2}~(2) and $(*)$
+imply $f-gh \in \PHom_\Lambda(M,N)$. Hence $f \in \PHom_\Lambda(M,N)$ and $[f] = 0$.
+% One week later ...
+Moreover Lemma~\ref{3.5.2} yields that the functor $F$ is full. Hence $\overline F$ is full as well.
+
+We finally show that $\overline F$ is dense. Let $(X, Y, f)$ be an object in
+$\mathcal{C}_{T_\Lambda}$. As $X \in \mod{\factor \Lambda {J}}$, we can write $X = \im f \oplus V$ as a direct sum of $\factor \Lambda {J}$-modules. There results a decomposition
+\[
+(X, Y, f) = (\im f, y, \widetilde f) \oplus (V, 0, 0)
+\]
+where $\widetilde f: J \otimes_{\factor \Lambda {J}} Y \to \im f$ is defined via $\widetilde f(x\otimes y):=f(x\otimes y)$. By
+Lemma~\ref{3.5.2}, there is $M \in \mod \Lambda$ with $F(M) \isomorphic (\im f, Y, \widetilde f)$.
+Since $V$ is a projective $\factor \Lambda {J}$-module $(V, 0, 0)$ is a
+projective object in $\mathcal{C}_{T_\Lambda}$. Hence it is the zero object in
+$\underline{\mathcal{C}}_{T_\Lambda}$. As a result $\overline F(M) \isomorphic (X, Y, f)$ in
+$\underline{\mathcal{C}}_{T_\Lambda}$. Thus $\overline F$ is dense, and therefore an
+equivalence.
+
+Thanks to Proposition~\ref{3.4.2} there exists an equivalence $G: \mathcal{C}_{T_\Lambda} \to \mod{T_\Lambda}$ of $R$-categories. This functor induces an equivalence $\overline G: \underline{\mathcal{C}}_{T_\Lambda} \to \Stable{T_\Lambda}$. Hence $\overline G \circ \overline F$ is the desired equivalence.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\subsection*{Dynkin diagrams}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+In the structure theory of finite-dimensional complex Lie algebras, the simple objects are classified by certain graphs, called \textbf{Dynkin diagrams}\index{Dynkin diagram}. A Dynkin diagram with no multiple edges is called simply laced. These are the following diagrams:
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\bigskip
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+$A_n$ &
+\begin{tikzcd}[every arrow/.append style={dash},shorten <= -3mm,shorten >= -3mm, row sep = 3mm, column sep=small]
+\bullet \rar& \bullet \rar& \bullet \rar[dash, dashed]& \bullet \rar& \bullet \rar& \bullet
+\end{tikzcd}
+& $n$ verticies
+\\[30pt]
+$D_n$ &
+\begin{tikzcd}[every arrow/.append style={dash},shorten <= -3mm,shorten >= -3mm, row sep = 3mm, column sep=small]
+  \bullet \drar \\
+& \bullet \rar & \bullet \rar & \bullet \rar[dashed] & \bullet \rar & \bullet \rar & \bullet \\
+  \bullet \urar\\
+\end{tikzcd}
+\\[5pt]
+$E_6$ &
+\begin{tikzcd}[every arrow/.append style={dash},shorten <= -3mm,shorten >= -3mm, row sep = 3mm, column sep=small]
+ & & \bullet \dar\\
+ \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet
+\end{tikzcd}
+\\[30pt]
+$E_7$ &
+\begin{tikzcd}[every arrow/.append style={dash},shorten <= -3mm,shorten >= -3mm, row sep = 3mm, column sep=small]
+ & & \bullet \dar\\
+ \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet
+\end{tikzcd}
+\\[30pt]
+$E_8$ &
+\begin{tikzcd}[every arrow/.append style={dash},shorten <= -3mm,shorten >= -3mm, row sep = 3mm, column sep=small]
+ & & \bullet \dar\\
+ \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet \rar& \bullet
+\end{tikzcd} 
+\end{tabular}
+\end{center}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\bigskip
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{3.5.5}
+Let $\Lambda$ be a connected hereditary artin $R$-algebra.
+\begin{enumerate}
+\item $\Lambda$ has finite representation type if and only if $\overline Q_\Lambda$ is a
+Dynkin diagram.
+\item Suppose $\Lambda$ is a finite-dimensional algebra over an algebraically closed
+field $k$.
+Then $\Lambda$ has finite representation type if and only if $\overline Q_\Lambda \isomorphic A_n,
+D_n, E_{6,7,8}$.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $Q$ be a quiver with vertices $\{1, \ldots, n\}$. The \textbf{separated quiver}\index{separated quiver}
+$Q_s$ has vertices $\{1, \ldots, n, 1', \ldots, n'\}$. There is an arrow $i \to j'$ if and
+only if there is an arrow $i \to j$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $Q$ have the form 
+\[
+\begin{tikzcd}%[col sep=small]
+          & 1 \ar[dr] & \\
+3 \ar[ur] &           & 2 \ar[ll] 
+\end{tikzcd}
+\]
+Then $Q_s$ has the form
+\[
+\begin{tikzcd}
+1 \drar & 2\drar & 3\ar[dll]\\
+1' & 2' & 3'
+\end{tikzcd}
+\]
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{3.5.6}
+Let $\Lambda$ be an artin $R$-algebra.
+\begin{enumerate}
+\item If $\Lambda$ has finite representation type, then every component of
+$\overline{(Q_\Lambda)_s}$ is a Dynkin diagram.
+\item If $J^2 = (0)$ and the connected components of $\overline{(Q_\Lambda)_s}$
+are Dynkin diagrams, then $\Lambda$ has finite representation type.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We consider the algebra $\Lambda' := \factor \Lambda {J^2}$ and prove (2). By Lemma~II.\ref{2.3.3}, we have $Q_\Lambda \isomorphic Q_{\Lambda'}$. Moreover, if $\Lambda$ has finite representation type, so does $\Lambda'$. This follows by applying the pull-back functor $\pi^* : \mod{\Lambda'}
+\to \mod \Lambda$. Thanks to Theorem~\ref{3.5.4}, $\Lambda'$ and $T_{\Lambda'}$ are stably equivalent. Corollary~\ref{3.3.2} yields that
+$\Lambda'$ is representation-finite if and only if $T_{\Lambda'}$ is representation-finite. Moreover, by Lemma~\ref{3.5.1}, $T_{\Lambda'}$ is hereditary. By Lemma~\ref{3.5.5}, all components of $\overline Q_{T_{\Lambda'}}$ are Dynkin diagrams. One can show
+that
+\[
+Q_{T_{\Lambda'}} \isomorphic (Q_{\Lambda'})_s
+\]
+by using $\Ext_\Lambda^1(M,N)\cong \StableHom_\Lambda (\Omega_\Lambda(M),N)$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

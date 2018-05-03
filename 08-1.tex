@@ -1,0 +1,134 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 11-12-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma} \label{2.3.3}
+  There is an isomorphism
+%
+  \[ Q_\Lambda \isomorphic Q_{\factor \Lambda {\J{\Lambda}^2}}.\]
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $J:=J(\Lambda)$. It is clear that $\mathcal S(\Lambda) = \mathcal S(\Lambda / J^2)$. Moreover, if $S$ is a simple
+$\Lambda$-module, then $P(S) / J^2 P(S)$ is the projective cover of the simple $\Lambda/J^2$-module $S$.
+In other words, if $\Lambda' := \Lambda/J^2$, then
+\[
+P'(S) \isomorphic \factor {P(S)} {J^2 P(S)}.
+\] 
+We also have $J(\Lambda') = J/J^2$. Let $S, T$ be simple $\Lambda$-modules. We have $\Omega(S) \isomorphic \J{P(S)}$. According to Lemma~\ref{2.3.1}, there are isomorphisms
+%
+\begin{align*}
+  \Ext_\Lambda^1(S,T) &\isomorphic \Hom_\Lambda(J P(S), T) = \Hom_{\Lambda}(\factor {JP(S)} {J^2 P(S)}, T)\\
+             & = \Hom_{\Lambda'}(\factor {JP(S)} {J^2 P(S)}, T)\\
+             & = \Hom_{\Lambda'}(\J{\Lambda'}P(S),T)
+               = \Ext_{\Lambda'}^1(S,T).\qedhere
+\end{align*}
+%
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $S$ and $T$ be simple $\Lambda$-modules. We say that simple modules $S$ and $T$
+are \textbf{linked}\index{linked modules} if there exists a chain $S=S_1, \ldots, S_n = T$, such that
+$P(S_i)$ and $P(S_{i+1})$ have a common composition factor for all $1 \leq i \leq n-1$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+This defines an equivalence relation on $\Simples{\Lambda}$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{2.3.4}
+  The following statements are equivalent:
+  \begin{enumerate}
+  \item $Q_\Lambda$ is connected.
+  \item Any two simple modules are linked.
+  \item $\Lambda$ has exactly one block.
+  \end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $J:=J(\Lambda)$.
+\begin{addmargin}[1cm]{0cm}
+\hspace{-1cm}(1) $\Rightarrow$ (2): We put $\Lambda' := \factor \Lambda {J^2}$. In view of Lemma~\ref{2.3.3}, the
+  quiver $Q_{\Lambda'}$ is connected. Again, let $P(S) \in \mod{\Lambda}$ be the projective
+  cover of $S \in \mathcal S(\Lambda)$. Then we obtain that $P'(S) := P(S)/J^2 P(S) \in \mod{\Lambda'}$ is
+  the projective cover of $S \in \mathcal S(\Lambda')$. As $\J{\Lambda'}^2 = (0)$, we obtain that $\J{\Lambda'}P'(S)$ is semi-simple. Consequently,
+  \[
+  \Omega_{\Lambda'}(S) \isomorphic \J{\Lambda'}P'(S) \isomorphic \bigoplus_{S' \in
+  \Simples{\Lambda'}} n_{S'}S'.
+  \]
+  Lemma~\ref{2.3.1} and Schur's Lemma now imply
+  %
+  \begin{align*}
+    \Ext_\Lambda^1(S,T) \neq (0) \iff n_T \neq 0 \iff [\J{\Lambda'}P'(S),T] \neq 0.
+  \end{align*}
+  Now let $S$ and $T$ be simple $\Lambda$-modules. Since $Q_{\Lambda'}$ is connected, we can find simple $\Lambda'$-modules $S=S_1, \ldots, S_n = T$ such that
+  %
+    \[ \Ext_{\Lambda'}^1(S_i,S_{i+1}) \neq 0 \qq{or} \Ext_{\Lambda'}^1(S_{i+1},S_i) \neq 0 \qq{for all} i \le n-1
+     \]
+  %
+  In the former case $S_{i+1}$ is a composition factor of $P'(S_i)$, in the
+  latter $S_i$ is a composition factor of $P'(S_{i+1})$. Hence $P'(S_i)$ and
+  $P'(S_{i+1})$ have a common composition factor and so $P(S_i)$ and
+  $P(S_{i+1})$. Consequently $S$ and $T$ are linked.
+
+\hspace{-1cm}(2) $\Rightarrow$ (3): Let $e \in \Center{\Lambda}$ be a central primitive idempotent. Then there
+  exists a simple $\Lambda$-module $S$ such that $eS = S$. By (2), any simple $\Lambda$-module $T$ is linked to $S$. Since $P(S)$ is indecomposable, it follows that $eP(S) = P(S)$. This implies 
+  that $eT = T$ for any composition factor $T$ of $P(S)$: Consider the diagram
+    \[ \begin{tikzcd}
+        (0) \rar& M' \dar["e_{M'}"] \rar& M \dar["e_{M}"] \rar& M''
+        \dar["e_{M''}"] \rar& (0)\\
+        (0) \rar& M' \rar& M \rar& M'' \rar& (0)
+      \end{tikzcd},
+    \]
+    where $e_N$ is the left multiplication by $e$ on $N$. Now use induction on $\length{M}$.
+    
+  Suppose that $P(S)$  and $P(T)$ have a common composition factor $T'$, say. Then $eT' = T'$ so that $eP(T) = P(T)$. Thus, writing $\Lambda=\bigoplus_{T \in  \Simples{\Lambda}} n_T P(T)$, we get
+  \[
+  e\Lambda = \bigoplus_{T \in \Simples{\Lambda}} n_T eP(T) = \bigoplus_{T \in  \Simples{\Lambda}} n_T P(T) = \Lambda.
+  \]
+  Hence $(1-e)\Lambda = (0)$. This implies $e = 1$. Hence $\Lambda{}e = \Lambda$ is the only block.
+
+\hspace{-1cm}(3) $\Rightarrow$ (1): Suppose that $\Lambda$ has exactly one block. According to Corollary~I.\ref{1.6.3}, the algebra $\Lambda' := \factor \Lambda {\J{\Lambda}^2}$ also has only one block. In view of Lemma~\ref{2.3.3} it thus suffices to show that $Q_{\Lambda'}$ is connected, so we assume $J^2 =  (0)$.
+  Suppose that
+    \[ Q_\Lambda = \mathcal{A} \disjointunion \mathcal{B} \]
+  is a disjoint union with $\Ext_{\Lambda'}(S,T) = 0 = \Ext_{\Lambda'}(T,S)$ for all $S \in \mathcal{A}$ and $T
+  \in \mathcal{B}$. Let $S \in \mathcal{A}$. As before we have
+    \[ \Ext_{\Lambda'}(S, T) \neq (0) \iff [JP(S), T] \neq (0). \]
+  This implies that all composition factors of $P(S)$ belong to $\mathcal{A}$. Now let $S \in \mathcal{A}$ and $S' \in \mathcal{B}$. Then
+  \begin{align*}
+    \Hom_\Lambda(P(S),P(S')) &\isomorphic \Hom_\Lambda(P(S),JP(S'))\\
+                       &\isomorphic \Hom_\Lambda(S,JP(S')) && (\text{as}\ JP(S')\ \text{is semi-simple})\\
+                       &\isomorphic (0) &&(\text{since}\ S \not\in \mathcal{B}).
+  \end{align*}
+%
+  Our decomposition $Q_\Lambda = \mathcal{A} \disjointunion \mathcal{B}$ gives rise to $\Lambda = P_\mathcal{A} \oplus P_\mathcal{B}$ with
+  all composition factors of $P_X$ belonging to $X$ for $X \in \{\mathcal{A},\mathcal{B}\}$ since $P_X =
+  \bigoplus_{S \in X} n_S P(S)$.
+  Recall that $\Hom_\Lambda(P_\mathcal{A}, P_\mathcal{B}) = (0) = \Hom_\Lambda(P_\mathcal{B}, P_\mathcal{A})$. Every $a \in \Lambda$ defines
+  a linear map \[r_a : \left\{ \begin{matrix} \Lambda &\to \Lambda\\ x &\mapsto
+      x.a \end{matrix}\right. \]
+  We claim that $r_a(P_X) \subseteq P_X$. We consider for $X \in \{\mathcal{A}, \mathcal{B}\}$ the projection $\pi_X : \Lambda \to P_X$. Then $\restr {\pi_\mathcal{A} \circ r_a} {P_\mathcal{B}} \in \Hom_\Lambda(P_\mathcal{B}, P_\mathcal{A}) = (0)$. Hence
+  $r_a(P_\mathcal{B}) \subseteq \ker \pi_\mathcal{A} = P_\mathcal{B}$. As a result $P_\mathcal{A}$ and $P_\mathcal{B}$ are ideals of $\Lambda$. Hence we may assume that $P_{\mathcal A}=(0)$ so that $\mathcal{A} = \emptyset$ and $\mathcal B=Q_\Lambda$. Thus $\Lambda$ is connected.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------

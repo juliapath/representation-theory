@@ -1,0 +1,221 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 07-12-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 2.3
+
+\section{Extensions, the Gabriel quiver and connectedness}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\Lambda$ be an artinian ring.
+
+\begin{definition}
+Let $M \in \mod{\Lambda}$. A \textbf{projective resolution}\index{projective resolution} $(P_n,\partial_n)_{n\ge 0}$ of $M$ is an exact sequence
+%
+  \[ \begin{tikzcd}
+      \cdots \rar["\partial_4"]&
+      P_3 \rar["\partial_3"]&
+      P_2 \rar["\partial_2"]&
+      P_1 \rar["\partial_1"]&
+      P_0 \rar["\partial_0"]& M \ar[r] & (0)
+    \end{tikzcd},
+    \]
+%
+where $P_i$ is projective. Such a resolution is said to be \textbf{minimal}\index{minimal projective resolution},
+provided $(P_{n+1},\partial_{n+1})$ is a projective cover of $\ker \partial_n$
+for all $n \ge 0$.
+%
+%\[
+%  \begin{tikzcd}[column sep=small]
+%    P_{n+1} \ar[rd]\ar[rr,"\partial_{n+1}"]&& P_n\\
+%    &\ker \partial_n\ar[ur]&
+%  \end{tikzcd}
+%\]
+%
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+A minimal projective resolution exists if projective covers exist (as they do in $\mod{\Lambda}$). Unicity of projective covers implies that for two minimal resolutions $(P_n,\partial_n)$ and $(P_n',\partial_n')$ we obtain a commutative diagram
+%
+\[
+  \begin{tikzcd}
+    \ar[r]& P_n \dar["\wr"] \rar["\partial_n"]&
+            P_{n-1} \dar["\wr"] \rar["\partial_{n-1}"]&
+            \cdots \rar["\partial_1"] &
+            P_0 \dar["\wr"] \rar["\partial_0"]&
+            M \ar[d, equal] \ar[r] & (0) \\
+    \ar[r]& P'_n \rar["{\partial'_n}"]&
+            P'_{n-1} \rar["{\partial'_{n-1}}"]&
+            \cdots \rar["{\partial'_1}"] &
+            P'_0 \rar["{\partial'_0}"]&
+            M \ar[r] & (0)
+  \end{tikzcd}.
+\]
+%
+We have $\ker \partial_n \cong \Omega^{n+1}(M)$ for all $n \ge 0$. Thus the minimal projective resolutions are isomorphic.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Given $M, N \in \mod{\Lambda}$, the functor
+$\Hom_\Lambda(-, N)$ is left exact and we obtain a complex
+%
+\[
+  \begin{tikzcd}
+    (0) \ar[r]& \Hom_\Lambda(M,N) \rar["\partial_0^*"]&
+                \Hom_\Lambda(P_0,N) \rar["\partial_1^*"]&
+                \Hom_\Lambda(P_1,N) \rar["\partial_2^*"]& \cdots % \ar[r]&
+%                \Hom_\Lambda(P_{n-1},N) \rar["\partial_n^*"]&
+%                \Hom_\Lambda(P_n,N) \ar[r]& \cdots
+  \end{tikzcd}
+\]
+%
+that is, we have $\partial_{n+1}^* \circ \partial_n^* = (\partial_n\circ
+\partial_{n+1})^* = 0$. This implies that $\im \partial_n^* \subseteq \ker
+\partial_{n+1}^*$.
+Then
+\[
+\Ext^n_\Lambda(M,N) := \factor{\ker \partial_{n+1}^*}{\im \partial_n^*}
+\]
+is called the $n$-th \textbf{extension}\index{extension} of $M$ by $N$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma} \label{2.3.1}
+Let $M \in \mod{\Lambda}$ with minimal projective resolution $(P_n)_{n \ge 0}$.
+\begin{enumerate}
+\item For $M \in (\mod{\Lambda})_{\mathrm{pf}}$ and simple $S\in \mod{\Lambda}$ we have $\StableHom_\Lambda(M,S) \cong \Hom_\Lambda(M,S)$. 
+\item There exists a surjection \[\lambda^*: \Hom_\Lambda(\Omega^n(M),N) \to \Ext_\Lambda^n(M,N)\] with
+  $
+    \ker \lambda^* \subseteq \PHom_\Lambda(\Omega(M),N)$.
+\item For simple $S\in \mod{\Lambda}$ we have
+  \[\Ext_\Lambda^n(M,S) \cong \Hom_\Lambda(\Omega^n(M),S) \cong \Hom_\Lambda(P_n,S).\]
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Let $f \in \PHom_\Lambda(M,S)$. According to Lemma~\ref{2.2.2}, there exists $g : M \to
+  P_S$, such that $f = \varepsilon_S \circ g$.
+\[
+\begin{tikzcd}
+& P_S \ar[d,"\varepsilon_S",two heads] \\
+M \ar[r,"f"] \ar[ur,"g"] & S
+\end{tikzcd}
+\]
+If $\im g \not\subseteq \Rad(P_S) =  \J{\Lambda}P_S$, then $g$ is surjective, so that $P_S$ is a direct summand of $M$. This is a contradiction since $M \in (\mod{\Lambda})_{\mathrm{pf}}$. Hence $\im g \subseteq \Rad(P_S) = \ker \varepsilon_S$, so that $f = \varepsilon_S
+  \circ g = 0$.
+%
+\item Let $n \ge 1$. We consider the diagram
+    \[
+    \begin{tikzcd}[column sep=small]
+      P_{n+1} \ar[rr, "\partial_{n+1}"]&& P_{n} \ar[rd, twoheadrightarrow, "\lambda"]\ar[rr]&&
+      P_{n-1} \ar[rr, "\partial_{n-1}"]&& P_{n-2}\\
+      &&& \Omega^n(M) \ar[ru, hook, "\gamma"]
+    \end{tikzcd}.
+    \]
+  We thus obtain a map
+    \[
+    \lambda^*: \left\{ \begin{matrix}
+      \Hom_\Lambda(\Omega^n(M), N) &\to &\Ext_\Lambda^n(M,N)\\
+      f                   &\mapsto & [f \circ \lambda],
+    \end{matrix}\right.
+    \]
+  where $[f \circ \lambda] = f \circ \lambda + \im \partial_n^*$ denotes the residue class.
+  This is well-defined since
+  \[
+    \partial_{n+1}^*(f \circ \lambda) = f \circ \lambda \circ \partial_{n+1} = 0.
+  \]
+  Let $[g] \in \Ext_\Lambda^n(M,N)$. Then $g: P_n \to N$ satisfies $0 =
+  \partial_{n+1}^*(g) = g \circ \partial_{n+1}$. Hence $g(\ker \lambda) = g(\ker
+  \partial_n) = (0)$. Thus there is $f: \Omega^n(M) \to N$ such that $f \circ \lambda = g$.
+  So $\lambda^*$ is surjective. For proving the second claim, we note that $f \in \Hom_\Lambda(\Omega^n(M),N)$ is in $\ker \lambda^*$ if and only if $[f \circ \lambda] = 0$. This is the case if and only if there exists $g : P_{n-1} \to N$ such that
+  \[
+  f \circ \lambda =
+  \partial_n^*(g) = g \circ \partial_n = g \circ \gamma \circ \lambda.
+  \]
+If this holds, then $f = g \circ \gamma$, so that $f \in \PHom_\Lambda(\Omega^n(M), N)$.
+%
+\item Let $n \ge 1$. If $f \in \ker \lambda^*$, then there is $g:P_{n-1} \to S$ with $f = g \circ \gamma$. We have $\im \gamma = \ker \partial_{n-1} \subseteq \Rad(P_{n-1}) = \J{\Lambda}P_{n-1}$. Hence
+  \[ f(\Omega^n) =  g \circ \lambda(\Omega^n(M)) \subseteq g( \J{\Lambda}P_{n-1}) \subseteq  \J{\Lambda}g(P_{n-1}) \subseteq  \J{\Lambda} S = (0) \]
+  since $S$ is simple. Hence $\lambda^*$ is injective. Note that $\lambda$ induces an
+  exact sequence
+  \[
+    \begin{tikzcd}
+      (0) \ar[r]& \Hom_\Lambda(\Omega^n(M),S) \ar[r] & \Hom_\Lambda(P_n,S) \ar[r,
+      "\partial_{n+1}^*"]& \Hom_\Lambda(P_{n+1},S)
+    \end{tikzcd}.
+  \]
+  Let $f \in \Hom_\Lambda(P_n,S)$. Since $\im \partial_{n+1} \subseteq \J{\Lambda}P_n$, we obtain
+  \[
+  f \circ \partial_{n+1}(P_{n+1}) \subseteq f( \J{\Lambda}P_n) \subseteq \J{\Lambda}f(P_n) \subseteq  \J{\Lambda}S = (0).
+  \]
+  Hence $\partial_{n+1}^* = 0$, so that $\Hom_\Lambda(\Omega^n(M),S) \cong \Hom_\Lambda(P_n,S)$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{2.3.2}
+  Let $\Lambda$ be a finite-dimensional, self-injective algebra over a field $k$.
+  Given $M,N \in \mod{\Lambda}$, we have $\Ext_\Lambda^n(M,N) \cong \underline{\mathrm{Hom}}_\Lambda(\Omega^n(M),N)$.
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Back to the diagram, we see that every $f \in \PHom_\Lambda(\Omega^n(M), N)$ factors through the map
+$\gamma$.
+\[
+\begin{tikzcd}[column sep=small]
+& P_{n-1} \ar[dr,"g",dashed] \\
+\Omega^n(M) \ar[ur, hook, "\gamma"] \ar[rr,"f"] \ar[dr,"h"] & & N \\
+& P_N \ar[ur,"\varepsilon_N",two heads] 
+\end{tikzcd}.
+\]
+Hence $\ker \lambda^* = \PHom_\Lambda(\Omega^n(M),N)$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  Let $\Simples{\Lambda}$ be the set of isomorphism classes of simple $\Lambda$-modules. The
+  \textbf{Gabriel quiver}\index{Gabriel quiver} $Q_\Lambda$ has $\Simples{\Lambda}$ as set of vertices. There is an arrow
+  $[S] \to [T]$ if and only if $\Ext_\Lambda^1(S,T) \neq (0)$. If $\Lambda$ is a finite-dimensional
+  $k$-algebra, then there are $\dim_k(\Ext_\Lambda^1(S,T))$ arrows $[S] \to [T]$. We say
+  that $Q_\Lambda$ is \textbf{connected}\index{connected quiver} if the underlying graph is connected.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+  Let $\Lambda = k[{\tiny \KroneckerQuiver}]$ be the path algebra of the quiver
+  \[
+  \begin{tikzcd}
+  1 \ar[r] \ar[r,bend right] \ar[r,bend left] & 2
+  \end{tikzcd}
+  \]
+  Then $k[{\tiny \KroneckerQuiver}]$ has underlying vector space with basis the set of all paths with
+  \[
+  \dim_k k[{\tiny \KroneckerQuiver}] = 5
+  \]
+  Products are given by concatenations.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------

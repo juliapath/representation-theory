@@ -1,0 +1,204 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 14-12-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% CHAPTER 3
+
+\chapter{Equivalences of categories}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+From a certain point of view $\Mat_n(k)$ and $k$ are the same.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 3.1
+
+\section{Definitions and basic properties}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\mathcal{C}$ be a category. Recall that $\mathcal{C}$ is \textbf{additive}\index{additive category} provided
+
+\begin{enumerate}[label=(\roman*)]
+\item $\Hom_\mathcal{C}(A,B)$ is an abelian group for all $A,B \in \mathcal{C}$.
+\item $\circ:\Hom_\mathcal{C}(B,C) \times \Hom_\mathcal{C}(A,B) \to \Hom_\mathcal{C}(A,C)$ is bilinear for all $A,B,C \in \mathcal{C}$.
+\item $\mathcal{C}$ has finite direct sums.
+\end{enumerate}
+%
+If only (i) and (ii) hold, then $\mathcal{C}$ is called \textbf{pre-additive}\index{pre-additive category}.
+%
+Let $R$ be a commutative ring. A pre-additive category $\mathcal{C}$ is called an
+\textbf{$R$-category} if
+\begin{enumerate}[label=(\roman*)]
+\item $\Hom_\mathcal{C}(A,B)$ is an $R$-module for all $A,B \in \mathcal{C}$.
+\item $\circ:\Hom_\mathcal{C}(B,C) \times \Hom_\mathcal{C}(A,B) \to \Hom_\mathcal{C}(A,C)$ is $R$-bilinear.
+\end{enumerate}
+%
+A functor $F: \mathcal{C} \to \mathcal{D}$ between pre-additive categories is referred to as
+\textbf{additive}\index{additive functor} if the induced maps $\Hom_\mathcal{C}(A,B) \to \Hom_\mathcal{C}(F(A),F(B))$ are
+homomorphisms of abelian groups. For an $R$-functor $F: \mathcal{C} \to \mathcal{D}$ of $R$-categories
+we require this map to be $R$-linear.
+%
+\begin{definition}
+Let $F,G: \mathcal{C} \to \mathcal{D}$ be $R$-functors. A \textbf{natural transformation}\index{natural transformation} $\tau: F \to G$ assigns to each object $X\in \mathcal C$ a map $\tau_X\in \Hom_\mathcal{D}(F(X), G(X))$ such that for any $f\in \Hom_\mathcal{C}(X,Y)$ the following diagram commutes:
+\[
+  \begin{tikzcd}
+    F(X) \rar["\tau_X"] \dar["F(f)"]& G(X) \dar["G(f)"]\\
+    F(Y) \rar["\tau_Y"]& G(Y)
+  \end{tikzcd}
+\]
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $\mathcal{C} = \mathcal{D} = \Vec_k$, the category of finite-dimensional $k$-vector spaces. Then we have $V^* = \Hom_k(V,k)$. Given a basis $\{e_1,\dots, e_n\}$ in $V$, then the dual basis $\{e_1^*,\dots,e_n^*\}$ of linear functionals on $V$ is defined by $e_i^*(c_1 {e}_{1}+\dots +c_{n}{e}_{n})=c_{i}$ for any choice of coefficients $c_i$. Hence $V \isomorphic V^*$. We also have $V \isomorphic (V^*)^*$.
+There is a natural transformation
+\[
+\tau : \id \isomorphismarrow (( \ )^*)^*.
+\]
+Let $V$ be a vector space
+%. Then we put
+%\[
+%\tau_V:
+%\left\{
+%\begin{matrix}
+%V & \to & (V^*)^* \\
+%v & \mapsto & 
+%\end{matrix}
+%\right.
+%\]
+and $v\in V$. Then $\tau_V(v)$ is given by $\tau_V(v) \in (V^*)^*$ such that $(\tau_V(v))(\lambda) = \lambda(v)$ for $\lambda\in V^*$. If $f: V \to W$, direct computation shows that the relevant diagram commutes. So we have a
+natural transformation $\tau: \id \to (( \ )^*)^*$.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+In the sequel all functors are assumed to be $R$-functors.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A \textbf{natural equivalence}\index{natural equivalence} $\tau: F \to G$ is a natural transformation such that
+$\tau_X$ is bijective for all $X \in \mathcal{C}$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+In that case, there is $\sigma: G \to F$ such that $\tau_X \circ \sigma_X = \id_{G(X)}$ and $\sigma_X \circ \tau_X =
+\id_{F(X)}$ for all $X \in \mathcal{C}$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+An $R$-functor $F: \mathcal{C} \to \mathcal{D}$ is an \textbf{equivalence}\index{equivalence} provided, there is an
+$R$-functor $G: \mathcal{D} \to \mathcal{C}$ such that $G \circ F \isomorphic \id_\mathcal{C}$ and $F \circ G \isomorphic \id_\mathcal{D}$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  Let $F: \mathcal{C} \to \mathcal{D}$ be an $R$-functor.
+
+  \begin{enumerate}
+  \item We say that $F$ is \textbf{faithful}\index{faithful functor} if for every $A,B \in \mathcal{C}$ the map\[
+    \Hom_\mathcal{C}(A,B) \to \Hom_\mathcal{D}(F(A),F(B))\] is injective.
+  \item We say that $F$ is \textbf{full}\index{full functor} if for every $A,B \in \mathcal{C}$ the map \[\Hom_\mathcal{C}(A,B) \to \Hom_\mathcal{D}(F(A),F(B))\] is
+    surjective.
+  \item We say that $F$ is \textbf{dense}\index{dense functor} if for every $X \in \mathcal{D}$ there is an $A \in \mathcal{C}$
+    such that $F(A) \isomorphic X$.
+  \end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{3.1.1}
+  Let $F: \mathcal{C} \to \mathcal{D}$ be an $R$-functor. The following statements are equivalent:
+  \begin{enumerate}
+  \item $F$ is an equivalence.
+  \item $F$ is full, faithful and dense.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}\
+\begin{addmargin}[1cm]{0cm}
+\hspace{-1cm}(1) $\Rightarrow$ (2): Let $A$ and $B$ objects of $\mathcal{C}$. By assumption there is a
+  $R$-functor $G: \mathcal{D} \to \mathcal{C}$ such that $G \circ F \isomorphic \id_\mathcal{C}$. Hence there are isomorphisms
+  $\tau_A: G \circ F(A) \to A$ and $\tau_B: G \circ F(B) \to B$ such that $\tau_B^{-1} \circ f \circ \tau_A = G
+  \circ F(f)$ for all $f \in \Hom_\mathcal{C}(A,B)$. Hence $F$ is faithful. Since $F \circ G \isomorphic
+  \id_\mathcal{D}$, the same argument shows that $F$ is full.
+  Moreover for each object $X$ in $\mathcal{D}$ we have $F(G(X)) \isomorphic X$. Hence $F$ is dense.
+
+\hspace{-1cm}(2) $\Rightarrow$ (1): Since $F$ is dense, there exists for each object $M \in \mathcal{D}$
+  an isomorphism $\tau_M: M \to F(A)$, where $A \in \mathcal{C}$. If $A'$ is another such object,
+  then $F$ being full implies the existence of morphisms $f: A \to A'$ and $g: A'
+  \to A$ such that $F(f) = \tau'_M \circ \tau_M^{-1}$ and $F(g) = \tau_M \circ (\tau'_M)^{-1}$ where
+  $\tau'_M : M \isomorphismarrow F(A')$. Hence
+    \[ F(g \circ f) = F(g) \circ F(f) = \id_M = F(\id_A). \]
+  As $F$ is faithful, we have $g \circ f = \id_A$. By the same token $f \circ g =
+  \id_{A'}$. We put $G(M) := A$. Hence we have isomorphisms
+   \[ \tau_M: M \to F(G(M)). \]
+
+  Let $f: M \to N$ be a morphism in $\mathcal{D}$. Then $\tau_N \circ f \circ \tau_M^{-1}: F(G(M))
+  \to F(G(N))$. Since $F$ is full and faithful there is exactly one $G(f): G(M) \to
+  G(N)$. such that 
+  \begin{equation}\tag{$*$}
+    F(G(f)) = \tau_N \circ f \circ \tau_M^{-1}
+  \end{equation}
+
+  Direct computation shows that $G$ is a functor such that $\tau: \id_\mathcal{D} \to F \circ G$ is
+  a natural equivalence. Since $F$ is a faithful $R$-functor $G$ is an $R$-functor.
+  
+  Let $C \in \mathcal{C}$. Then $F(C) \in \mathcal{D}$. Consider the map $\tau_{F(\mathcal{C})}: F(C) \to F(G(F(C)))$. Since $F$ is
+  full and faithful there is a unique map $\eta_C: C \to G(F(C))$ such that $\tau_{F(C)}
+  = F(\eta_C)$. By the same token, $\eta_C$ is an isomorphism.
+  
+  If $f: C \to D$ is a morphism in $\mathcal{C}$, then $F(f): F(C) \to F(D)$ is a morphism and
+  ($*$) implies $\tau_{F(D)} \circ F(f) = (F \circ G \circ F)(f) \circ \tau_{F(C)}$. Consequently, we have
+  $F(\eta_D \circ f) = F((G \circ F)(f) \circ \eta_C)$ so that
+    \[ \eta_D \circ f = (G \circ F)(f) \circ \eta_C. \]
+  As a result $\eta: \id_\mathcal{C} \to G \circ F$ is a natural equivalence.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $\mathcal{C}$ be an $R$-category.
+  \begin{enumerate}
+  \item A morphism $f: A \to B$ is an \textbf{epimorphism}\index{epimorphism} if
+    for every morphism $g: B \to B'$ with $g \circ f = 0$ we have $g = 0$.\footnote{In general, if
+    $g, g': B \to B$ are such that $g \circ f = g' \circ f \implies g = g'$.}
+  \item We say that $f: A \to B$ is a \textbf{monomorphism}\index{monomorphism} if for every $h: A' \to A$
+    with $f \circ h = 0$, we have $h = 0$.
+  \item An object $P \in \mathcal{C}$ is \textbf{projective}\index{projective object} if for every morphism $f: P \to B$ and
+    every epimorphism $h: A \to B$, there is a morphism $g: P \to A$ such that $h \circ
+    g = f$.
+    \[
+      \begin{tikzcd}
+        & P \dlar["g"', dashrightarrow] \dar["f"]\\
+        A \rar["h", twoheadrightarrow]& B
+      \end{tikzcd}
+    \]
+  \item An object $I \in \mathcal{C}$ is \textbf{injective}\index{injective object} if for every morphism $f: A \to I$ and
+    every monomorphism $h: A \to B$, there is a morphism $g: I \to B$ such that $g \circ
+    h = f$.
+    \[
+      \begin{tikzcd}
+        I  & \\
+        A \uar["f"] \rar["h",hook] & B \ular["g"', dashrightarrow]
+      \end{tikzcd}
+    \]
+  \end{enumerate}
+\end{definition}

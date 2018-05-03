@@ -1,0 +1,186 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 22-01-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{3.4.3}
+Let $X \in \mathcal{C}_T$ be an indecomposable projective object. Then there either exists
+an indecomposable projective $\Gamma$-module Q with $X \isomorphic (M \otimes_\Gamma Q, Q, \id_{M \otimes_\Gamma
+Q})$or there exists an indecomposable projective $\Lambda$-module P such that $X
+\isomorphic (P, 0, 0)$.
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $(X,Y,f) \in \mathcal{C}_T$ be an indecomposable projective object. According to
+Proposition~\ref{3.4.2} and Proposition~\ref{3.1.2}, $F(X,Y,f)$ is an indecomposable projective $T$-module.
+Note that $T = T_1 \oplus T_2$ with
+\[
+T_1 =
+\begin{pmatrix}
+\Lambda & 0 \\ 0 & 0
+\end{pmatrix} \qq{and}
+T_2 =
+\begin{pmatrix}
+0 & M \\ 0 & \Gamma
+\end{pmatrix}
+\]
+is a decomposition of the regular module. Since $e_1 T_1 = \Lambda$, $e_1 T_2 = (0)$ and $e_2 T_1 = (0)$, it follows from the proof of Proposition~\ref{3.4.2} that $T_1 \isomorphic F(\Lambda, 0, 0)$. Note that
+\[
+g: \declaremap{M \otimes_\Gamma \Gamma}{M}{m \otimes \gamma}{m\gamma}
+\]
+is an isomorphism of $\Lambda$-modules. We therefore have
+\[
+T_2 = F(M, \Gamma, g) \isomorphic F(M \otimes_\Gamma \Gamma, \Gamma, \id_{M \otimes_\Gamma \Gamma}).
+\]
+Since $F(X, Y, f)$ is a principal indecomposable $T$-module it is isomorphic to a direct summand of $T_1$ or $T_2$ by the theorem of Krull-Remak-Schmidt. In the former case, $(X,Y,f) \isomorphic (P,0,0)$ with $P$ principal indecomposable $\Lambda$-module. In the latter case, there is a principal indecomposable $\Gamma$-module Q such that $(X,Y,f) \isomorphic (M \otimes_\Gamma Q, Q, \id_{M \otimes_\Gamma Q})$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{Algebras of radical square zero}\label{3.5}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+In this section let $\Lambda$ be an artin $R$-algebra with Jacobson radical $J=J(\Lambda)$. If $J = (0)$, then Wedderburn's Theorem
+tells us
+\[
+\Lambda \isomorphic \bigoplus_{i=1}^n \Mat_{n_i}(\Delta_i),
+\]
+where the $\Delta_i$ are division rings. In this section, we are interested in the case $J^2 = (0)$. Let $T_\Lambda$ be the triangular matrix algebra (over $R$) given by
+\[
+T_\Lambda
+=
+\begin{pmatrix}
+\factor \Lambda {J} & J \\
+0 & \factor \Lambda {J}
+\end{pmatrix}.
+\]
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+An $R$-algebra is \textbf{hereditary}\index{hereditary algebra} provided all left ideals of $\Lambda$ are projective.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+Basic homological algebra yields that the following statements are equivalent for $\Lambda$ being an artin $R$-algebra:
+\begin{enumerate}[label=(\roman*)]
+\item $\Lambda$ is hereditary.
+\item $J$ is a projective left $\Lambda$-module.
+\item $\Ext_\Lambda^2(M,N) = (0)$ for all $M, N \in \mod \Lambda$.
+\end{enumerate}
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{3.5.1}
+Suppose that $J^2 = (0)$. Then $T_\Lambda$ is hereditary.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+It suffices to show that $J_T := \Rad(T_\Lambda)$ is projective. Let $M := J$ and $\Lambda' := \factor \Lambda {J}$. Then $T_\Lambda =
+(\begin{smallmatrix}
+\Lambda' & M \\
+0 & \Lambda'
+\end{smallmatrix})
+$. In particular, $ M \isomorphic
+(\begin{smallmatrix}
+0 & M\\
+0 & 0
+\end{smallmatrix})$ is an ideal of $T_\Lambda$ such that
+\[
+\factor {T_\Lambda} M \isomorphic \Lambda' \times \Lambda'.
+\]
+Hence $\factor {T_\Lambda} M$ is semi-simple, so that $J_T \subseteq M$. On the other hand, we have $M \subseteq J_T$ as $M^2 = (0)$. Since $M$ corresponds to $(M, 0, 0)$ and $M$ is a projective $\Lambda'$-module it follows from Corollary~\ref{3.4.3} that $M$ is projective. Hence $T_\Lambda$ is hereditary.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma*}
+Let $M \in \mod \Lambda$.
+\begin{enumerate}
+\item The map \[\mu: \declaremap{\Lambda \otimes_\Lambda M}{M}{\lambda \otimes m}{\lambda m}\] is an isomorphism of
+abelian groups.
+\item Let $X$ be a left $\Lambda$-module Then $- \otimes_\Lambda X: \Mod^r \Lambda \to \Mod{\mathbb{Z}}$ is right exact.
+\item If $X$ above is projective, then $- \otimes_\Lambda X$ is exact.
+\end{enumerate}
+\end{lemma*}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We omit the proof.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma*}
+Let $P$ be a projective $\Lambda$-module. Then $\mu$ restricts to an isomorphism \[I
+\otimes_\Lambda P \xrightarrow{\sim} IP\] for every ideal $I \trianglelefteq \Lambda$.
+\end{lemma*}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We consider the exact sequence
+\[\begin{tikzcd}
+(0) \rar& I \rar["\iota"]& \Lambda \rar["\pi"]& \factor \Lambda I \rar& (0)
+\end{tikzcd}.\]
+Since $P$ is projective, we obtain a commutative diagram
+\[\begin{tikzcd}
+(0) \rar & I \otimes_\Lambda P \dar["\mu|_{I \otimes_\Lambda P}"] \rar["\iota \otimes \id_P"] & \Lambda \otimes_\Lambda P
+\dar["\wr"',"\mu"] \rar["\pi \otimes \id_P"] & \factor \Lambda I \otimes_\Lambda P \dar["\overline \lambda \otimes p
+\mapsto \overline{\lambda p}"] \rar & (0) \\
+(0) \rar & IP \rar & P \rar & \factor P {IP} \rar & (0)
+\end{tikzcd}
+\]
+with exact rows.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Suppose that $J^2 = (0)$. We are going to define a functor
+\[ F: \mod \Lambda \to \mathcal{C}_{T_\Lambda}.\]
+The idea is that $M \in \mod \Lambda$ is “determined” by its Loewy layers $\factor M {J M}$ and $J M$.
+Let $M \in \mod \Lambda$. The multiplication $\Lambda \otimes_\Lambda M \to M$ induces a map
+\[
+J \otimes_{\factor \Lambda {J}} \factor M {J M} \to J M.
+\]
+The map
+\[
+\declaremap{J \times \factor M {J M}}{J M}{(x, \overline m)}{x.m}
+\]
+is well-defined, $\mathbb{Z}$-bilinear and $\factor \Lambda {J}$-balanced. Hence there is a $\mathbb{Z}$-linear map
+\[
+f: \declaremap{J \otimes_{\factor \Lambda {JM}}
+\factor M {J}}{J M}{x \otimes \overline m}{x.m}
+\]
+This map is even $R$-linear, and $\factor \Lambda {J}$-linear. If $M \in \mod \Lambda$, we
+put
+\[
+F(M) := (J M, \factor M {J M}, f) \in \mathcal{C}_{T_\Lambda}.
+\]
+Let $\varphi : M \to N$ be $\Lambda$-linear. Then $\varphi(J M) \subseteq \J{\varphi(M)} \subseteq J N$. There results a map
+\[
+\varphi_2: \declaremap{\factor M {J M}}{\factor N {J N}}{m + J M}{\varphi(m) + J N}
+\]
+which is $\factor \Lambda {J}$-linear. We put $\varphi_1 := \restr \varphi {J M} : J M
+\to J N$ and define
+\[
+F(\varphi) := (\varphi_1, \varphi_2) \in \Hom_{\mathcal{C}_{T_\Lambda}}(F(M), F(N)).
+\]
+Direct computation shows that $F$ is a functor of $R$-categories.
+
+%--------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,199 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 06-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $\Lambda$ be an artinian ring. By Theorem~\ref{1.2.7}, $\Lambda$ is a $\Lambda$-module of finite length. The theorem of Krull-Remak-Schmidt implies the existence of indecomposable modules $P_1,\dots,P_n$ and $m_1,\dots,m_n\in\N$ such that
+\[
+\Lambda \cong \bigoplus_{i=1}^n m_i P_i = \bigoplus_{i=1}^n (P_i\oplus \dots \oplus P_i),
+\]
+The $P_i$ are projective. Moreover we assume $P_i\not\cong P_j$ for all $i\neq j$. We put
+\[
+S_i := P_i/\Rad_\Lambda(P_i).
+\]
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.4.6}
+The following statements hold:
+\begin{enumerate}
+\item $P_i=\Lambda e_i$ for an idempotent $e_i\in \Lambda$.
+\item $S_i$ is simple.
+\item $m_i=\dim_{\Delta_i}(S_i)$, where $\Delta_i:=\End_\Lambda(S_i)$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Since $P_i$ is a direct summand of $\Lambda$, we write $\Lambda=P_i\oplus Q_i$. Hence there are $e_i\in P_i$ and $f_i\in Q_i$ such that $1_\Lambda = e_i+f_i$. We have
+\[
+0 = e_i 1_\Lambda - 1_\Lambda e_i
+  = e_i (e_i+f_i) - (e_i+f_i) e_i
+  = e_i f_i - f_i e_i.
+\]
+Hence $e_if_i=f_ie_i \in P_i\cap Q_i =\{0\}$. Thus $e_i 1_\Lambda = e_i (e_i+f_i) = e_i^2$ and $f_i 1_\Lambda = f_i^2$. Since $\Lambda e_i \oplus \Lambda f_i =\Lambda$ and $\Lambda e_i \subseteq P_i$ and $\Lambda f_i \subseteq Q_i$, we get $\Lambda e_i = P_i$ and $\Lambda f_i = Q_i$. In particular $e_i\neq 0$.
+
+\item By definition, $S_i$ is semi-simple. Let $T$ be a simple direct summand of $S_i$. Let $e: S_i \twoheadrightarrow T \hookrightarrow S_i$ be the canonical projection. Then $e\in\End_{\Lambda}(S_i)$ and $e^2=e$. Let $\pi_i:P_i\to S_i$ be the canonical projection. Then we find $\gamma:P_i\to P_i$ such that $\pi_i\circ \gamma = e\circ \pi_i$.
+%
+\[
+\begin{tikzcd}
+P_i \ar[r,"\pi_i",two heads] & S_i \\
+& P_i \ar[u,"e\circ \pi_i"'] \ar[ul,"\gamma"]
+\end{tikzcd}
+\]
+%
+Since $P_i$ is indecomposable, Fitting's lemma implies that $\gamma$ is either nilpotent or invertible. We assume that $\gamma$ is nilpotent. Then there is $n\in\N$ such that $\gamma^n=0$. Inductively we obtain 
+\[
+0 = \pi_i \circ \gamma^n = e^n \circ \pi_i = e \circ \pi_i. 
+\]
+Since $\pi_i$ is surjective, we conclude $e=0$. $\lightning$ Hence $\gamma$ is invertible, so $\pi_i\circ \gamma = e\circ \pi_i$ is surjective. Thus $e$ is surjective and $T=S_i$.
+
+\item We first show that $\Hom_\Lambda(P_i,S_j) \cong \Hom_\Lambda(S_i,S_j)$ as $\End_\Lambda(S_j)$-modules. Let
+\[
+\varphi:
+\declaremap{\Hom_\Lambda(S_i,S_j)}{\Hom_\Lambda(P_i,S_j)}{f}{f\circ \pi_i}.
+\]
+Then $\ker(\varphi) = (0)$. Let $g:P_i\to S_i$ and assume $g\neq 0$. Since $S_j$ is simple, $g$ is surjective and $P_i/\ker(g) \cong S_j$. Since $P_i$ has only one maximal submodule which is $\Rad_\Lambda(P_i)=J(\Lambda)e_i$, we get that $g$ factors through $\pi_i$. 
+%
+\[
+\begin{tikzcd}
+P_i \ar[r,"g",two heads] \ar[d,"\pi_i",two heads] & S_i \\
+P_i/\Rad_\Lambda(P_i) \ar[ur,"\bar g"',dashed]
+\end{tikzcd}
+\]
+%
+Hence there is $\bar g:P_i/\Rad_\Lambda(P_i)\to S_j$ such that $\bar g\circ \pi_i=g$. Since $S_i=P_i/\Rad_\Lambda(P_i)$, we have $g=\varphi(\bar g)$. By (2), we have now
+\[
+\Hom_\Lambda(P_i,S_j) \cong \Hom_\Lambda(S_i,S_j) 
+\cong
+\begin{cases}
+(0), & S_i \not\cong S_j\\
+\Delta_j, & S_i \cong S_j
+\end{cases}.
+\]
+We now show that $P_i\cong P_j$ if $S_i\cong S_j$. Let $\varphi:S_i\to S_j$ be an isomorphism. Since $P_j$ is projective we can find $\alpha : P_i\to P_j$ such that $\pi_i \circ \alpha = \varphi \circ \pi_j$.
+%
+\[
+\begin{tikzcd}
+P_i \ar[r,"\pi_i",two heads] & S_i \\
+P_j \ar[u,"\alpha",dashed] \ar[r,"\pi_j",two heads] & S_j \ar[u,"\varphi"'] \\
+P_i \ar[u,"\beta",dashed] \ar[r,"\pi_i",two heads] & S_i \ar[u,"\varphi^{-1}"']
+\end{tikzcd}
+\]
+%
+By the same token there is $\beta:P_i\to P_j$ such that $\pi_j \circ \beta = \varphi^{-1} \circ \pi_i$. Hence
+\[
+\pi_i \circ \alpha\circ\beta
+ = \varphi\circ \pi_j \circ\beta
+ = \varphi\circ \varphi^{-1} \circ \pi_i
+ = \pi_i.
+\]
+By Fitting's lemma, $\alpha\circ \beta$ is invertible and thus $\beta$ is injective. By the same argument, the composition $\beta\circ\alpha$ is invertible and thus $\beta$ is surjective. Hence $P_i\cong P_j$. Thus $S_i\cong S_j$ implies $P_i\cong P_j$ and $i=j$. Consequently
+\begin{align*}
+\Hom_\Lambda(\Lambda,S_i)
+& = \Hom_\Lambda\left( \bigoplus_{j=1}^n m_j P_j, S_i \right)
+  \cong \bigoplus_{j=1}^n m_j \Hom_\Lambda(P_j, S_i) \\
+& \cong \bigoplus_{j=1}^n m_j \Hom_\Lambda(S_j, S_i)
+  \cong m_i \Hom_\Lambda(S_j, S_i) \\
+& = m_i \End_\Lambda (S_i) = m_i \Delta_i.
+\end{align*}
+%
+We now apply Lemma~\ref{1.4.4} with the idempotent $e=1$. Then
+\[
+\Hom_\Lambda(\Lambda,S_i)\cong 1\cdot S_i = S_i.\qedhere
+\]
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $\Lambda$ be an artinian ring.
+\begin{enumerate}
+\item The projective indecomposable modules $P_1,\dots,P_n$ are also called \textbf{principal indecomposable modules}\index{principal indecomposable modules}.
+\item If $\Lambda\cong\bigoplus_{i\le n} m_i P_i$, then the numbers $c_{ij} := [P_j:S_i]$ are called \textbf{Cartan invariants}\index{Cartan invariants} of $\Lambda$ and the matrix $C_\Lambda:=(c_{ij})_{i,j\le n}$ is called \textbf{Cartan matrix}\index{Cartan matrix} of $\Lambda$.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.4.7}
+Let $\Lambda$ be an artinian ring and $e\in\Lambda$ be an idempotent.
+\begin{enumerate}
+\item If $P$ is a finitely generated, projective and indecomposable $\Lambda$-module, $P\cong P_j$ for some $i\le n$.
+\item The ring $e\Lambda e$ is artinian and if $M$ is a $\Lambda$-module of finite length, then $eM$ is a $e\Lambda e$-module of finite length.
+\item If $M$ is a $\Lambda$-module of finite length, then $[M:S_i]=\ell_{e_i \Lambda e_i}(e_i M)$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Since $P$ is finitely generated, there is $n\in\N$ and an epimorphism $\pi:\Lambda^n\twoheadrightarrow P$. Since $P$ is projective, we find $\sigma:P\to \Lambda^n$ such that $\pi\circ\sigma = \id_P$.
+%
+\[
+\begin{tikzcd}
+	& P \ar[d,"\id_P"] \ar[ld,dashed,"\sigma"'] \\
+	\Lambda^n \ar[r,two heads,"\pi"] & P
+\end{tikzcd}
+\]
+%
+Hence the exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & \ker \pi \ar[r] & \Lambda^n \ar[r] & P \ar[r] & (0)
+\end{tikzcd}
+\]
+splits and thus we have $P\cong \ker(\pi)\oplus \im(\sigma)$. Hence $P$ is isomorphic to a direct summand of $\Lambda^n$. Since $P$ is indecomposable, the Theorem of Krull-Remak-Schmidt yields that there is $i\in\{1,\dots,n\}$ such that $P\cong P_i$.
+
+\item If $X\subseteq eM$ is a $e\Lambda e$-submodule of $eM$, then $\Lambda X$ is a $\Lambda$-submodule of $M$. Moreover $e\Lambda X=X$. This implies both claims.
+
+\item Recall that $\Hom_\Lambda(P_i,S_j)=(0)$ if $i\neq j$ and $\Hom_\Lambda(P_i,S_j)\cong \Delta_i$ for $i=j$. Given a $\Lambda$-module $M$, we have an isomorphism
+\[
+\psi_{e_i}:
+\declaremap{\Hom_\Lambda(\Lambda e_i,M)}{e_i M}{f}{f(e_i)}
+\]
+of $\End_\Lambda(M)$-modules by Lemma~\ref{1.4.4}, where $e_i\in\Lambda$ is an idempotent. We show that this map is also an isomorphism of $e_i\Lambda e_i$-modules. We note that $P_i=\Lambda e_i$ is a right $e_i \Lambda e_i$-module. Consequently, $\Hom_\Lambda(P_i,M)$ is a $e_i \Lambda e_i$-module via $(r.f)(x):=f(xr)$ for $x\in P_i$ and $r\in e_i \Lambda e_i$. We have
+\[
+\psi_{e_i}(rf) = (rf)(e_i) = f(e_i r) = f(r) = f(r e_i) = r f(e_i) = r \psi_{e_i}(f). 
+\]
+Now let $S$ be a simple $\Lambda$-module. By the above we have $e_i S\neq (0)$ if and only if $S\cong S_i$. Moreover $e_i S$ is a simple $e_i \Lambda e_i$-module: Let $X\subseteq e_i S$. Then $\Lambda X \in \{0,S\}$. If $\Lambda X=(0)$, then $X=0$ and if $\Lambda X=S$, then $X = e_i\Lambda X=e_i S$. Hence our assumption hold for modules of length 1.
+
+We now use induction on $\ell_\Lambda(M)$. Let $\ell_\Lambda(M)>1$. Let $M'\subseteq M$ be a maximal submodule and consider the short exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r] & M \ar[r] & M/M' \ar[r] & (0)
+\end{tikzcd}.
+\]
+Applying $\Hom_\Lambda(P_i,-)$ yields a commutative diagram with exact rows.
+\[
+\begin{tikzcd}[column sep=small]
+	(0) \ar[r] & \Hom_\Lambda(P_i,M') \ar[r] \ar[d,"\psi_{e_i}'"] & \Hom_\Lambda(P_i,M) \ar[r] \ar[d,"\psi_{e_i}"] & \Hom_\Lambda(P_i,M/M') \ar[r] \ar[d,"\psi_{e_i}''"] & (0) \\
+	(0) \ar[r] & e_i M' \ar[r] & e_i M \ar[r] & e_i M/M' \ar[r] & (0)
+\end{tikzcd}
+\]
+The first row is exact since $P_i$ is projective. By using the induction hypothesis, we conclude
+\begin{align*}
+\ell_{e_i \Lambda e_i}(e_i M)
+& = \ell_{e_i \Lambda e_i}(e_i M') + \ell_{e_i \Lambda e_i}(e_i M/M') \\
+& = [M':S_i] + [M/M':S_i]
+  = [M:S_i].\qedhere
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

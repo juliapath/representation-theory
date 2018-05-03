@@ -1,0 +1,232 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 15-01-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{3.3.2}
+  Suppose that $F: \Stable \Lambda \to \Stable \Gamma$ is a stable equivalence. If $\Lambda$ has
+  finite representation type, so does $\Gamma$.
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+  It suffices to show that $\Gamma$ has only finitely many isomorphism classes of
+  non-projective indecomposables.
+  Let $N \in \modpf \Gamma$ be indecomposable. Since $F$ is dense, there is $M \in \mod
+  \Lambda$ such that $F(M) \isomorphic N$ in $\Stable \Gamma$. Since $F$ is faithful and dense, we have isomorphisms
+  $\StableEnd_\Gamma(N) \isomorphic \StableEnd_\Gamma(F(M)) \isomorphic \StableEnd_\Lambda(M)$ via $F$.
+  Since $N$ is indecomposable, the algebra $\End_\Gamma(N)$ is local. Hence
+  $\StableEnd_\Gamma(N)$ is local. As a result, $\StableEnd_\Lambda(M)$ is local.
+  Replacing $M$ by $M_\pf$, we have $N \isomorphic F(M_\pf)$ in $\Stable \Gamma$. Hence we may
+  assume that $M \in \modpf \Lambda$.
+  Let $f \in \End_\Lambda(M)$ and consider the Fitting decomposition
+    \[ M = M_0 \oplus M_1 \]
+  of $M$ relative to $f$. If $f \in \PHom_\Lambda(M,M)$, then $\restr f {M_1}
+  \in \PHom_\Lambda(M_1, M_1)$. Hence $f = \varepsilon_{M_1} \circ g$, where $\varepsilon_{M_1} :
+  P(M_1) \to M_1$ is a projective cover and $g : M_1 \to P(M_1)$. Since
+  $\restr f {M_1}$ is invertible, the map $\varepsilon_{M_1}$ is split surjective.
+  As a result
+    \[ P(M_1) \isomorphic \ker \varepsilon_{M_1} \oplus X \]
+  where $X \isomorphic M_1$. In particular, $M_1$ is projective, so that $M$ being
+  projective-free implies $M_1 = 0$. As a result, $f$ is nilpotent. It
+  follows that
+    \[ \PHom_\Lambda(M,M) \trianglelefteq \End_\Lambda(M) \]
+  is a nilideal of an artinian ring. Hence $\PHom_\Lambda(M,M) \subseteq \Rad(\End_\Lambda(M))$.
+  Since $\StableEnd_\Lambda(M)$ is local, it follows that $\End_\Lambda(M)$ is local as
+  well. Hence $M$ is indecomposable.
+  Now let $\Indpf \Lambda$ and $\Indpf \Gamma$ be the sets of isomorphism classes of
+  non-projective, indecomposable $\Lambda$-modules and $\Gamma$-modules, respectively. The
+  observations above imply that $F$ induces a surjection
+    \[ \widetilde F : \Indpf \Lambda \to \Indpf \Gamma. \]
+  Recall that $X \isomorphic Y$ in $\Stable \Lambda$ if and only if $X_\pf \isomorphic Y_\pf$ in $\mod \Lambda$.
+  Hence $\Gamma$ has finite representation type.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+As a consequence of the proof we get:
+\begin{proposition}\label{3.3.3}
+  Let $F : \Stable \Lambda \to \Stable \Gamma$ be a stable equivalence. Then $F_\pf$ induces
+  a bijection
+    \[ \modpf \Lambda \to \modpf \Gamma \]
+  of isomorphism classes of projective-free objects.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\subsection*{Tensor products}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $R$ be a ring.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a right $R$-module, $N$ be a left $R$-module and $A$ be an abelian group. A $\mathbb{Z}$-bilinear map $f: M \times N \to A$ is said to be \textbf{balanced}\index{balanced map} if
+\[
+f(mr, n) = f(m,rn)
+\]
+for all $m\in M$, $n\in N$ and $r\in R$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+  Let $M = N = R = A$. Then $f(r,s) := rs$ is balanced.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a right $R$-module, $N$ be a left $R$-module and $h: M \times N \to T$ be a balanced map into some abelian group $T$. The pair $(T,h)$ is referred to as a \textbf{tensor product}\index{tensor product} of $M$ and $N$, provided for every balanced map $f:M\times N\to A$ there is a unique $\Z$-linear map $\varphi:T\to A$ such that $\varphi\circ h=f$.
+\[
+\begin{tikzcd}
+  M \times N \ar[d, "f"'] \ar[r, "h"] & T \ar[dl,dashed, "\exists!\varphi"] \\
+  A
+\end{tikzcd}
+\]
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{3.3.4}\
+\begin{enumerate}
+\item There exists a tensor product $(T,h)$ of $M$ and $N$.
+\item If $(T',h')$ is another tensor product of $M$ and $N$, then there is a unique isomorphism $\varphi : T \to T'$ such that $\varphi \circ h = h'$.
+\item We have $T = \generator{h(m,n) : m \in M, n \in N}_{\mathbb{Z}}$
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+For showing (1) and (3), let $\widehat T$ be the free abelian group with basis $M \times N$. Moreover let $\widehat S \subseteq \widehat T$  be the submodule generated by the elements of the form
+\[
+(mr, n) - (m, rn),\quad (m + m', n) - (m, n) - (m', n), \quad (m, n+n') - (m, n) - (m, n')
+\]
+with $m, m' \in M$, $n, n' \in N$ and $r \in R$. We put $T := \factor{\widehat T}{\widehat S}$ and define
+\[
+h: \declaremap{M\times N}{T}{(m, n)}{(m, n) + \widehat S}
+\]
+as the restriction of the canonical projection $\pi: \widehat T \to T$. By definition, $h$ is balanced and (3) holds.
+Let $f: M \times N \to A$ be balanced. As $\widehat T$ is free on $M \times N$, there is a linear map $\widehat f: \widehat T \to A$ such that ${\widehat f}|_{M \times N} = f$. Since $f$ is balanced, we have $\widehat S \subseteq \ker{\widehat f}$. Hence there is $\varphi : T \to A$
+such that $\varphi \circ \pi = \widehat f$. Hence $\varphi \circ h = f$. If $\varphi' : T \to A$ is another such map, then $(\varphi - \varphi') \circ h = 0$. By (3), we get $\varphi = \varphi'$.
+Now, for showing (2), we consider the commutative diagram
+\[\begin{tikzcd}
+      M \times N \dar["h'"'] \rar["h"] & T \ar[ld, "\varphi"']\\
+      T' \ar[ru, bend right ,"\varphi'"']
+          \end{tikzcd}
+\]
+This implies $(\varphi' \circ \varphi) \circ h = \varphi' \circ h' = h = {\id_T} \circ h$. By unicity, we get $\varphi' \circ \varphi = \id_T$. By the same token, we obtain $\varphi \circ \varphi' = \id_{T'}$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+By virtue of the foregoing result we will write $M \otimes_R N := T$ as well as $m \otimes n := h(m,n)$. Thus we have
+\[
+M \otimes_R N = \generator{m \otimes n : m \in M, n \in N}_\Z.
+\]
+Moreover we have seen that for every balanced map $f : M \times N \to A$ there is a unique linear map $\varphi : M \otimes_R N
+\to A$ such that $\varphi(m \otimes n)  =f(m,n)$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{3.3.5}
+Let $f: M \to M'$ and $g : N \to N'$ be $R$-linear maps.
+\begin{enumerate}
+  \item There is exactly one $\mathbb{Z}$-linear map \[f \otimes g : M \otimes_R N \to M' \otimes_R N'\] such
+    that $(f \otimes g)(m \otimes n) = f(m) \otimes g(n)$ for all $m \in M$, $n \in N$.
+  \item We have $(f_1 + f_2)\otimes g = f_1 \otimes g + f_2 \otimes g$ for all $f_1, f_2 \in \Hom_R(M,M')$.
+  \item We have $f\otimes(g_1 + g_2)=  f \otimes g_1 + f \otimes g_2$ for all $g_1, g_2 \in \Hom_R(N,N')$.
+  \item We have $(f' \circ f)\otimes(g' \circ g) = (f'\otimes g')\circ(f\otimes g)$ for all $f': M' \to M''$, $g': N' \to N''$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+The statements (2), (3) and (4) are an immediate consequence of (1). For proving (1), we consider
+\[
+\gamma :
+\left\{
+\begin{matrix}
+M \times N & \to &  M' \otimes_R N'\\
+(m,n) &\mapsto & f(m) \otimes g(n)
+\end{matrix}
+\right.
+\]
+Then $\gamma$ is $\mathbb{Z}$-bilinear and balanced since
+\begin{align*}
+\gamma(mr, n)
+  & = f(mr) \otimes g(m) = f(m)r \otimes g(m) \\
+  & = f(m) \otimes rg(n) = f(m) \otimes g(rn) = \gamma(m,rn)
+\end{align*}
+%
+As a consequence we can find a unique $\Z$-linear map $f \otimes g : M \otimes_R N \to M' \otimes_R N'$ such that $(f \otimes g)(m \otimes n)=\gamma(m,n)$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+Let $M$ be a right module. Then 
+\[
+M \otimes_R - :
+\left\{
+\begin{matrix}
+\Mod R &\to & \Mod \mathbb{Z} \\
+N & \mapsto & M \otimes_R N \\
+f & \mapsto & \id_M \otimes f
+\end{matrix}
+\right.
+\]
+is a functor. Likewise for $- \otimes_R N$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $R$ and $S$ be rings and $M$ be an abelian group. Then $M$ is called an \textbf{$(R,S)$-bimodule}\index{bimodule} if $M$ is an $R$-left-module, a right $S$-module and
+\[
+(r.m) s = r.(ms)
+\]
+for all $r\in R$, $m\in M$ and $n\in N$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}
+Let $M$ be an $(R,S)$-bimodule and $N$ be a left $S$-module. Then $M\otimes_S N$ obtains the structure of a left $R$-module via
+\[
+r(m\otimes n) := rm \otimes n
+\]
+for all $r\in R$, $m\in M$ and $n\in N$.
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Given $r\in R$, we consider the map
+\[
+\lambda_r :
+\left\{
+\begin{matrix}
+M & \to & M \\
+m & \mapsto & rm
+\end{matrix}
+\right.
+\]
+Then $\lambda_r\in\End_S(M)$. Hence we define $rx := (\lambda_r \otimes \id_N)(x)$ for all $r\in R$ and $x\in M\otimes_S N$. Since $\lambda_{r_1+r_2}=\lambda_{r_1}+\lambda_{r_2}$ and $\lambda_{rs}=\lambda_{r}\circ\lambda_{s}$, the assertion follows from the lemma before.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

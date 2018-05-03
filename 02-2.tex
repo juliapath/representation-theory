@@ -1,0 +1,253 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 02-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item By assumption, there is $n_0\in\N$ such that $\ker f^n=\ker f^{n_0}$ and $\im f^n=\im f^{n_0}$ for all $n\ge n_0$. Take $m\in M$, then $f^{n_0}(m)=f^{2n_0}(x)=f^{n_0}(f^{n_0}(x))$ for some $x\in M$. Thus $m-f^{n_0}(x)\in \ker f^{n_0}$. 
+\item Let $I:=\{f\in\End_\Lambda(M): f \text{ is nilpotent}\}$. Since $M$ is indecomposable, Fitting's lemma tells us that every $f\in\End_\Lambda(M)\smallsetminus I$ is invertible. Let $f\in I$ and $h\in \End_\Lambda(M)$. If $h\circ f$ is invertible, then there is $\lambda\in\End_\Lambda(M)$ such that $\lambda \circ h\circ f=\id_M$. Since $f^n=0$ for some $n\in\N$, we obtain $f^{n-1}=\lambda\circ  h\circ  f^n = 0$ and hence $f=0$ by induction. $\lightning$ Hence $h\circ f$ is not invertible and (1) yields that $h\circ f\in I$.
+
+Now let $f,g\in I$. Suppose $f+g$ is invertible. Then there is $h\in\End_\Lambda(M)$ such that $h\circ f+h\circ g=\id_M$. Hence $h\circ f=\id_m-h\circ g$. By the first step, $h\circ f$ and $h\circ g$ are nilpotent, so that $h\circ f=\id_m-h\circ g$ is invertible. The inverse function of $\id_m-h\circ g$ is given by $\id_m+\dots+(h\circ g)^{m}$ for some $m\in M$. Moreover $h\circ f=\id_m-h\circ g$ is nilpotent. $\lightning$ Hence $f+g\in I$.
+
+As an upshot of the above $I$ is a left ideal. If $J\trianglelefteq \End_\Lambda(M)$ is a left ideal with $J\not\subseteq I$, then $J$ contains an invertible element, hence $J=\End_\Lambda(M)$. Thus $I$ is the unique maximal left ideal.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Krull-Remak-Schmidt]\label{1.4.3}
+Let $M$ be a $\Lambda$-module of finite legth.
+\begin{enumerate}
+\item There are indecomposable submodules $M_i\subseteq M$ such that $M=M_1\oplus \dots \oplus M_n$.
+\item If $M=M_1'\oplus \dots \oplus M_m'$ with indecomposable submodules $M_j\subseteq M$, then $m=n$ and there is $\sigma\in S_n$ such that $M_i'\cong M_{\sigma(i)}$ for all $i\le n$.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We omit the proof.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+An element $e\in \Lambda\smallsetminus\{0\}$ is called \textbf{idempotent}\index{idempotent element} provided $e^2=e$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $\Lambda=\Mat_2(k)$ with $k$ being a field. Then
+\[
+e_1 =
+\begin{pmatrix}
+1 & 0 \\
+0 & 0
+\end{pmatrix}
+\qq{and}
+e_2 =
+\begin{pmatrix}
+1 & 0 \\
+0 & 0
+\end{pmatrix}
+\]
+are idempotent and $\Lambda=\Lambda e_1\oplus \Lambda e_2$.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+Let $X,Y$ be $\Lambda$-modules. Then $\Hom_\Lambda(X,Y)$ obtains the structure of a left $\End_\Lambda(Y)$-module via $g.f := g \circ f$ for all $g\in \End_\Lambda(Y)$ and $f\in \Hom_\Lambda(X,Y)$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.4.4}
+Let $M$ be a $\Lambda$-modul and $e\in \Lambda$ be an idempotent.
+\begin{enumerate}
+\item The map
+\[
+\psi_e :
+\left\{
+\begin{matrix}
+\Hom_\Lambda(\Lambda e,M) & \to & eM,\\
+f & \mapsto & f(e),
+\end{matrix}
+\right.
+\]
+is an isomorphism of $\End_\Lambda(M)$-modules.
+\item There is an isomorphism $e\Lambda e \cong \End_\Lambda(\Lambda e)^\op$ of rings.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item The module $M$ becomes a $\End_\Lambda(M)$-module via $g.m:=g(m)$ for $g\in \End_\Lambda(M)$ and $m\in M$. Note that $eM$ is a submodule of the $\End_\Lambda(M)$-module $M$ since $g(em)=eg(m)\in eM$. 
+Let $f\in\Hom_\Lambda(\Lambda e,M)$. Then $f(e)=f(e^2)=ef(e)\in eM$. Hence $\psi_e$ is well-defined.
+Moreover $\psi_e$ is $\End_\Lambda(M)$-linear. 
+
+Let $f\in\ker\psi_e$. Then $0=f(e)$, so that $\Lambda e\subseteq \ker f$. Hence $f=0$. Let $m\in eM$. We write $m=ex$ with $x\in M$ and consider the linear map
+\[
+\bar f:
+\left\{
+\begin{matrix}
+\Lambda & \to & M,\\
+\lambda & \mapsto & \lambda x.
+\end{matrix}
+\right.
+\]
+Then $f:=\bar f|_{\Lambda e}\in \Hom_\Lambda(\Lambda e,M)$ and $f(e) = \bar f(e)=ex=m$. Hence $f$ is surjective.
+\item Part (1) tells us that
+\[
+\psi_e :
+\left\{
+\begin{matrix}
+\End_\Lambda(\Lambda e) & \to & e\Lambda e,\\
+f & \mapsto & f(e),
+\end{matrix}
+\right.
+\]
+is bijective and additive. Moreover $\psi_e(\id_{\Lambda e})=e=1_{e\Lambda e}$. Let $f,g\in\End_\Lambda(\Lambda e)$. We have $xe=x$ for all $x\in e\Lambda e$. Hence $f(e)=f(e)e$. Thus
+\[
+\psi_e(g\circ f)=g(f(e))=g(f(e)e)=f(e)g(e)=\psi_e(g)\psi_e(f).
+\]
+This shows that $e\Lambda e \cong \End_\Lambda(\Lambda e)^\op$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+If $e\in\Lambda$ is an idempotent, then
+\[
+\Lambda=\Lambda e\oplus \Lambda(1-e).
+\]
+Hence $\Lambda e$ is a direct summand of $\Lambda$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A $\Lambda$-module $P$ is \textbf{projective}\index{projective module} if $P$ is a direct summand of a free $\Lambda$-module.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}\
+\begin{enumerate}
+\item A \textbf{category}\index{category} $\mathcal C$ consists of a class of objects $\Ob(\mathcal C)$, pairwise disjoint sets $\Hom_{\mathcal C}(M,N)$ for $M,N$ in $\Ob(\mathcal C)$ and maps
+\[
+\left\{
+\begin{matrix}
+\Hom_{\mathcal C}(N,P) \times \Hom_{\mathcal C}(M,N) & \to & \Hom_{\mathcal C}(M,P) \\
+(f,g) & \mapsto & f \circ g
+\end{matrix}
+\right.
+\]
+for all $M,N,P$ in $\Ob(\mathcal C)$ with the following properties:
+\begin{enumerate}[label=(\alph*)]
+\item For all $M$ in $\Ob(\mathcal C)$ there is $1_M\in \Hom_{\mathcal C}(M,M)$ such that $g\circ 1_M = g$ and $1_M\circ h = h$ for all $g\in \Hom_{\mathcal C}(M,N)$, all $h\in \Hom_{\mathcal C}(N,M)$ and all $N$ in $\Ob(\mathcal C)$.
+\item $h\circ(g\circ f)=(h\circ g)\circ f$.
+\end{enumerate}
+\item Let $\mathcal C$ and $\mathcal D$ be categories. A \textbf{functor}\index{functor} $F$ from $\mathcal C$ to $\mathcal D$ assigns to each object $X$ in $\mathcal C$ an object $F ( X )$ in $\mathcal D$ and to each morphism $f:X\rightarrow Y$ in $\mathcal C$ a morphism $F ( f ) : F ( X ) \rightarrow F(Y)$ in $\mathcal D$ such that the following two conditions hold:
+\begin{enumerate}[label=(\alph*)]
+\item $F(\mathrm {id} _{X})=\mathrm {id} _{F(X)}$ for every object $X$ in $\mathcal C$,
+\item $F(g\circ f)=F(g)\circ F(f)$ for all morphisms $f:X\rightarrow Y$ and $g:Y\rightarrow Z$ in $\mathcal C$.
+\end{enumerate}
+
+That is, functors must preserve identity morphisms and composition of morphisms.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $\Lambda$ be a ring. Then $\Mod(\Lambda)$ is the category of left $\Lambda$-modules. The objects are the $\Lambda$-modules and the morphisms are the $\Lambda$-linear maps. If $M\in\Mod(\Lambda)$, then
+\[
+\Hom_\Lambda(M,-) : \Mod(\Lambda) \to \Mod(\Z)
+\]
+is a functor: For $N\in \Mod(\Lambda)$, we put
+\[
+\Hom_\Lambda(M,-)(N) := \Hom_\Lambda(M,N).
+\]
+If $f:N\to N'$ is $\Lambda$-linear, then we put
+\[
+\Hom_\Lambda(M,-)(f) :=
+\begin{bmatrix}
+\Hom_\Lambda(M,N) & \to & \Hom_\Lambda(M,N') \\
+\psi & \mapsto & f \circ \psi
+\end{bmatrix}
+\]
+We will usually write $f_*=\Hom_\Lambda(M,f)$. We say that $\Hom_\Lambda(M,-)$ is \textbf{exact}\index{exact functor} if and only if for every short exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & N' \ar[r,"f"] & N \ar[r,"g"] & N'' \ar[r] & (0)
+\end{tikzcd}
+\]
+of $\Lambda$-modules the sequence
+\[
+\begin{tikzcd}
+(0) \ar[r] & \Hom_\Lambda(M,N') \ar[r,"f_*"] & \Hom_\Lambda(M,N) \ar[r,"g_*"] & \Hom_\Lambda(M,N'') \ar[r] & (0)
+\end{tikzcd}
+\]
+is exact.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.4.5}
+Let $P$ be a $\Lambda$-module. The following statements are equivalent:
+\begin{enumerate}
+\item $P$ is projective.
+\item The functor $\Hom_\Lambda(P,-)$ is exact.
+\item If $f:M\to N$ and $g:P\to N$ are $\Lambda$-linear maps with $f$ being surjective, then there is $h:P\to M$ such that $f\circ h = g$.
+%
+\[
+\begin{tikzcd}
+	& P \ar[d,"g"] \ar[ld,dashed,"h"'] \\
+	M \ar[r,two heads,"f"] & N
+\end{tikzcd}
+\]
+%
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+If $P=\bigoplus_{i\in I}\Lambda p_i$ is free, then we can put $h(p_i)\in f^{-1}(\{g(p_i)\})$ in (3).
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We only prove (2) $\Rightarrow$ (1). Since every module is generated by its elements, there is a free module $F$ and a surjection $\pi:F\surjection P$. Hence we have an exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & \ker \pi \ar[r] & F \ar[r] & P \ar[r] & (0)
+\end{tikzcd}
+\]
+Since $\Hom_\Lambda(P,-)$ is exact,
+\[
+\pi_* :=
+\left\{
+\begin{matrix}
+\Hom_\Lambda(P,F) & \to & \End_{\Lambda}(P) \\
+\psi & \mapsto & \pi \circ \psi
+\end{matrix}
+\right.
+\]
+is surjective. Hence there is $\gamma:P\to F$ such that $\id_P=\pi_*(\gamma)=\pi\circ \gamma$. Thus the sequence splits and $F\cong \ker\pi \oplus P$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------

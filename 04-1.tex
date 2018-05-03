@@ -1,0 +1,195 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+
+% 13-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module. The \textbf{top}\index{top of a module} of $M$ is $\Top_\Lambda(M)=M/\Rad_\Lambda(M)$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+From now on we assume that $k$ is a field and that $\Lambda$ is a finite dimensional associative $k$-algebra. We recall that a finitely generated $\Lambda$-module is a finite dimensional $k$-vector space and let $\mod(\Lambda)$ be the category of finite dimensional $\Lambda$-modules.
+Let $\mathcal S(\Lambda)$ be a complete set of representatives for the isomorphism classes of simple $\Lambda$-modules. Given $S\in\mathcal S(\Lambda)$, we denote by $P(S)$ the principal indecomposable module such that
+\[
+\Top_\Lambda(P(S)) = P(S)/\Rad_\Lambda(P(S))\cong S.
+\]
+Moreover, let $I(S)$ be the injective hull of $S$. Then $\Soc_\Lambda(I(S))\cong S$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+The algebra $\Lambda$ is called \textbf{self-injective}\index{self-injective algebra} if $\Lambda\in\mod(\Lambda)$ is injective.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}\
+\begin{enumerate}
+\item Let $G$ be a finite group. Then the group algebra $kG$ is self-injective.
+\item The algebra $k[T]/(T^n)$ is self-injective.
+\item The algebra $\{\begin{psmallmatrix} a & b \\ 0 & c \end{psmallmatrix} \mid a,b,c\in k\}$ is not self-injective.
+\end{enumerate}
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}\label{1.5.2.1}
+Now let $\Lambda^\op$ be the opposite algebra with the same underlying vector space and multiplication $x*y:=yx$ for all $x,y\in\Lambda^\op$. Given $M\in\mod(\Lambda)$, its dual $M^*:=\Hom_k(M,k)$ is a $\Lambda^\op$-module via
+\[
+\declaremap{\Lambda^\op\times M^*}{M^*}{(\lambda f)}{(\lambda.f)(m):=f(\lambda m)}
+\]
+The association $*:\mod(\Lambda)\to \mod(\Lambda^\op)$ defined by $M\mapsto M^*$ sends projective modules to injective modules and vise versa.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.5.3}
+Let $\Lambda$ be self-injective.
+\begin{enumerate}
+\item A finitely generated $\Lambda$-module $M$ is injective if and only if $M$ is projective.
+\item $\Soc(P(S))$ is simple for all $S\in\mathcal S(\Lambda)$.
+\item $P(S)\cong I(\Soc(P(S)))$ for all $S\in\mathcal S(\Lambda)$.
+\item If $S$ and $T$ are simple, then $\Soc(P(S))\cong \Soc(P(T))$ implies $S\cong T$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We first prove (1). Let $M$ be a projective $\Lambda$-module. Then $M\mid \Lambda^n$ for some $n\in\N$. Since $\Lambda$ is self-injective, $\Lambda^n$ is injective and $M$ is also injective. Hence $\{P(S)\mid S\in\mathcal S(\Lambda)\}$ is a set of indecomposable injective $\Lambda$-modules of cardinality $|\mathcal S(\Lambda)|$. By Theorem~\ref{1.5.2}~(2) this set coincides with the set of all injective indecomposable $\Lambda$-modules. Moreover there is a permutation $\nu:\mathcal S(\Lambda)\to \mathcal S(\Lambda)$ such that
+\[
+P(S) \cong I(\nu(S))
+\]
+for all $S\in\mathcal S(\Lambda)$. We have
+\[
+\nu(S)\cong\Soc(P(S)).
+\]
+If $M$ is an injective module, then $M$ is a direct sum of indecomposable injective modules by the theorem of Krull-Remak-Schmidt. Hence $M$ is projective. Now (2), (3) and (4) follow immediately.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $\Lambda$ be a $k$-algebra. The functor
+\[
+\mathcal N:
+\declaremap{\mod\Lambda}{\mod\Lambda}{M}{\Hom_\Lambda(M,\Lambda)^*}
+\]
+is called the \textbf{Nakayama functor}\index{Nakayama functor} of $\Lambda$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+Note that $\Hom_\Lambda(M,\Lambda)$ carries the structure of a right $\Lambda$-module via
+\[
+(f.\lambda)(m):=f(m)\lambda
+\]
+for all $f\in \Hom_\Lambda(M,\Lambda)$, $\lambda\in\Lambda$ and $m\in M$. Hence $\Hom_\Lambda(M,\Lambda)$ is a left $\Lambda^\op$-module. Moreover if $N$ is a right $\Lambda$-module, then $N^*=\Hom_k(N,k)$ is a left $\Lambda$-module via
+\[
+(\lambda.f)(n):=f(n\lambda)
+\]
+for all $f\in N^*$, $\lambda\in\Lambda$ and $n\in N$. 
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+We say that $\Lambda$ affords a \textbf{Nakayama permutation}\index{Nakayama permutation} $\nu:\mathcal S(\Lambda)\to\mathcal S(\Lambda)$ if
+\[
+\nu(S)\cong\Soc(P(S))
+\]
+for all $S\in \mathcal S(\Lambda)$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.5.4}
+Let $\Lambda$ be a $k$-algebra.
+\begin{enumerate}
+\item $\mathcal N(P(S))\cong I(S)$ for all $S\in\mathcal S(\Lambda)$.
+\item If $\Lambda$ affords a Nakayama permutation $\nu:\mathcal S(\Lambda)\to \mathcal S(\Lambda)$, then
+\[
+\mathcal N(S)\cong \nu^{-1}(S)
+\]
+for all $S\in\mathcal S(\Lambda)$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item We know that $\Hom_\Lambda(M,\Lambda)$ carries the structure of a right $\Lambda$-module. Hence in the case $M=\Lambda$ the map $\psi_e$ in Lemma~\ref{1.4.4} becomes an isomorphism of right $\Lambda$-modules. Thanks to Lemma~\ref{1.4.6} there is an idempotent $e\in\Lambda$ such that $P(S)\cong \Lambda e$. Since $P(S)$ is indecomposable, the idempotent is \textit{primitive}, that is, if $e=f+g$ with $f,g\in\Lambda$ such that $e^2=e$ and $f^2=f$ and $fg=0=gf$, then $f=0$ or $g=0$. We obtain
+\[
+\mathcal N(P(S)) = \Hom_\Lambda(P(S),\Lambda)^* \cong \Hom_\Lambda(\Lambda e,\Lambda)^* \cong (e\Lambda)^*
+\tag{$*$}
+\]
+as $\Lambda$-modules. Hence $\mathcal N (P(S))$ is the $k$-dual of an indecomposable projective right $\Lambda$-module. Hence $\mathcal N (P(S))$ is an injective indecomposable left $\Lambda$-module. We note that $S^*$ is a simple right $\Lambda$-module.\footnote{Suppose that $V$ is a $\Lambda$-submodule of $\Hom_k(M,k)$. Then $V^0=\{m\in M\mid \varphi (m)=0 \text{ for all } \varphi\in V \}$ is a $\Lambda$-submodule of $M$, and this establishes a bijection $V\mapsto V^0$ between the set of submodules of M and those of $\Hom_k(M,k)$.} Moreover
+\[
+\Hom_{\Lambda^\op}(e\Lambda,S^*) \cong S^* e \cong (eS)^* \cong \Hom_\Lambda(P(S),S)^* \neq (0)
+\]
+as $k$-vector spaces. As $e\Lambda/\Rad_{\Lambda^\op}(e\Lambda)$ is simple it follows
+\[
+e\Lambda/\Rad_{\Lambda^\op}(e\Lambda) \cong S^*.\tag{$**$}
+\]
+Standard properties of the $k$-dual yield
+\[
+S \underset{\mathclap{(**)}} \cong (e\Lambda/\Rad_{\Lambda^\op}(e\Lambda))^*
+  = (\Top(e\Lambda))^*
+  \cong \Soc((e\Lambda)^*)
+  \underset{\mathclap{(*)}} \cong \Soc(\mathcal N(P(S))) 
+\]
+Since $\mathcal N(P(S))$ is injective indecomposable with socle $S$, we have $\mathcal N(P(S))\cong I(S)$.
+
+\item Let $S,T\in\mathcal S(\Lambda)$ be simple and write $P(S)=\Lambda e_S$ and $P(T)=\Lambda e_T$. Given a $\Lambda$-module $M$, using induction on the length of $M$ and the fact that $\Hom_\Lambda(P(T),-)$ is exact, the arguments of Lemma~\ref{1.4.7} show
+\[
+\dim_k \Hom_\Lambda(P(T),M) = [M:T] \cdot \dim_k\End_\Lambda(T).\tag{$*$}
+\]
+We also have $k$-linear isomorphisms
+\begin{align*}
+\Hom_\Lambda(P(T),\mathcal N(S))
+& \cong e_T \mathcal N(S)
+  = e_T \Hom_\Lambda(S,\Lambda)^*
+  = (\Hom_\Lambda(S,\Lambda)e_T)^* \\
+& \cong (\Hom_\Lambda(S,\Lambda e_T))^*
+  \cong (\Hom_\Lambda(S,\nu(T)))^* \\
+& \cong
+\begin{cases}
+\End_\Lambda(S) & \text{if } T\cong \nu^{-1}(S)\\
+(0) & \text{otherwise}
+\end{cases}.
+\end{align*}
+Together with $(*)$ we obtain
+\begin{align*}
+[\mathcal N(S) : \nu^{-1}(S)] \cdot \dim_k\End_\Lambda(\nu^{-1}(S))
+& = \dim_k \Hom_\Lambda(P(\nu^{-1}(S)),\mathcal N(S)) \\
+& = \dim_k\End_\Lambda(S) \tag{$**$}
+\end{align*}
+%
+Thus $\dim_k\End_\Lambda(\nu^{-1}(S)) \le \dim_k\End_\Lambda(S)$. Inductively we get
+\[
+\dim_k\End_\Lambda(\nu^{-(i-1)}(S)) \le \dots \le\dim_k\End_\Lambda(\nu^{-1}(S)) \le \dim_k\End_\Lambda(S).
+\]
+Let $n\in\N$ such that $\nu^{-n}(S)=S$. Hence
+\[
+\dim_k\End_\Lambda(\nu^{-n}(S)) \le\dim_k\End_\Lambda(\nu^{-1}(S)) \le \dim_k\End_\Lambda(S).
+\]
+Hence $\dim_k\End_\Lambda(\nu^{-1}(S)) = \dim_k\End_\Lambda(S)$. Now $(**)$ yields
+\[
+[\mathcal N(S) : \nu^{-1}(S)] = 1.
+\]
+If $T\cong\nu^{-1}(S)$, then $(*)$ yields $[\mathcal N(S) : T]=0$ if $\mathcal N(S)\not\cong\nu^{-1}(S)$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,220 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 18-01-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{Triangular matrix rings}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\Lambda$ and $\Gamma$ be two arbitrary rings. Let $M$ be a $(\Lambda,\Gamma)$-bimodule. Given these data, we define a new ring
+\[
+T :=
+\begin{pmatrix}
+\Lambda & M\\
+0 & \Gamma
+\end{pmatrix},
+\]
+whose elements will be written as
+$
+\left(
+\begin{smallmatrix}
+\lambda & m\\
+0 & \gamma
+\end{smallmatrix}
+\right),
+$
+where $\lambda\in\Lambda$, $m\in M$ and $\gamma\in\Gamma$. The addition is defined componentwise and the multiplication is defined via
+\[
+\begin{pmatrix}
+\lambda & m\\
+0 & \gamma
+\end{pmatrix}
+\begin{pmatrix}
+\lambda' & m'\\
+0 & \gamma'
+\end{pmatrix}
+:=
+\begin{pmatrix}
+\lambda\lambda' & \lambda m' + m \gamma'\\
+0 & \gamma\gamma'
+\end{pmatrix}.
+\]
+%
+Then $T$ is a ring. Moreover if $\Lambda$ and $\Gamma$ are $R$-algebras over some commutative ring $R$ and $M$ is a bimodule for these algebras, that is $(r\cdot 1_\Lambda).m=m.(1_\Gamma \cdot r)$ for all $r\in R$, then $T$ is an $R$-algebra.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}
+Suppose that $\Lambda$ and $\Gamma$ are artin $R$-algebras. If $M$ is finitely generated over $R$, then
+$
+T =
+\left(\begin{smallmatrix}
+\Lambda & M\\
+0 & \Gamma
+\end{smallmatrix} \right)
+$
+is an artin $R$-algebra.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+As an $R$-module we have
+$
+\left(\begin{smallmatrix}
+\Lambda & M\\
+0 & \Gamma
+\end{smallmatrix} \right)
+\cong
+\Lambda\oplus\Gamma\oplus M
+$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\Lambda$ and $\Gamma$ be artin $R$-algebras. Let $M$ be a $(\Lambda,\Gamma)$-bimodule that is finitely generated over $R$. We consider the artin $R$-algebra
+$
+T =
+\left(\begin{smallmatrix}
+\Lambda & M\\
+0 & \Gamma
+\end{smallmatrix} \right)
+$
+as before as well as the category $\mathcal{C}_T$:
+\begin{enumerate}[label=(\roman*)]
+\item The objects of $\mathcal{C}_T$ are triples $(X,Y,f)$, where $X\in\mod\Lambda$, $Y\in\mod\Gamma$ and
+\[
+f:M\otimes_\Gamma Y \to X
+\]
+is $\Lambda$-linear.
+\item A morphism $\varphi:(X,Y,f)\to (X',Y',f')$ is a pair $(\alpha,\beta)$ of morphism $\alpha:X\to X'$ and $\beta:Y\to Y'$ such that the diagram
+\[\begin{tikzcd}
+      M \otimes_\Gamma Y \dar["\id_M \otimes \beta"] \rar["f"] & X \ar[d, "\alpha"]\\
+      M \otimes_\Gamma Y' \rar["f'"] & X'
+          \end{tikzcd}
+\]
+commutes. Sums of morphisms are defined componentwise.
+\end{enumerate}
+%
+With this data, $\mathcal{C}_T$ is an $R$-category.
+
+We define a functor $F:\mathcal{C}_T\to\mod T$ via $F(X,Y,f):=X\oplus Y$, where $X\oplus Y$ is a direct sum of $R$-modules with $T$ acting on it via
+\[
+\begin{pmatrix}
+\lambda & m\\
+0 & \gamma
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda x + f(m\otimes y) \\ \gamma y
+\end{pmatrix}.
+\]
+Moreover we define $F(\alpha,\beta):=\alpha\oplus\beta$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{3.4.2}
+The functor $F:\mathcal{C}_T\to\mod T$ is an equivalence of $R$-categories.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We first show that $F$ is full. A morphism $\omega:F(X,Y,f)\to F(X',Y',f')$ is a $T$-linear map $\omega:X\oplus Y\to X'\oplus Y'$. Hence there is an $R$-linear map which we write as a matrix
+\[
+\omega=\begin{pmatrix}
+\alpha & \alpha' \\
+\beta' & \beta
+\end{pmatrix}
+\]
+of $R$-linear maps. Given $\lambda\in\Lambda$, $\gamma\in\Gamma$ and $m\in M$ we have
+\begin{align*}
+\begin{pmatrix}
+\lambda & m \\
+0 & \gamma
+\end{pmatrix}
+\cdot
+\omega
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+& =
+\begin{pmatrix}
+\lambda & m \\
+0 & \gamma
+\end{pmatrix}
+\begin{pmatrix}
+\alpha(x) + \alpha'(y) \\ \beta'(x) + \beta(y)
+\end{pmatrix} \\
+& =
+\begin{pmatrix}
+\lambda\alpha(x) + \lambda \alpha'(y) + f'(m\otimes \beta'(x)) + f'(m\otimes \beta(y)) \\
+\gamma\beta'(x) + \gamma\beta(y)
+\end{pmatrix}
+\end{align*}
+%
+while
+\begin{align*}
+\omega\left(
+\begin{pmatrix}
+\lambda & m \\
+0 & \gamma
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+\right)
+& =
+\omega\begin{pmatrix}
+\lambda x + f(m\otimes y) \\ \gamma y
+\end{pmatrix} \\
+& =
+\begin{pmatrix}
+\alpha(\lambda x) + \alpha(f(m\otimes y)) + \alpha'(\gamma y) \\
+\beta'(\lambda x) + \beta'(f(m\otimes y)) + \beta(\gamma y)
+\end{pmatrix}
+\end{align*}
+%
+Setting $m=0$ and $y=0$ implies that $\alpha$ is $\Lambda$-linear. Moreover we obtain that $\beta$ is $\Gamma$-linear by setting $m=0$ and $x=0$. For $m=0$ and $y=0$ the second line of the matrix now reads $\gamma\beta'(x)=\beta'(\lambda x)$ for all $\lambda$, $\gamma$ and $x$ so that $\beta'=0$. Similarly, $\alpha'=0$. Consequently, $f'(m\otimes \beta(y))=\alpha(f(m\otimes y))$. As a result
+\[
+\omega = F(\alpha,\beta).
+\]
+It follows that $F$ is full. Moreover $F$ is faithful since $F(\alpha,\beta)=0$ implies $(\begin{smallmatrix} \alpha & 0 \\ 0 & \beta \end{smallmatrix})=\alpha\oplus\beta = 0$ and $\alpha=\beta=0$. We now show that $F$ is dense. Let $V\in\mod T$. We define $e_1=(\begin{smallmatrix} 1 & 0 \\ 0 & 0 \end{smallmatrix})$ and $e_2=(\begin{smallmatrix} 0 & 0 \\ 0 & 1 \end{smallmatrix})$. There results a decomposition $V=e_1V\oplus e_2V$ of $R$-modules. Let $X:=e_1 V$ and $Y:=e_2 V$. Setting
+\[
+\lambda.(e_1v) := \begin{pmatrix} \lambda & 0 \\ 0 & 0 \end{pmatrix} e_1 v
+\qq{and}
+\gamma.(e_2v) := \begin{pmatrix} 0 & 0 \\ 0 & \gamma \end{pmatrix} e_2 v,
+\]
+the spaces $X$ and $Y$ obtain the structure of a $\Lambda$-module and a $\Gamma$-module, respectively. We consider the map
+\[
+\widetilde f:
+\declaremap{M\times e_2V}{e_1V}{(m,e_2v)}{(\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix})v}.
+\]
+If $e_2v=0$, then $(\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix}) v = (\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix}) e_2v = 0$. Since $e_1 (\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix})=(\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix})$, we have
+\[
+\widetilde{f}(M\times e_2V)\subseteq e_1V.
+\]
+Note that $\widetilde f$ is $\Z$-bilinear and $\Gamma$-balanced since
+\[
+\widetilde{f}(m\gamma,e_2v)
+ = \begin{pmatrix} 0 & m\gamma \\ 0 & 0 \end{pmatrix} v
+ = \begin{pmatrix} 0 & m \\ 0 & 0 \end{pmatrix} \gamma e_2v
+ = \widetilde{f}(m,\gamma e_2v).
+\]
+Hence there is $f:M\otimes_\Gamma e_2V\to e_1V$ such that $f(m\otimes e_2v) = (\begin{smallmatrix} 0 & m \\ 0 & 0 \end{smallmatrix})v$. Direct computation shows that $f$ is $\Lambda$-linear. Moreover we have $F(X,Y,f)\cong V$. By Theorem~\ref{3.1.1}, $F$ is an equivalence.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

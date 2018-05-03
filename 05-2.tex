@@ -1,0 +1,259 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 23-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{1.6.3}
+Let $I\subseteq J(\Lambda)^2$ be an ideal and $\pi:\Lambda\to\Lambda/I$ be the canonical projection. If $\Lambda=\Lambda_1\oplus\dots\oplus\Lambda_n$ is the block decomposition of $\Lambda$, then
+\[
+\Lambda/I=\pi(\Lambda_1)\oplus\dots\oplus\pi(\Lambda_n)
+\]
+is the block decomposition of $\Lambda/I$.
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Put $\Lambda':=\Lambda/I$ and $\Lambda_i':=\pi(\Lambda_i)$. If $\Lambda_i=\Lambda e_i$ for some central primitive idempotent, then $\Lambda_i'=\Lambda' f_i$, where $f_i:=\pi(e_i)$ is a central idempotent. Moreover we have $f_if_j=\pi(e_ie_j)=0$ for $i\neq j$. Hence
+\[
+\Lambda' = \Lambda_1' \oplus\dots\oplus \Lambda_n'.
+\]
+If $f_i=f'+f''$ is a sum of orthogonal central idempotents, then Proposition~\ref{1.6.2} provides central idempotents $e',e''\in\Lambda$ such that $\pi(e')=f'$ and $\pi(e'')=f''$. Since $f'$ and $f''$ are orthogonal, we obtain $\pi(e'e'')=f'f''=0$, so that $e'e''\in I\subseteq J(\Lambda)^2$. Thus there exists $n\in\N$ such that $0=(e'e'')^n=e'e''$. Consequently $(e'+e'')^2=e'+e''$ and $\pi(e'+e'')=f'+f''=f_i=\pi(e_i)$. Now Proposition~\ref{1.6.2} tells us that $e'+e''=e_i$. This contradicts $e_i$ being primitive. Hence $f_i$ is primitive as well.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% CHAPTER 2
+
+\chapter{Tools from homological algebra}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 2.1
+
+\section{Schanuel's lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Throughout, $\Lambda$ is a ring.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A commutative diagram
+\[
+\begin{tikzcd}
+	M\ar[r,"f"]\ar[d,"f'"] & N\ar[d,"g"] \\
+	N'\ar[r,"g'"] & L	
+\end{tikzcd}
+\]
+of $\Lambda$-modules is called a \textbf{push-out diagram}\index{push-out diagram} if for any pair $h:N\to L'$ and $h':N'\to L'$ of $\Lambda$-linear maps such that $h\circ f = h' \circ f'$ there exists a unique $\Lambda$-linear map $\varphi$ such that $\varphi\circ g = h$ and $\varphi\circ g' = h'$. 
+%
+\[
+\begin{tikzcd}
+	M\ar[r,"f"]\ar[d,"f'"] & N\ar[d,"g"]\ar[ddrr,bend left,"h"] & \\
+	N'\ar[r,"g'"]\ar[drrr,bend right,"h'"'] & L \ar[drr,dashed,"\varphi"] & \\
+	   &   &   & L'
+\end{tikzcd}
+\]
+% 
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{2.1.1}
+Let
+\[
+\begin{tikzcd}
+	M\ar[r,"f"]\ar[d,"f'"] & N\ar[d,"g"] \\
+	N'\ar[r,"g'"] & L	
+\end{tikzcd}
+\]
+be a commutative diagram. The following statements are equivalent:
+\begin{enumerate}
+\item The diagram is a push-out diagram.
+\item The sequence
+\[
+\begin{tikzcd}
+	M \ar[r,"\binom{f}{-f'}"] & N \oplus N' \ar[r,"{(g,g')}"] & L \ar[r] & (0)
+\end{tikzcd}
+\]
+is exact.
+\end{enumerate}
+In either case, the induced maps
+\[
+\bar g : \coker f \to \coker g' \qq{and}
+\bar g' : \coker f' \to \coker g
+\]
+are isomorphisms.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}\
+\begin{enumerate}
+\item We have
+\[
+\binom{f}{-f'}:
+\left\{
+\begin{matrix}
+M & \to & N \oplus N' \\
+m & \mapsto & (f(m),-f'(m))
+\end{matrix}
+\right.
+\]
+and
+\[
+(g,g'):
+\left\{
+\begin{matrix}
+N \oplus N' & \to & L \\
+(n,n') & \mapsto & g(n) + g'(n').
+\end{matrix}
+\right.
+\]
+\item The \textbf{cokernel}\index{cokernel} of a $\Lambda$-linear map $f : M \to N$ is $\coker(f):=Y/\im f$.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{addmargin}[1cm]{0cm}
+
+\hspace*{-1cm}(1) $\Rightarrow$ (2): Since the diagram is commutative, we have
+\[
+(g,g') \circ \binom{f}{-f'}
+ = g \circ f - g' \circ f'
+ = 0.
+\]
+%
+We let $L':=(N\oplus N')/\im \binom{f}{-f'}$ and consider the linear maps
+\[
+h :
+\left\{
+\begin{matrix}
+N & \to & L' \\
+n & \mapsto & \overline{(n,0)}
+\end{matrix}
+\right.
+\qq{and}
+h' :
+\left\{
+\begin{matrix}
+N' & \to & L' \\
+n' & \mapsto & \overline{(0,n')}.
+\end{matrix}
+\right.
+\]
+Then $(h\circ f)(m) = \overline{(f(m),0)}$ and $(h'\circ f')c(m) = \overline{(f(m),0)}$, so that $h\circ f=h'\circ f'$. Hence there is a unique $\varphi:L\to L'$ such that $\varphi\circ g =h$ and $\varphi\circ g' = h'$.
+Let $(n,n')\in \ker(g,g')$. Then $g(n)+g'(n)=0$. So we have
+\[
+0 = \varphi(0) = \varphi\circ g(n) + \varphi\circ g'(n) = h(n) + h'(n) = \overline{(n,n')}. 
+\]
+Hence $(n,n')\in\im \binom{f}{-f'}$. We obtain
+\[
+\ker(g,g')=\im \binom{f}{-f'}.
+\]
+Now let $L':=\coker(g,g')=L/(g(N)+g'(N))$ and consider the canonical projection $\pi:L\to L'$. Then we have $\pi \circ g = 0 = 0 \circ g$ and $\pi \circ g' = 0 = 0 \circ g'$. By unicity, we conclude $\pi=0$. Hence $L'=(0)$ and $(g,g')$ is surjective.
+
+For injectivity, we consider the map
+\[
+\bar g:
+\left\{
+\begin{matrix}
+N/\im f & \to & L/\im g' \\
+n + \im f & \mapsto & g(n) + \im g'.
+\end{matrix}
+\right.
+\]
+This is well-defined, since $g(\im f)\subseteq \im g'$. Let $\overline n \in \ker\bar g$. Then $g(n)\in \im(g')$ and there is $n'\in N'$ such that $g(n)=-g'(n')$. As result $(n,n')\in \ker(g,g')=\im\binom{f}{-f'}$. Hence there is $m\in M$ such that $n=f(m)$. Thus $\overline n = 0$. So $\bar g$ is injective.
+
+Let $\overline x \in L/\im g'$. Since $(g,g')$ is surjective, there is $(n,n')\in N\oplus N'$ such that $g(n)+g'(n')=x$. Hence $\overline x = \overline{g(n)} = \bar g (n+\im f)$. Hence $\bar g$ is an isomorphism and the statement for $\bar g'$ follows by symmetry.
+
+\hspace*{-1cm}(2) $\Rightarrow$ (1): Since $(g,g')$ is surjective, we have $L=g(N)+g'(N')$. Let $h:N\to L'$ and $h':N'\to L'$ be $\Lambda$-linear such that $h\circ f = h'\circ f'$. If $\varphi_1,\varphi_2:L\to L'$ with $\varphi_i\circ g=h$ and $\varphi_i\circ g'=h'$ exist, then $g(N)\subseteq \ker(\varphi_1-\varphi_2)$ and $g'(N')\subseteq \ker(\varphi_1-\varphi_2)$. Hence $L\subseteq \ker(\varphi_1-\varphi_2)$.
+To prove existence, we note that $h$ and $h'$ define a map
+\[
+\widetilde{h} :
+\left\{
+\begin{matrix}
+N\oplus N' & \to & L' \\
+(n,n') & \mapsto & h(n) + h'(n')
+\end{matrix}
+\right.
+\]
+and observe that
+\[
+\widetilde{h}\circ\binom{f}{-f'}=h\circ f-h'\circ f'=0.
+\]
+Hence $\widetilde{h}$ vanishes on $\ker(g,g')$. Thus $\widetilde{h}$ defines a map $(N\oplus N')/\ker(g,g')\to L'$. Since $(N\oplus N')/\ker(g,g')\cong \im (g,g')=L$, there results a map $\varphi:L\to L'$ such that
+\[
+\varphi\circ (g,g')=\widetilde h.
+\]
+Consequently, $h(n) = \widetilde{h}(n,0) = \varphi\circ g(n)$ and $h'(n') = \widetilde{h}(0,n') = \varphi\circ g'(n')$.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{2.1.2}
+Given $\Lambda$-linear maps $f:M\to N'$ and $f':M'\to N'$, there is a push-out diagram
+\[
+\begin{tikzcd}
+	M\ar[r,"f"]\ar[d,"f'"] & N\ar[d,"g"] \\
+	N'\ar[r,"g'"] & L	
+\end{tikzcd}
+\]
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We let $L:=N\oplus N'/\{(f(m),-f'(m))\mid m\in M\}$ and let
+\[
+g :
+\left\{
+\begin{matrix}
+N & \to & L \\
+n & \mapsto & \overline{(n,0)}
+\end{matrix}
+\right.
+\qq{and}
+g' :
+\left\{
+\begin{matrix}
+N' & \to & L \\
+n' & \mapsto & \overline{(0,n')}.
+\end{matrix}
+\right.
+\]
+Then $g\circ f=g'\circ f'$ and the sequence
+\[
+\begin{tikzcd}
+	M \ar[r,"\binom{f}{-f'}"] & N \oplus N' \ar[r,"{(g,g')}"] & L \ar[r] & (0)
+\end{tikzcd}
+\]
+is exact.\qedhere
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

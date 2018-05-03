@@ -1,0 +1,208 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 08-01-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+%Setting: $\Lambda$ is an artinian $R$-algebra. $M \in \mod{\Lambda}; \add{M} \subseteq \mod{\Lambda}$. $\Gamma := \End_\Lambda(M)^\op$, $e_M := \left\{ \begin{matrix}
+%    \mod{\Lambda} &\to \mod{\Gamma}\\
+%    N &\mapsto \Hom_\Lambda(M,N)
+%  \end{matrix} \right.$
+
+%\begin{proposition}\label{3.2.2}
+%  Let $M \in \mod{\Lambda}$, $\Gamma := \End_\Lambda(M)^\op$.
+%  \begin{enumerate}
+%  \item If $X \in \add{M}$ and $Y \in \mod{\Lambda}$, then
+%    \[ e_M : \Hom_\Lambda(X,Y) \to \Hom_\Gamma(e_M(X),e_M(Y)) \]
+%    is an isomorphism.
+%  \item If $X \in \add{M}$, then $e_M(X) \in \Projectives(\Gamma)$.
+%  \item $\restr{e_M}{\add{M}} : \add{M} \to \Projectives(\Gamma)$ is an equivalence of
+%    categories.
+%  \end{enumerate}
+%\end{proposition}
+
+%Let $M \in \mod{\Lambda}$, then an exact sequence
+% \[\begin{tikzcd}
+%     P_1 \rar& P_0 \rar& M \rar& (0)
+%   \end{tikzcd}\]
+%is called a projective presentation.
+
+
+%Given a projective module P, we let $\mod{P}$ be the full category of $\mod{\Lambda}$
+%where each object $M \in \mod{P}$ has a projective presentation $P_1 \to P_0 \to M
+%\to (0)$ where $P_i \in \add{P}$.
+
+\begin{proposition}\label{3.2.3}
+  Let $P \in \mod{\Lambda}$ be projective and $\Gamma := \End_\Lambda(P)^\op$. Then
+  \[
+  e_P : \mod{P} \to \mod{\Gamma}
+  \]
+is an equivalence of $R$-categories.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+  Let $X \in \mod{\Gamma}$ be a $\Gamma$-module and
+   \[\begin{tikzcd}
+    Q_1 \rar["g"] & Q_0 \rar& X \rar& (0)
+   \end{tikzcd}\]
+be a projective representation of $X$. By virtue of Proposition~\ref{3.2.2}, we can find $P_i \in \add{P}$, where $0 \leq i \leq 1$, such that
+  $Q_i \isomorphic e_P(P_i)$. By the same token, there is a morphism $f: P_1 \to P_0$, such
+  that the diagram
+  \[\begin{tikzcd}
+      e_P(P_1) \rar["e_P(f)"] \dar["\wr"] & e_P(P_0) \dar["\wr"]\\
+      Q_1 \rar["g"]& Q_0
+    \end{tikzcd}\]
+commutes. Since $P$ is projective, the functor $e_P$ is exact.
+  Consequently,
+    \[ X = \coker g \isomorphic \coker (e_P(f)) \isomorphic e_P(\coker f).\]
+  By construction $\coker f \in \mod{P}$. Hence $e_P$ is dense.
+  Now let $M,N \in \mod{P}$, and let $P_1 \to P_0 \to M \to (0)$ be a representation of $M$
+  such that $P_i \in \add{P}$. There results a commutative diagram
+  \[\begin{tikzcd}[column sep=small]
+      (0) \rar& \Hom_\Lambda(M,N) \dar["e_P"]\rar& \Hom_\Lambda(P_0,N) \dar["e_P"]\rar& \Hom_\Lambda(P_1,N) \dar["e_P"]\\
+      (0) \rar& \Hom_\Gamma(e_P(M),e_P(N)) \rar& \Hom_\Gamma(e_P(P)_0,e_P(N)) \rar& \Hom_\Gamma(e_P(P)_1,e_P(N))
+    \end{tikzcd}\]
+  with exact rows.
+By Proposition~\ref{3.2.2}, the second and third vertical arrows are isomorphisms. Hence so
+is the first left-hand arrow.
+As a result, $e_P$ is full and faithful.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  A projective $\Lambda$-module $P \in \mod{\Lambda}$ is referred to as a \textbf{projective generator}\index{projective
+    generator} if for every $M \in \mod{\Lambda}$, there is $n \in \mathbb{N}$ and a surjection $P^n \surjection M$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+  $\Lambda \in \mod{\Lambda}$ is a projective generator (simply because $M \in \mod{\Lambda}$ is
+  finitely generated).
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Morita]\label{3.2.4}
+  Let $\Lambda$ and $\Gamma$ be artin $R$-algebras. Then the following statements are
+  equivalent:
+  \begin{enumerate}
+  \item There exists an equivalence $F : \mod{\Lambda} \to \mod{\Gamma}$ of $R$-categories.
+  \item There exists a projective generator $P \in \mod{\Lambda}$, such that $\Gamma
+    \isomorphic \End_\Lambda(P)^\op$.
+  \end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{addmargin}[1cm]{0cm}
+\hspace{-1cm}(1) $\Rightarrow$ (2): Suppose that $F : \mod{\Lambda} \to \mod{\Gamma}$ is an equivalence. Owing to Proposition~\ref{3.1.2}, the module $P := F^{-1}(\Gamma)$ is projective.
+  If $X \in \mod{\Lambda}$, then there is $M \in \mod{\Gamma}$ with $X \isomorphic F^{-1}(M)$. As $M$ is
+  finitely generated, there is $n \in \mathbb{N}$ and an epimorphism
+  $f: \Gamma^n \twoheadrightarrow M$. In view of Proposition~\ref{3.1.2},
+    \[ F^{-1}(f) : F^{-1}(\Gamma^n) \to F^{-1}(M) \]
+  is also an epimorphism. As $F^{-1}$ interchanges with finite direct sums, there
+  results an epimorphism $P^n \surjection X$.
+  Consequently, $P$ is a projective generator of $\mod{\Lambda}$. Moreover
+    \[ \End_\Lambda(P)^\op \overset{f}\isomorphic \End_\Gamma(\Gamma)^\op \isomorphic \Gamma. \]
+%
+\hspace{-1cm}(2) $\Rightarrow$ (1): Since $P$ is a projective generator, we have $\add(P) =
+  \Projectives(\Lambda)$. Hence we obtain $\mod{P} = \mod{\Lambda}$. The assertion now follows from Proposition~\ref{3.2.3}.\qedhere
+\end{addmargin}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+  Let $F : \mod{\Lambda} \to \mod{\Gamma}$ be an $R$-functor. Then $F(M \oplus N) \isomorphic F(M) \oplus F(N)$. We have that the exact sequence
+  \[
+  \begin{tikzcd}
+    (0) \rar& N \rar["\iota"]& M \oplus N \rar["\pi"]& M \lar["\lambda", bend left] \rar& (0)
+  \end{tikzcd}
+  \]
+  splits. Then $F(\pi) \circ F(\lambda) = F(\pi \circ \lambda) = F(\id_M) = \id_{F(M)}$ which implies that
+  \[
+  \begin{tikzcd}
+  (0) \rar& F(N) \rar& F(M \oplus N) \rar& F(M) \rar& (0)
+  \end{tikzcd}
+  \]
+  is split exact. Hence $F(M \oplus N) \isomorphic F(M) \oplus F(N)$.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{3.2.5}
+  Let $P_1, \ldots, P_n$ be a complete set of representatives for the isomorphism
+  classes of the principal indecomposable $\Lambda$-module. Then
+  \[
+  e_{\bigoplus_{i=1}^n P_i} :
+  \mod{\Lambda} \to \mod{\End_\Lambda{\left(\bigoplus_{i=1}^n P_i\right)}^\op}
+  \] is an equivalence.
+\end{corollary}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+  Let $V$ be a finite-dimensional $k$-vector space. Let $\Lambda := \End_k(V)$. Then $n = 1$ and $P_1 \isomorphic V$.
+  Hence $\Lambda$ is Morita equivalent to $\End_\Lambda(V) = k$.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+  Let $M \in \mod{\Lambda}$. Then there exists an epimorphism $n\Lambda \surjection M$. Recall that $\Lambda \isomorphic
+  \bigoplus_{i=1}^n m_i P_i$. Let $m_0 := \max\{m_i \mid 1 \leq i \leq n\}$. Then there is an
+  epimorphism
+  \[
+  m_0\left(\bigoplus_{i=1}^n P_i\right) \surjection m \Lambda \surjection M.
+  \]
+  Hence $\bigoplus_{i=1}^n P_i$ is a projective generator.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  An artin $R$-algebra is referred to as being \textbf{basic}\index{basic algebra} if $\Lambda \isomorphic \bigoplus_{i=1}^n
+  P_i$, where $P_i$ is principal indecomposable with $P_i \not\isomorphic P_j$ for $i \neq j$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{corollary}\label{3.2.6}
+  Let $\Lambda$ and $\Gamma$ be two basic artin $R$-algebras. Then the following statements
+  are equivalent:
+  \begin{enumerate}
+  \item The categories $\mod{\Lambda}$ and $\mod{\Gamma}$ are equivalent.
+  \item The algebras $\Lambda$ and $\Gamma$ are isomorphic.
+  \end{enumerate}
+\end{corollary}
+\begin{proof} We show (1) $\Rightarrow$ (2). Let $F : \mod{\Lambda} \to \mod{\Gamma}$ be an equivalence. According to the
+  proof of Theorem~\ref{3.2.4}, $P := F^{-1}(\Gamma)$ is a projective generator for $\Lambda$ with
+  $F \isomorphic \End_\Lambda(P)^\op$.
+  Since $\Gamma$ is basic, we have
+    \[ \Gamma \isomorphic \bigoplus_{i=1}^n Q_i \]
+  with $Q_i$ principal indecomposable and $Q_i \not\isomorphic Q_j$ for $i \neq j$.
+  Thus writing $P_i := F^{-1}(Q_i)$ we have
+  \[
+  P \isomorphic \bigoplus_{i=1}^n P_i
+  \]
+  with $P_i \not\isomorphic P_j$ for
+  $i \neq j$. Let $P'$ be a principal indecomposable $\Lambda$-module. Then $F(P')$ is
+  projective and indecomposable.
+  Hence $F(P') \isomorphic Q_i$ for some $i \in \{1, \ldots, n\}$. Thus $P' \isomorphic F^{-1}(Q_i) = P_i$.
+  Since $\Lambda$ is basic, we obtain $\Lambda \isomorphic \bigoplus_{i=1}^n P_i \isomorphic P$. Hence $\Gamma
+  \isomorphic \End_\Lambda(P)^\op \isomorphic \End_\Lambda(\Lambda)^\op \isomorphic \Lambda$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------

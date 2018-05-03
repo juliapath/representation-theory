@@ -1,0 +1,189 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 9-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A finitely generated $\Lambda$-module is said to have \textbf{finite projective dimension}\index{finite projective dimension} if there exists an exact sequence
+%
+\[
+\begin{tikzcd}
+(0) \rar & P_n \rar & \dots \rar & P_0 \rar & M \rar & (0)
+\end{tikzcd}
+\]
+%
+with $P_i$ being finitely generated and projective. If each simple $\Lambda$-module has finite projective dimension, then $\Lambda$ is said to have \textbf{finite global dimension}\index{finite global dimension}.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.4.8}
+Let $\Lambda$ be an artinian ring of finite global dimension. Then the Cartan matrix $C_\Lambda\in\Mat_n(\Z)$ is invertible. 
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $S_1,\dots,S_m$ be a complete set of representatives for the isomorphism classes of simple $\Lambda$-modules. Recall that $c_{ij}=[P_j:S_i]$, where $P_i$ is the principal indecomposable such that $P_i/\Rad_\Lambda(P_i)\cong S_i$. As $S_i$ is simple, there is a resolution
+%
+\[
+\begin{tikzcd}
+(0) \rar & Q_{n,i} \rar & Q_{n-1,i} \rar & \dots \rar & Q_{0,i} \rar &  S_i \rar & (0)
+\end{tikzcd}
+\]
+%
+where $Q_{l,i}$ is finitely generated and projective. Recall that
+\[
+[M:S_i] = [M':S_i] + [M'':S_i] 
+\]
+for any short exact sequence $(0)\to M'\to M\to M''\to (0)$. We therefore obtain
+\[
+\delta_{ij} = [S_i:S_j] = \sum_{l=0}^n (-1)^l [Q_{l,i}:S_j].
+\]
+%
+This follows by induction using the picture
+%
+\[
+\begin{tikzcd}[column sep=small]
+(0) \rar & M' \rar & M \ar[rr,"f"]\ar[dr,"\bar f"]  & & M'' \rar["g"] & M''' \rar & \dots \\
+ & & & \im(f) = \ker(g) \ar[ur] \ar[dr] \\
+ & & (0) \ar[ur] & & (0)
+\end{tikzcd}
+\]
+%
+Using the Theorem of Krull-Remak-Schmidt, we have $Q_{l,i}=\bigoplus_{t=1}^m a_{l,i,t} P_t$ with $a_{l,i,t}\in\Z$ and $P_t$ being projective. We obtain
+\[
+\delta_{ij}
+ = \sum_{l=0}^n \sum_{t=1}^m (-1)^l a_{l,i,t} [P_t:S_j]
+ = \sum_{t=1}^m \sum_{l=0}^n (-1)^l a_{l,i,t} c_{j,t}
+\]
+Hence $C_\Lambda$ is invertible.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $\Lambda:=k[X]/(X^n)$ with $n\ge 1$. Then we have $C_\Lambda=(n)$. Hence, if $n\ge 2$, then Proposition~\ref{1.4.8} yields that $\Lambda$ does not have finite global dimension.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{Injective modules and self-injective algebras}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A $\Lambda$-module is \textbf{injective}\index{injective module} if, given any injective $\Lambda$-linear map $f:M'\to M$ and any $\Lambda$-linear map $g:M'\to I$, there is $h:M\to I$ such that $h\circ f=g$.
+%
+\[
+\begin{tikzcd}
+	M' \ar[r,hook,"f"] \ar[d,"g"] & M \ar[ld,dashed,"h"'] \\
+	I
+\end{tikzcd}
+\]
+%
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A \textbf{contravariant functor}\index{contravariant functor} $f:\Mod(\Lambda)\to\Mod(\Lambda')$ assigns to every $M$ in $\Mod(\Lambda)$ an object $F(M)$ in $\Mod(\Lambda')$ and to every $\Lambda$-linear map $f:M\to N$ a morphism $F(f):F(N)\to F(M)$ such that the following two conditions hold:
+\begin{enumerate}[label=(\alph*)]
+\item $F(\mathrm {id} _{X})=\mathrm {id} _{F(X)}$ for every $M$ in $\Mod \Lambda$,
+\item $F(g\circ f)=F(f)\circ F(g)$ for all morphisms $f:M\rightarrow N$ and $g:N\rightarrow P$ in $\Mod(\Lambda)$.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $N\in\Mod(\Lambda)$. Then $\Hom_\Lambda(-,N):\Mod(M)\to\Mod(\Z)$ is a contravariant functor: For $M\in \Mod(\Lambda)$, we put
+\[
+\Hom_\Lambda(-,N)(M) := \Hom_\Lambda(M,N).
+\]
+If $f:M\to M'$ is $\Lambda$-linear, then we put
+\[
+\Hom_\Lambda(-,N)(f) :=
+\begin{bmatrix}
+\Hom_\Lambda(M',N) & \to & \Hom_\Lambda(M,N) \\
+\psi & \mapsto & \psi \circ f
+\end{bmatrix}
+\]
+We will usually write $f^*=\Hom_\Lambda(f,N)$. If
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r,"f"] & M \ar[r,"g"] & M'' \ar[r] & (0)
+\end{tikzcd}
+\]
+is an exact sequence of $\Lambda$-modules, then the sequence
+\[
+\begin{tikzcd}
+(0) \ar[r] & \Hom_\Lambda(M'',N) \ar[r,"f^*"] & \Hom_\Lambda(M,N) \ar[r,"g^*"] & \Hom_\Lambda(M',N)
+\end{tikzcd}
+\]
+is exact. Hence $I\in \Mod(\Lambda)$ is injective if and only if $\Hom_\Lambda(-,I)$ is exact.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}
+If $M$ is a $\Lambda$-module, then there exists an injective $\Lambda$-module $I_M$ and an embedding $M\hookrightarrow I_M$.
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We omit the proof.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module. An injective module $I$ and an embedding $\iota:M\to I$ is called \textbf{injective hull}\index{injective hull} $(I,\iota)$ if for every submodule $(0)\neq N\subseteq I$ we have
+\[
+N\cap \iota (M)\neq (0).
+\]
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+The injective hull of the regular module $\Z$ is $\Q$. More generally, let $R$ be an integral domain. The injective hull of $R$ is the field of fractions $Q(R)$.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{1.5.2}\
+\begin{enumerate}
+\item Every $\Lambda$-module possesses an injective hull.
+\item A finitely generated, injective module over an artinian ring is indecomposable if and only if it is the injective hull of a simple module.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We omit the proof of (1) and only prove (2). Suppose that $I$ is finitely generated, injective and indecomposable. Then $I$ is a finite length module and $I\neq (0)$. Hence there is a simple module $S\subseteq I$, whose injective hull will be denoted by $I(S)$. There results a diagram
+%
+\[
+\begin{tikzcd}
+	S \ar[r,hook,"\iota"] \ar[d,hook,"i"] & I \\
+	I(S) \ar[ur,dashed,"f"'] &
+\end{tikzcd}
+\]
+%
+Since $I$ is injective, there is a map  $f:I(S)\to I$ such that $f\circ i=\iota$. It follows that $\ker(f) \cap i(S)=i(\ker\iota)=(0)$. Hence $f$ is injective. So we have an embedding
+\[
+f:I(S)\hookrightarrow I.
+\]
+Now observe that if $\lambda:J\to M$ is injective and $J$ is injective, then $M\cong J\oplus M'$ with $M'$ being a $\Lambda$-module. (!) Since $I$ is indecomposable, we have $I\cong I(S)$. Finally, $I(S)$ is indecomposable as every nonzero submodule $N\subseteq I(S)$ meets $i(S)$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+

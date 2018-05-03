@@ -1,0 +1,194 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 20-11-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+The Nakayama functor $\mathcal N$ is right exact: If
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r] & M \ar[r] & M'' \ar[r] & (0)
+\end{tikzcd}
+\]
+is an exact sequence, then we get an exact sequence
+\[
+\begin{tikzcd}[column sep = scriptsize]
+(0) \ar[r] & \Hom_\Lambda(M'',\Lambda) \ar[r] & \Hom_\Lambda(M,\Lambda) \ar[r,"\zeta"] & \Hom_\Lambda(M',\Lambda) \ar[r] & X \ar[r] & (0)
+\end{tikzcd},
+\]
+where $X:=\Hom_\Lambda(M',\Lambda)/\im(\zeta)$. The functor $N\mapsto N^*$ is exact. Hence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & X^* \ar[r] & \mathcal N(M') \ar[r] & \mathcal N(M) \ar[r] & \mathcal N(M'') \ar[r] & (0)
+\end{tikzcd}
+\]
+is exact.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}\label{1.5.5}
+Let $\Lambda$ be a $k$-algebra. Then the following statements are equivalent:
+\begin{enumerate}
+\item The algebra $\Lambda$ is self-injective.
+\item The rule $[S]\mapsto [\Soc_\Lambda(P(S))]$ defines a permutation.
+\end{enumerate}
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+In view of Lemma~\ref{1.5.3}, it suffices to show (2) $\Rightarrow$ (1). By Lemma~\ref{1.5.4}, the right exact functor $\mathcal N$ sends simples to simples. Hence $\ell(\mathcal N(S))=\ell(S)$ for all $S\in\mathcal S(\Lambda)$. Inductively we obtain
+\[
+\ell(\mathcal N(M)) \le \ell(M)
+\]
+for all $\Lambda$-modules $M$. If
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r] & M \ar[r] & M'' \ar[r] & (0)
+\end{tikzcd}
+\]
+is an exact sequence, we obtain an exact sequence
+\[
+\begin{tikzcd}
+	\mathcal N(M') \ar[r] & \mathcal N(M) \ar[r,"\zeta"] & \mathcal N(M'') \ar[r] & (0)
+\end{tikzcd}.
+\]
+By using the inductive hypothesis, we get
+\begin{align*}
+\ell(\mathcal N(M))
+& = \ell(\ker(\zeta)) + \ell(\mathcal N(M'')) \\
+& \le \ell(\mathcal N(M')) + \ell(\mathcal N(M'')) \\
+& \le \ell(M') + \ell(M'') = \ell(M)
+\end{align*}
+%
+We now apply Lemma~\ref{1.5.4} to obtain $\ell(I(S))=\ell(\mathcal N(P(S))$. Hence $\ell(I(S)) \le \ell(P(S))$. Since $\Soc(P(S))\cong \nu(S)$ for all $S\in\mathcal S(\Lambda)$, there is a map $\iota_S:P(S)\hookrightarrow I(\nu(S))$.
+%
+\[
+\begin{tikzcd}
+	\nu(S) \ar[r,hook] \ar[d,hook] & P(S) \ar[dl,dashed,"\iota_S"] \\
+	I(\nu(S)) &
+\end{tikzcd}
+\]
+%
+Since $\nu(S)\cong \Soc(P(S))$, we get $\ker(\iota_S)\cap \Soc(P(S))=(0)$ so that $\iota_S$ is injective. Now we obtain
+\[
+\ell(I(S))
+ \le \ell(P(S))
+ \le \ell(\nu(I(S)))
+ \le \ell(\nu^2(I(S)))
+ \le \dots
+ \le \ell(I(S))
+\]
+Hence $\ell(P(S)) = \ell(\nu(I(S)))$. It follows that $\iota_S$ is an isomorphism. Hence $P(S)\cong I(\nu(S))$. We have
+\[
+\Lambda \cong \bigoplus_{S\in\mathcal S(\Lambda)} n_S P(S) \cong \bigoplus_{S\in\mathcal S(\Lambda)} n_S I(\nu(S)). 
+\]
+Since direct sums of injective modules are injective, $\Lambda$ is injective.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\section{The block decomposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Throughout this section, $\Lambda$ is assumed to be an artinian ring.
+
+\begin{proposition}\label{1.6.1}
+The following statements hold:
+\begin{enumerate}
+\item There is a composition $\Lambda=I_1\oplus \dots\oplus I_r$ into indecomposable two-sided ideals $I_j$.
+\item There exist idempotents $e_1,\dots,e_r\in C(\Lambda)$, the center of $\Lambda$, such that $I_j=\Lambda e_j$ and  $e_ie_j=0$ for $i=j$.
+\item If $\Lambda=I_1'\oplus \dots\oplus I_s'$ is another such decomposition then $s=r$ and there is a permutation $\sigma$ such that $I_j'=I_{\sigma(j)}$ for all $j\in\{1,\dots,r\}$. 
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Since $\Lambda$ is artinian, the regular module $\Lambda$ has finite length. If $\Lambda$ decomposes as a sum $\Lambda=I\oplus J$ of two-sided ideals, then $\ell(I),\ell(J)<\ell(\Lambda)$.
+
+\item We write $1=e_1+\dots+e_r$ with $e_j\in I_j$. Since $I_i I_j\subseteq I_i\cap I_j=(0)$ for $i\neq j$ we have $e_ie_j=0$ for $i\neq j$. Hence $e_i=e_i\cdot 1=e_i\cdot (e_1+\dots+e_r)=e_i^2$. So let $a\in \Lambda$. Then
+\[
+\sum_{j=1}^r ae_j = a = \sum_{j=1}^r e_j a.
+\]
+By (1), we have $ae_j = e_j a$ for all $a\in\Lambda$. Thus $a_j\in C(\Lambda)$. We have $\Lambda e_j\subseteq I_j$. If $a\in I_j$, then $a=ae_1+\dots +a e_r=ae_j$, so we have $I_j\subseteq \Lambda e_j$.
+
+\item Let $j\in\{1,\dots,r\}$. Then
+\[
+I_j = \bigoplus_{l=1}^s I_j I_l'.
+\]
+As $I_j$ is indecomposable, there is a unique $\sigma(j)\in \{1,\dots,s\}$ such that
+\[
+I_j=I_jI_{\sigma(j)}'\subseteq I_{\sigma(j)}'.
+\]
+By the same token there is for each $i\in \{1,\dots,s\}$ an element $\tau(i)\in\{1,\dots,r\}$ such that $I_i'\subseteq I_{\tau(i)}$. Hence $I_j\subseteq I_{\sigma(j)}' \subseteq I_{\tau(\sigma(j))}$, so that $\tau(\sigma(j))=j$ and $\sigma(\tau(i))=i$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}\
+\begin{enumerate}
+\item If $\Lambda$ is semi-simple, then $\Lambda \cong \bigoplus_{i=1}^r \Mat_{n_i}(\Delta_i)$, where $\Mat_{n_i}(\Delta_i)$ is indecomposable.
+\item Let $\Lambda=k[X]/(X^n)$. Since $\Lambda$ is local, it has only one block.
+\end{enumerate}
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+The decomposition $\Lambda=I_1\oplus \dots\oplus I_r$ is called the \textbf{block decomposition}\index{block decomposition} of $\Lambda$. The idempotents $e_1,\dots,e_r$ are the \textbf{central primitive idempotents}\index{central primitive idempotents} of $\Lambda$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.6.2}
+Let $I\subseteq J(\Lambda)^2$ be an ideal and $\pi:\Lambda\to\Lambda/I$ be the canonical projection. Then
+\[
+\pi: \Id(C(\Lambda)) \to \Id(C(\Lambda/I))
+\]
+is a bijection between the sets of idempotents of $C(\Lambda)$ and $C(\Lambda/I)$
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Since $\pi$ is surjective, we have $\pi(C(\Lambda))\subseteq C(\Lambda/I)$. Let $e\in\Id(C(\Lambda))$. Then $\pi(e)^2=\pi(e)$. If $\pi(e)=0$, then $e\in I\subseteq J(\Lambda)^2$. Thus $e$ is nilpotent and idempotent, so $e=0$. $\lightning$ To prove injectivity, suppose that $\pi(e)=\pi(e')$. Then $e-e'\in\ker(\pi)$ is nilpotent. Hence there exists an even $n>0$ and $\gamma\in\Z$ such that
+\[
+0 = (e-e')^n
+  = \sum_{i=0}^n (-1)^{n-i} \binom{n}{i} e^i (e')^{n-i}
+  = e + (-1)^n e' + \gamma ee'
+  = e + e' + \gamma ee'.
+\]
+Multiplication by $e$ and $e'$ gives $0=e+(\gamma+1)ee'$ and $0=e'+(\gamma+1)ee'$. Hence $e=e'$. To prove surjectivity, we let $f\in \Id(C(\Lambda/I))$. By idempotent lifting there is an idempotent $e\in\Lambda$ such that $\pi(e)=f$. Writing $J=J(\Lambda)$, we obtain
+\[
+\pi(e\Lambda(1-e)) \subseteq f \Lambda/I (1-f) = f(1-f)\Lambda/I = (0).
+\]
+Hence $e\Lambda(1-e)\subseteq J^2$. Multiplication by $e$ from the left and $1-e$ from the right gives
+\[
+e\Lambda(1-e) \subseteq eJ^2(1-e).
+\]
+We assume inductively that $e\Lambda(1-e) \subseteq eJ^n(1-e)$. Then
+\begin{align*}
+e\Lambda(1-e)
+& \subseteq eJ^n(1-e)
+  = eJ^{n-1}((1-e)+e)J(1-e) \\
+& \subseteq eJ^{n-1}(1-e)J(1-e)+eJ^{n-1}eJ(1-e) \\
+& \subseteq eJ^n(1-e)J(1-e)+eJ^{n-1}eJ^2(1-e)
+  \subseteq eJ^{n+1}(1-e).
+\end{align*}
+%
+Since $J$ is nilpotent, we have $e\Lambda(1-e)=0$. Let $a\in\Lambda$. Then $ea=eae+ea(1-e)=eae$. Similarly $(1-e)\Lambda e=0$, so $ae=eae$. Hence $e\in C(\Lambda)$, as desired.
+\end{proof}
+

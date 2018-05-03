@@ -1,0 +1,170 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 30-11-2017
+
+\begin{remark}
+Suppose that $f:M\to N$ ist $\Lambda$-linear. We obtain the following diagram:
+%
+\[
+\begin{tikzcd}
+	(0)\ar[r] & \Omega_\Lambda(M)\rar["\iota_M"] \ar[d,"g", "g'"'] & P_M\rar["\varepsilon_M"] \ar[d, "\widetilde f","\widetilde f'"']\ar[dl,dashed, "\sigma"] & M\ar[r]\ar[d, "f"] & (0) \\
+	(0)\ar[r] & \Omega_\Lambda(N)\rar["\iota_N"] & P_N\rar["\varepsilon_N"] & N\ar[r] & (0)
+\end{tikzcd}
+\]
+%
+Let $\widetilde f'$ be another such map leading to $g'$.
+%
+We have $\im(\widetilde f-\widetilde f')\subseteq \ker\varepsilon_N = \im \iota_N$. By injectivity of $\iota_N$, we can find $\sigma:P_M\to \Omega_\Lambda(N)$ such that
+\[
+-\widetilde f + \widetilde f' = \iota_N \circ \sigma.
+\]
+Hence $\widetilde f' = \widetilde f + \iota_N \circ \sigma$. We obtain
+\[
+\iota_N \circ g'
+ = \widetilde f ' \circ \iota_M
+ = \widetilde f \circ \iota_M + \iota_N \circ \sigma \circ \iota_M
+ = \iota_N \circ (g + \sigma\circ \iota_M).
+\]
+Since $\iota_N$ is injective, we get $g'=g+\sigma\circ\iota_M$. Accordingly, $g$ is unique up to maps factoring through projective modules. We therefore pass to a new category: Given $M,N\in\mod_\Lambda$, we let
+\begin{align*}
+\PHom_\Lambda(M,N) := \{ f \in\Hom_\Lambda(M,N) \mid \ & f = g \circ h \text{ with } h : M\to P_f, \\
+    & g:P_f\to N, P_f \text{ projective} \}
+\end{align*}
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.2.2}
+The following statements hold.
+\begin{enumerate}
+\item $\PHom_\Lambda(M,N)\subseteq \Hom_\Lambda(M,N)$ is a subgroup.
+\item $g\circ f\in \PHom_\Lambda(M,N')$ for $f\in \PHom_\Lambda(M,N')$ and $g\in \Hom_\Lambda(N,N')$.
+\item $g\circ f\in \PHom_\Lambda(M',N)$ for $g\in \PHom_\Lambda(M,N)$ and $f\in \Hom_\Lambda(M',M)$.
+\item If $f\in\PHom_\Lambda(M,N)$, then there is $h:M\to P_N$ such that $f=\varepsilon_N\circ h$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof} The statements (2) and (3) are trivial.
+\begin{enumerate}
+\item Let $f,f'\in\PHom_\Lambda(M,N)$. Then there are maps $h : M\to P$, $g:P\to N$ and $h' : M\to P'$, $g':P'\to N$ such that $f=g\circ h$ and $f'=g'\circ h'$. Recall that $P\oplus P'$ is projective and
+\[
+f+f'=g\circ h + g'\circ h' = (g,g')\circ \binom{h}{h'} \in \PHom_\Lambda(M,N).
+\]
+\item[(4)] We have $f=g\circ h$, where $h:M\to P$ and $g:P\to N$. We also have
+%
+\[
+\begin{tikzcd}
+	& P_N\ar[d,twoheadrightarrow,"\varepsilon_N"] \\
+	P \ar[ru,"\widetilde g"] \ar[r,"g"] & N
+\end{tikzcd}.
+\]
+%
+Hence there is $\widetilde g:P\to P_N$ such that $g=\varepsilon_N\circ \widetilde g$. Hence $f=g\circ h = \varepsilon \circ (\widetilde g\circ h)$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{2.2.3}
+The following data define a category $\underline{\mod}_\Lambda$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The objects are the finitely generated $\Lambda$-modules.
+\item For $M,N\in\umod_\Lambda$ we define $\underline{\Hom}_\Lambda(M,N):=\Hom_\Lambda(M,N)/\PHom_\Lambda(M,N)$.
+\item We define $[g]\circ [f]:=[g\circ f]$ for $f:M\to N$ and $g:N\to N'$.
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+The category $\umod_\Lambda$ is called the \textbf{stable category}\index{stable category} of $\mod_\Lambda$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $M\in\mod_\Lambda$. The Theorem of Krull-Remark-Schmidt provides a decomposition
+\[
+M = M_{\text{pf}} \oplus P,
+\]
+where $P$ is projective and the only projective summand of $M_{\text{pf}}$ is $(0)$. Note that if $M = M_{\text{pf}}' \oplus P'$ is another such decomposition, then $M_{\text{pf}}\cong M_{\text{pf}}'$ and $P\cong P'$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.2.4}
+Let $M,N\in\mod_\Lambda$. Then $M\cong N$ in $\umod_\Lambda$ if and only if
+\[
+M_{\mathrm{pf}}\cong N_{\mathrm{pf}}
+\]
+in $\mod_\Lambda$.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Suppose that $M,N$ are isomorphic in $\umod_\Lambda$. Then there exists maps $f:M\to N$ and $g:N\to M$ such that $[g]\circ [f]=[\id_M]$ and $[f]\circ [g]=[\id_N]$. Hence we have $g\circ f-\id_M\in\PHom_\Lambda(M,M)$ and $f\circ g-\id_M\in\PHom_\Lambda(N,N)$. Let $\sigma:=g \circ f - \id_M$ and consider the Fitting decomposition
+\[
+M=M_0\oplus M_1.
+\]
+Then $\sigma|_{M_1}$ is bijective. We show that $M_1$ is projective. Let $\alpha:M\to P$, $\beta:P\to M$ and $P$ being projective such that $\sigma = \beta\circ\alpha$. Then we have
+\[
+\sigma|_{M_1} = (\pi_1\circ \beta) \circ (\alpha\circ \iota_1),
+\]
+where $\iota_1:M_1\hookrightarrow M$ is the canonical injection and $\pi_1:M\twoheadrightarrow M_1$ is the canonical projection. Since $\sigma|_{M_1}$ is bijective, we have $\id_{M_1} = (\pi_1\circ \beta) \circ (\alpha\circ \iota_1 \circ \sigma|_{M_1}^{-1})$. Hence $\pi_1\circ \beta$ is split surjective. Thus we obtain that $\pi_1\circ \beta:P\twoheadrightarrow M_1$ gives a direct sum decomposition
+\[
+P \cong M_1 \oplus \ker(\pi_1\circ \beta).
+\]
+As result $M_1$ is projective. By the same token, if $N=N_0\oplus N_1$ is the Fitting decomposition relative to $\tau:=f\circ g-\id_N$, then $N_1$ is projective. Since $\sigma|_{M_0}$ is nilpotent, we obtain that $g\circ f|_{M_0}:M_0\to M_0$ is bijective. In view of $\tau \circ f = f \circ g \circ f - f = f \circ \sigma$, we have $\tau^n\circ f=f\circ \sigma^n $. We obtain
+\[
+f(M_0)\subseteq N_0.
+\]
+Analogously, we get $g(N_0)\subseteq M_0$. Consequently, since
+\[
+\begin{tikzcd}
+M_0 \rar["f"] & N_0 \rar["g"] & M_0    
+\end{tikzcd},
+\]
+we get $M_0\cong N_0$. Hence $M_{\mathrm{pf}}\cong(M_0)_{\mathrm{pf}}\cong(N_0)_{\mathrm{pf}}\cong N_{\mathrm{pf}}$.\qedhere
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{2.2.5}
+The Heller operator defines a functor $\Omega:\umod_\Lambda\to\umod_\Lambda$.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+Let $f:M\to N$ be a $\Lambda$-linear map. There results a commutative diagram
+\[
+\begin{tikzcd}
+	(0)\ar[r] & \Omega_\Lambda(M)\rar["\alpha"] \ar[d,"h", "h'"'] & P_M\rar["\varepsilon_M"] \ar[d, "\widetilde f","\widetilde f'"']\ar[dl,dashed, "\tau"] & M\ar[r]\ar[d, "f", "f'"']\ar[dl,dashed, "\sigma"] & (0) \\
+	(0)\ar[r] & \Omega_\Lambda(N)\rar["\beta"] & P_N\rar["\varepsilon_N"] & N\ar[r] & (0)
+\end{tikzcd}
+\]
+%
+We define $\Omega([f]):=[h]$. We only have to show that this is well defined. Let $\widetilde f'$ be another map such that $[f]=[f']$. Then $f'-f\in \PHom_\Lambda(M,N)$. Thanks to Lemma~\ref{2.2.2}, there is $\sigma:M\to P_N$ with $\varepsilon_N\circ \sigma = f'-f$. We obtain
+\[
+\varepsilon_N\circ ( \widetilde{f}'-\widetilde{f}) = (f'-f)\circ \varepsilon_M
+= \varepsilon_N \circ \sigma\circ \varepsilon_M.
+\]
+Hence $\im(\widetilde{f}'-\widetilde{f}-\sigma\circ \varepsilon_M)\subseteq\ker\varepsilon_N = \im\beta$. Since $\beta$ is injective, there is $\tau:P_M\to\Omega_\Lambda(N)$ such that $\beta\circ\tau=\widetilde{f}'-\widetilde{f}-\sigma\circ \varepsilon_M$. Thus
+\[
+\beta \circ \tau \circ \alpha
+ = \widetilde{f}'\circ \alpha-\widetilde{f}\circ \alpha-\sigma\circ \varepsilon_M\circ \alpha
+ = \widetilde{f}'\circ \alpha-\widetilde{f}\circ \alpha
+ = \beta \circ h' - \beta \circ h.
+\]
+As $\beta$ is injective, we get $\tau\circ\alpha = h'-h$. Therefore $[h]=[h']$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------

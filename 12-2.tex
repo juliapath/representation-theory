@@ -1,0 +1,176 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 25-01-2018
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{3.5.2}
+ Suppose that $J^2 = (0)$.
+ \begin{enumerate}
+ \item The functor $F : \mod \Lambda \to \mathcal{C}_{T_\Lambda}$ is full.
+ \item If $M, N \in \mod \Lambda$ , then $\Hom_\Lambda(M, J N)$ “is” the kernel of \[F:
+ \Hom_\Lambda(M,N) \to \Hom_{\mathcal{C}_{T_\Lambda}}(F(M), F(N)).\]
+ \item If $M,N \in \mod \Lambda$, then $M \isomorphic N$ if and only if $F(M) \isomorphic F(N)$.
+ \item $M \in \mod \Lambda$ is indecomposable if and only if $F(N) \in \mathcal{C}_{T_\Lambda}$ is indecomposable.
+ \item Let $(X, Y, f) \in \mathcal{C}_{T_\Lambda}$. Then there is $M \in \mod \Lambda$ with $(X, Y, f)
+ \cong F(M)$ if and only if $f: J \otimes_{\factor \Lambda {J}} Y \to X$ is an epimorphism.
+ \end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+ \begin{enumerate}
+ % 1
+ \item Let $P$ be a projective $\Lambda$-module. Then we have an exact sequence
+ \[\begin{tikzcd}
+(0) \rar& J \otimes_\Lambda P \rar& P \rar& \Top P \rar& (0)
+ \end{tikzcd}\]
+ As $J^2 = (0)$ we have an isomorphism
+ \[ \declaremap{J \otimes_{\factor \Lambda {J}} \Top P}{J \otimes_\Lambda P}{x \otimes
+\overline p}{x \otimes p}. \]
+ Let $\pi: P \to M$ be a projective cover. Let $\alpha(x\otimes\overline p) := xp$ and $\zeta(x \otimes \overline p) = x \pi(p)$. There results a commutative diagram
+\[
+\begin{tikzcd}
+(0) \rar & J \otimes_{\factor \Lambda {J}} \Top P \rar["\alpha"] \dar["\zeta"]&
+P \rar \dar["\pi"]& \Top P \rar \dar[,"\wr"',"\pi_2"] & (0) \\
+(0) \rar& \Rad M \rar["\iota"]& M \rar& \Top M \rar& (0)
+\end{tikzcd}
+\tag{$*$}
+\]
+ with exact rows. Since $P$ is a
+ projective cover, $\pi_2$ is an isomorphism. Consequently,
+ \[ (\id_{\Rad M}, \pi_2) : (\Rad M, \Top P, \zeta) \to F(M) \]
+ is an isomorphism. Let $M, M' \in \mod \Lambda$ and $(u, v): F(M) \to F(M')$ be a
+ morphism. We have to show that there exists $\varphi: M \to M'$ such that
+ \[
+ (u, v)
+ = F(\varphi).
+ \]
+ Let $\pi : P \to M$ and $\pi' : P' \to M'$ be projective covers of $M$ and $M'$, respectively.
+ There result isomorphisms $\pi_2 : \Top P \to \Top M$ and $\pi'_2 : \Top P' \to \Top M'$. We consider
+ the map $\widetilde v := (\pi_2')^{-1} \circ v \circ \pi_2$, so
+ \[\widetilde v : \begin{tikzcd} \Top P \rar["\pi_2"] & \Top M \rar["v"] & \Top M' \rar["(\pi'_2)^{-1}"] & \Top P'
+ \end{tikzcd}.\] 
+ We obtain a commutative diagram
+ \[\begin{tikzcd}
+(0) \rar & J \otimes_\Lambda P \rar["x\otimes p \mapsto xp"]\dar["\id_{J}\otimes h"]& P
+\rar\dar["h"]& \Top P \rar\dar["\widetilde v"]& (0)\\
+(0) \rar & J \otimes_\Lambda P' \rar["x\otimes p \mapsto xp"]& P' \rar& \Top P' \rar& (0)
+\end{tikzcd}\] 
+ with exact rows. Moreover the diagram
+ \[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \Top P
+\rar["\sim"] \dar["{\id}\otimes\widetilde v"]& J \otimes_\Lambda P \dar["{\id}\otimes h"]\\
+J \otimes_{\factor \Lambda {J}} \Top P' \rar["\sim"]& J \otimes_\Lambda P'
+\end{tikzcd}\]
+ commutes and we obtain another commutative diagram
+ \[\begin{tikzcd}
+(0) \rar& J \otimes_{\factor \Lambda {J}} \Top P
+\rar["\alpha"]\dar["{\id_{J}}\otimes\widetilde v"]& P \rar\dar["h"]& \Top P \rar\dar["\widetilde v"]& (0)\\
+(0) \rar& J \otimes_{\factor \Lambda {J}} \Top P'
+\rar["\alpha'"]& P' \rar& \Top P' \rar& (0)
+\end{tikzcd}\tag{$**$}\]
+ According to Lemma~II.\ref{2.1.5}, the diagram
+ \[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \Top P \rar["\alpha"]\dar["\zeta"]&
+P \dar["\pi"]\\
+\Rad M \rar["\iota"] & M
+\end{tikzcd}\]
+ obtained from $(*)$ is a push-out diagram. We consider the diagram
+ \[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \Top P
+\rar["\alpha"]\dar["\zeta"]&
+P \dar["\pi"]\ar[ddr, "\pi'\circ h", bend left]\\
+\Rad M \rar["\iota"] \ar[rrd, "u", bend right] & M\ar[dr, "\varphi", dashed]\\
+&&M'
+\end{tikzcd}\]
+ Since $(u,v)$ is a morphism, we have a commutative diagram
+ \[\begin{tikzcd}
+J \otimes_{\factor \Lambda {J}} \Top M \rar["\eta"]\dar["{\id}\otimes v"]&
+\Rad M \dar["u"]\\
+J \otimes_{\factor \Lambda {J}} \Top M' \rar["\lambda"] &
+\Rad M'
+\end{tikzcd}\]
+ Combining this with $(**)$ we obtain
+ \begin{align*}
+(\pi' \circ h \circ \alpha)(x \otimes \overline p)
+&= (\pi'\circ\alpha'\circ({\id_{J}} \otimes \widetilde v))(x \otimes \overline p)\\
+&= (\pi'\circ \alpha')(x \otimes \widetilde v(\overline p))\\
+&= \lambda (x \otimes (v \circ \pi_2)(\overline p))\\
+&= (u \circ \eta)(x \otimes \pi_2(\overline p))\\
+&= (u \circ \zeta)(x \otimes \overline p)
+ \end{align*}
+ Hence there is $\varphi : M \to M'$ such that $\varphi \circ \pi = \pi' \circ h$ and $\varphi \circ \iota = u$. We
+ write $\overline \varphi: \Top M \to \Top M'$ and
+ $\overline h: \Top P \to \Top P'$ for the induced maps.
+ Then we have $\overline h = \widetilde v$.
+ The identity $\overline \varphi \circ \pi_2 = \pi_2' \circ \overline h$ gives
+ \begin{align*}
+ \overline \varphi = \pi_2 \circ \overline h \circ \pi_2^{-1}
+ = \pi_2' \circ \widetilde v \circ \pi_2^{-1}
+ = v.
+ \end{align*}
+ Hence $F$ is full.
+
+ % 2
+ \item Let $f: M \to N$ be $\Lambda$-linear such that $F(f) = 0$. Then $\overline f:
+ \Top M \to \factor N {J N}$ is zero so that $f(M) \subseteq J
+ N$ (this means that $f \in \Hom_\Lambda(M, J N)$). Consequently, suppose that
+ $f(M) \subseteq J N$. Then $f_2 : \Top M \to \factor N {J N}$
+ is zero. Moreover $f(\Rad M) \subseteq J f(M) \subseteq J^2 N = (0)$. Hence
+ $F(f) = (f_1, f_2) = (0, 0)$.
+
+ % 3
+ \item Let $M, N \in \mod \Lambda$ be such that $F(M) \isomorphic F(N)$. By (1) there are $f: M
+ \to N$, $g : N \to M$ such that $F(f \circ g - \id_N) = 0$ and $F(g \circ f - \id_M)$.
+ By (2) we have $(g \circ f - \id_M)(M) \subseteq \Rad M$ so that $(g \circ f - \id_M)^2 =
+ 0$. Hence $g \circ f$ is invertible. Similarly, $f \circ g$ is invertible. This implies that $f$ is
+ injective and $f$ is surjective. Hence $f$ is a morphism.
+
+ % 4
+ \item Let $M \in \mod \Lambda$. Owing to (1) the functor $F$ induces an isomorphism
+ \[ \factor{\End_\Lambda(M)}{\ker F_M} \cong \End_{\mathcal{C}_{T_\Lambda}}(F(M)) \]
+ of rings. By (2) $\ker F_M$ is nilpotent and therefore $\ker F \subseteq
+ \Rad(\End_\Lambda(M))$. This implies $\Rad(\factor{\End_\Lambda(M)}{\ker F}) =
+ \factor{\Rad(\End_\Lambda(M))}{\ker F}$, whence
+ \begin{align*}
+\factor{\End_\Lambda(M)}{\Rad(\End_\Lambda(M))}
+&\isomorphic \factor{(\factor{\End_\Lambda(M)}{\ker F})}{(\factor{\Rad(\End_\Lambda(M))}{\ker F})}\\
+&\isomorphic \factor{(\factor{\End_\Lambda(M)}{\ker F})}{\Rad(\factor{\End_\Lambda(M)}{\ker F})}\\
+&\isomorphic \factor{\End_{\mathcal{C}_{T_\Lambda}}(M)}{\Rad(\End_{\mathcal{C}_{T_\Lambda}}(M))}.
+ \end{align*}
+ Hence $\End_\Lambda(M)$ is local if and only if $\End_{\mathcal{C}_{T_\Lambda}}(F(M))$ is local.
+
+ % 5
+ \item We consider a projective cover $\pi : P \to Y$, where $Y$ is viewed as a
+ $\Lambda$-module. This induces an isomorphism $\Top P \cong Y$. Note that $Y$ is semi-simple since $J Y = (0)$. Recall that
+\[ \zeta : J \otimes_{\factor \Lambda {J}} \Top P \to P, x \otimes
+\overline p \mapsto xp\]
+ is an injective homomorphism such that $\im \zeta = J P$. There results
+ an exact sequence
+\[\begin{tikzcd}
+(0) \rar& J \otimes_{\factor \Lambda {J}} Y \rar& P \rar["\pi"]& Y \rar& (0)
+\end{tikzcd}\]
+ which induces the following push-out diagram
+\[\begin{tikzcd}
+ & (0)\dar & (0)\dar\\
+ & K \dar\rar["\sim"]& K'\dar\\
+(0) \rar& J \otimes_{\factor \Lambda {J}} Y \rar["\tau"]\dar["f"]& P \rar["\pi"]\dar["g"]& Y \rar\dar[equal]& (0)\\
+(0) \rar& X \rar["\iota"]\dar& E \rar\dar& Y \rar& (0)\\
+ & (0)& (0)
+\end{tikzcd}\]
+ since $g : P \to E$ is surjective we obtain
+\begin{align*}
+\iota(X) = \iota(f(X)) = g(J P) = J g(P) = J E.
+\end{align*}
+ Consequently, $(X, Y, f) \isomorphic F(E)$.\qedhere
+ \end{enumerate}
+\end{proof}

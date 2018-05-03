@@ -1,0 +1,199 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 04-12-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Now we turn to the special case, where $\Lambda$ is a self-injective algebra of finite
+dimension over some field $k$.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  Let $M \in \mod_\Lambda$ and $(I_M, \iota _M)$ be an injective hull of $M$. Then
+  \[\Omega_\Lambda^{-1}(M) := \coker \iota _M.\]
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.2.6}
+Let $\Lambda$ be a finite-dimensional self-injective $k$-algebra. Let $M\in \mod_\Lambda$.
+\begin{enumerate}
+\item $\Omega^{-1}(M) \in  \mod_\Lambda$.
+\item If $M \cong  M_{\mathrm{pf}}$, then $P_M$ is an injective hull of $\Omega(M)$.
+\item If $M \cong  M_{\mathrm{pf}}$, then $I_M$ is a projective cover of $\Omega^{-1}(M)$.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}\
+\begin{enumerate}
+\item Let $\iota_M: M\hookrightarrow I_M$ be an injective hull. Then $\Soc(I_M) \cong \Soc(M)$, since $\iota _M(M)$
+  is essential in $I_M$. In particular, $\Soc(I_M)$ has finite length. Hence
+  there exist simple submodules $S_1,\ldots,S_n$ of $I_M$ such that
+	\[
+		\Soc(I_M) = \bigoplus_{i=1}^n S_i.
+	\]
+  By Theorem~I.\ref{1.5.5}, we have $S_i \subseteq P(\nu^{-1}(S_i))$. Hence
+  $\Soc(I_M) \hookrightarrow \bigoplus_{i=1}^n P(\nu^{-1}(S_i))$.
+\[
+\begin{tikzcd}
+\Soc(I_M) \ar[r] \ar[d] & I_M \ar[dl] \\
+\bigoplus_{i=1}^n P(\nu^{-1}(S_i)).
+\end{tikzcd}
+\]
+  Since the right-hand module is injective, this
+  map extends to a homomorphism
+  \[
+  f:I_M\to \bigoplus_{i=1}^n P(\nu^{-1}(S_i)).
+  \]
+  Note that $\ker f \cap
+  \iota _M(M)$ is a submodule of finite length. We assume that $\ker f \cap \iota _M(M) \neq  (0)$. Then there is a simple submodule $S \subseteq \ker f \cap \iota _M(M)$, so
+  \[
+   S \subseteq \Soc(\iota _M(M)) \cong 
+    \Soc(M) \cong  \Soc(I_M) \cong  \bigoplus_{i=1}^n S_i.
+  \]
+  Hence there is $S_i$ such that $S_i \subseteq \ker f \cap \iota _M(M)$.
+  This contradicts $\restr f {\Soc(I_M)}$ being injective.
+  Hence $\ker f \cap \iota _M(M) = (0)$, so $\ker f =
+  (0)$. Thus $I_M$ is finite-dimensional, and so is $\Omega^{-1}(M)$ .
+
+\item Let $I_{\Omega(M)}$ be the injective hull of $\Omega(M)$. By Lemma~I.\ref{1.5.3}, the
+  module $P_M$ is injective. Hence there is a $\Lambda$-linear map $f: I_{\Omega(M)} \to
+  P_M$ such that $\restr f {\Omega(M)} : \Omega(M) \hookrightarrow P_M$ is the canonical inclusion.
+\[
+\begin{tikzcd}
+P_M \ar[r,"\varepsilon_M",two heads] \ar[rd,"\sigma",bend left=15] & M \\
+\Omega(M) \ar[r,hook,"\iota"] \ar[u,hook] & I_{\Omega(M)} \ar[ul,"f"]
+\end{tikzcd}
+\]
+  Hence $f$ is injective, since $\Omega(M) \subseteq I_{\Omega(M)}$ is essential. As $I_{\Omega(M)}$ is
+  injective, $f$ is split injective. Thus there is $\sigma: P_M \to I_{\Omega(M)}$, such
+  that $\sigma \circ f = \id_{I_{\Omega(M)}}$.
+  There results a decomposition
+  \[ P_M = \ker \sigma \oplus \im f.\]
+  Since $\Omega(M) \subseteq \im f$, the map $\varepsilon_M : P_M \twoheadrightarrow M$ has the
+  property that the map
+  \[
+   \restr {\varepsilon_M} {\ker \sigma} : \ker \sigma \to M
+  \] is injective. On the other
+  hand, $\ker \sigma$, being a direct summand of the injective module $P_M$, is
+  injective. Hence $\ker \sigma$ is a direct summand of $M$. Since $M$ is
+  projective-free, and $\ker \sigma$ is projective, we obtain $\ker \sigma = (0)$. Hence
+  $f$ is surjective and thus an isomorphism.
+\item Analogous. Consider the diagram
+\[
+\begin{tikzcd}
+M \ar[r,"\iota",hook] & I_M \ar[dl,"f"] \ar[d,two heads] \\
+P \ar[r,two heads,"\varepsilon"] \ar[ur,"\sigma",bend left=15] & \Omega^{-1}(M)
+\end{tikzcd}.
+\]
+Then $f$ is surjective and $\ker f \subseteq \im\iota$ is a direct summand of $I_M$.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We let $(\mod_\Lambda)_{\mathrm{pf}}$ be the full subcategory\footnote{The category $(\mod_\Lambda)_{\mathrm{pf}}$ has the same morphisms as $\mod_\Lambda$, so $\mod_\Lambda(M,N) = (\mod_\Lambda)_{\mathrm{pf}}(M,N)$.} of $\mod_\Lambda$, whose objects are the projective free modules, that is $M = M_{\mathrm{pf}}$.
+Note that we have $M \in (\mod_\Lambda)_{\mathrm{pf}}$ if and only if $M$ has no nonzero projective
+submodules. (Note that $\Lambda$ is self-injective.)
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{2.2.7}
+  Let $\Lambda$ be a self-injective $k$-algebra. Given $M,N \in (\mod_\Lambda)_{\mathrm{pf}}$, the
+  following statements hold:
+  \begin{enumerate}
+  \item $\Omega^{-1}(\Omega(M)) \cong  M \cong  \Omega(\Omega^{-1}(M))$.
+  \item $\Omega(M \oplus N) \cong  \Omega(M) \oplus \Omega(N)$ and $\Omega^{-1}(M \oplus N) \cong  \Omega^{-1}(M) \oplus \Omega^{-1}(N)$.
+  \item $M$ is indecomposable if and only if $\Omega(M)$ is indecomposable.
+  \item $M$ is indecomposable if and only if $\Omega^{-1}(M)$ is indecomposable.
+  \end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+We only prove (1). The statements (3) and (4) are an immediate consequence of (1) and (2). Let $P \subseteq \Omega(M)$ be a projective summand. Then $P \subseteq P_M$ is an injective submodule. Hence there exists $Q_M \subseteq P_M$ with
+\[
+P_M = P \oplus Q_M.
+\]
+Since $P \subseteq \Omega(M) = \ker \varepsilon_M$, the map $\varepsilon: Q_M \to M$ is surjective. Minimality of $\length{P_M}$  gives $\length{P_M} = \length{Q_M}$. Hence $\length{P} = 0$ and $P = (0)$.
+  As a result, $\Omega(M) \in (\mod_\Lambda)_{\mathrm{pf}}$. Similarly, we have $\Omega^{-1}(M) \in 
+  (\mod_\Lambda)_{\mathrm{pf}}$. Now consider Lemma~\ref{2.2.6} and the diagram
+   \[
+    \begin{tikzcd}
+      (0) \ar[r] & \Omega(M) \ar[r,"\iota_M"] & P_M \rar["\varepsilon_M"] & M \ar[r] & (0)
+    \end{tikzcd}
+   \]
+   It follows $M \cong  \coker \iota _M \cong  \Omega^{-1}(\Omega(M))$.
+   We know that
+   \[
+    \begin{tikzcd}
+      (0) \ar[r]& M \rar["\iota _M"]& I_M \rar["\varepsilon_{\Omega^{-1}(M)}"]& \Omega^{-1}(M) \ar[r]& (0)
+    \end{tikzcd}
+   \]
+  is a projective cover of $\Omega^{-1}(M)$. Hence $M \cong  \Omega(\Omega^{-1}(M))$.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  An artinian ring $\Lambda$ is said to have \textbf{finite representation type}\index{finite representation type} or shortly to be
+  \textbf{representation-finite}\index{representation-finite ring} if $\Lambda$ has only finitely many isomorphism classes
+  of indecomposable modules of finite length.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Let $\Lambda$ be self-injective.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+  An indecomposable $\Lambda$-module $M \in \mod_\Lambda$ is called \textbf{periodic}\index{periodic module} if there
+  exists $n \ge 1$ such that $\Omega^n(M) \cong  M$.
+\end{definition}
+\begin{proposition}\label{2.2.8}
+  Let $\Lambda$ be a self-injective algebra.
+  \begin{enumerate}
+  \item The Heller operator $\Omega$ induces a bijection
+    \[ \Omega: (\Ind \Lambda)_{\mathrm{pf}} \to (\Ind \Lambda)_{\mathrm{pf}}, [M] \mapsto [\Omega(M)] \]
+    on the set of isomorphism classes of projective-free indecomposable $\Lambda$-modules.
+  \item If $\Lambda$ is representation-finite, then every non-projective indecomposable
+    $\Lambda$-module is periodic.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}\
+  \begin{enumerate}
+  \item This follows from Lemma~\ref{2.2.7}.
+\item By (1), the Heller-operator is a permutation on the finite set $(\Ind
+  \Lambda)_{\mathrm{pf}}$. Hence there is $n \in \mathbb N$ such that $\Omega^n(M) \cong  M $ for all $M \in (\Ind \Lambda)_{\mathrm{pf}}$.\qedhere
+\end{enumerate}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{remark}
+  The converse of (2) of Proposition~\ref{2.2.8} is not true in general. If $\Char(k)=2$ and
+  $\Lambda=kQ_8$, the group algebra of the quaternion group of order 8, then $\Omega^4(M) \cong 
+  M$ for every non-projective indecomposable $\Lambda$-module. 
+  The ring   $kQ_8$ is not representation-finite.
+\end{remark}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $\Lambda := \factor {k[X]} {X^n}$. For every $i \in \{1,\ldots,n-1\}$, $\Lambda$ possesses
+ exactly one indecomposable $\Lambda$-module $[i] = \factor \Lambda {\Lambda x^i}$  of dimension $i$, where
+ $x := X + (X^n)$. We have $\Omega([i]) = [n-i]$, so $\Omega^2([i]) \cong  [i]$ for all $i \in \{1,\ldots,n-1\}$.
+\end{example}

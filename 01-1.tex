@@ -1,0 +1,220 @@
+% Copyright (c) Lars Niedorf, Jan Path 2018
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+% Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX root = main.tex
+
+% 23-10-2017
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% CHAPTER 1
+
+\chapter{Basic concepts}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 1.1
+
+\section{Artinian and noetherian rings and modules}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+Throughout, $\Lambda$ denotes a ring (with identity). Let $\Mod \Lambda$ be the category of left $\Lambda$-modules. The proofs of this section are left as exercises to the reader.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module.
+\begin{enumerate}
+\item $M$ is \textbf{simple}\index{simple module} if $M\neq (0)$ and if $(0)$ and $M$ are the only submodules of $M$.
+\item $M$ is \textbf{indecomposable}\index{indecomposable module} if $M\neq (0)$ and if $(0)$ and $M$ are the only direct summands of $M$.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}
+Let $k$ be a field and $X$ be an indeterminate.
+\begin{enumerate}
+\item If $\Lambda= k$, then any $\Lambda$-module $M$ is simple if and only if $\dim_k M = 1$.
+\item Let $\Lambda=k[X]/(X^n)$ with $n\ge 2$.  The $\Lambda$ has exactly one simple module $S=k$, ($X.1=0$), while $M_i:=k[X]/(X^i)$ is the complete list of indecomposable $\Lambda$-modules. The indecomposable modules correspond to the Jordan canonical forms of nilpotent matrices of nilpotency class at most $n$.   
+\end{enumerate} 
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module.
+\begin{enumerate}
+\item $M$ is \textbf{noetherian}\index{noetherian module} if every ascending sequence $(M_n)_{n\ge 1}$ of submodules of $M$ is stationary.
+\item $M$ is \textbf{artinian}\index{artinian module} if every descending sequence $(M_n)_{n\ge 1}$ of submodules of $M$ is stationary.
+\end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}\
+\begin{enumerate}
+\item If $\Lambda=k$, then noetherian modules (artinian modules) are the finite dimensional vector spaces.
+\item If $\Lambda=\Z$, then the regular module $M:=\Z$ is noetherian, but not artinian.
+\item If $M$ is noetherian (artinian), so are its submodules and factor modules.
+\end{enumerate}
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.1.1}
+Let $M$ be a $\Lambda$-module. Then the following statements are equivalent:
+\begin{enumerate}
+\item $M$ is noetherian.
+\item Every non-empty set of submodules of $M$ possesses a maximal element.
+\item Every submodule of $M$ is finitely generated.
+\end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}\label{1.1.2}
+Let
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r] & M \ar[r] & M'' \ar[r] & (0)
+\end{tikzcd}
+\]
+be an exact sequence of $\Lambda$-modules. If $M'$ and $M''$ are noetherian, so is $M$.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module. A finite sequence
+\[
+(0)=M_0\subseteq M_1\subseteq \dots \subseteq M_n = M
+\]
+of $\Lambda$-submodules of $M$ is called a \textbf{composition series}\index{composition series} of $M$ provided $M_i/M_{i-1}$ is simple for all $1\leq i\leq n$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.1.3}
+A $\Lambda$-module $M$ has a composition series if and only if $M$ is artinian and noetherian.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Jordan-Hölder]\label{1.1.4}
+Let $M$ be a $\Lambda$-module.
+Suppose that
+\[
+(0)=M_0\subseteq M_1\subseteq \dots \subseteq M_n = M
+\qq{and}
+(0)=M_0'\subseteq M_1'\subseteq \dots \subseteq M_m' = M
+\]
+are two composition series of $M$. Then $m=n$ and there exists $\sigma\in S_n$ such that
+\[
+M_i'/M_{i-1}'\cong M_{\sigma(i)}'/M_{\sigma(i)-1}'
+\]
+for all $1\leq i\leq n$.
+\end{theorem}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+In view of Theorem~\ref{1.1.4}, the following definitions make sense:
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+We say that a $\Lambda$-module has \textbf{finite length}\index{finite length module} if it affords a composition series
+\[
+(0)=M_0\subseteq M_1\subseteq \dots \subseteq M_n = M.
+\]
+In this case, $\ell(M):=n$ is called the \textbf{length}\index{length of a module} of $M$. Let $S$ be a simple $\Lambda$-module, then
+\[
+[M:S] = |\{i\in \{1,\dots,n\}\mid M_i/M_{i-1}\cong S\}|
+\]
+is called the \textbf{multiplicity}\index{multiplicity} of $M$ in $S$.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+A ring $\Lambda$ is called \textbf{noetherian}\index{noetherian ring} (or \textbf{artinian}\index{artinian ring}) if the regular module $\Lambda$ is noetherian (or artinian).
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{example}\
+\begin{enumerate}
+\item Every principal ideal domain is noetherian. 
+\item Let $k$ be a field and $X_1,\dots,X_n$ be indeterminates over $k$. By Hilbert's Basis Theorem, $k[X_1,\dots,X_n]$ is noetherian.
+\end{enumerate}
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}\label{1.1.5}
+Let $M$ be a finitely generated $\Lambda$-module.
+\begin{enumerate}
+\item If $\Lambda$ is noetherian, then $M$ is noetherian.
+\item If $\Lambda$ is artinian, then $M$ is artinian.
+\end{enumerate}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{proof}
+By assumption, there are $m_1,\dots,m_m\in M$ such that $M=\sum_{i\le n} \Lambda m_i$. Hence we have a surjection
+\[
+\pi:
+\left\{
+\begin{matrix}
+\Lambda^n & \twoheadrightarrow & M \\
+(r_1,\dots,r_n) & \mapsto & \sum_{i\le n} r_im_i
+\end{matrix}
+\right.
+\]
+If $\Lambda^n$ is an noetherian module, so are its factor modules. So it suffices to show by induction, that $\Lambda^n = \oplus_{i\le n} \Lambda$ is noetherian. The case $n=1$ is clear. For $n>1$, we have an exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & \Lambda \ar[r] & \Lambda^{n} \ar[r] & \Lambda^{n-1} \ar[r] & (0).
+\end{tikzcd}
+\]
+By inductive hypothesis, the extreme terms are noetherian, so by Proposition~\ref{1.1.2}, the middle term is also noetherian.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+% SECTION 1.2
+
+\section{Semisimplicity and the Jacobson radical}
+
+%--------------------------------------------------------------------------------------------------------------------
+
+We will study those $\Lambda$, where every short exact sequence
+\[
+\begin{tikzcd}
+	(0) \ar[r] & M' \ar[r] & M \ar[r] & M'' \ar[r] & (0)
+\end{tikzcd}
+\]
+splits.
+
+%--------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+Let $M$ be a $\Lambda$-module.
+\begin{enumerate}
+\item The sum of all simple submodules of $M$ is called the \textbf{socle}\index{socle} $\Soc_\Lambda(M)$ of $M$.
+\item The ascending sequence $(\Soc^i_\Lambda(M))_{i\ge 0}$ which is defined inductively by
+\[
+\Soc_\Lambda(M):=(0)
+\qq{and}
+\Soc_\Lambda^i(M)/\Soc_\Lambda^{i-1}(M)\cong \Soc_\Lambda(M/\Soc_\Lambda^{i-1}(M))
+\]
+for all $i\ge 1$ is called the \textbf{socle series}\index{socle series} of $M$.\footnote{More precisely, let $\pi_{i-1}:M\to M/\Soc_\Lambda^{i-1}(M)$ and put $\Soc_\Lambda^i(M) := \pi_{i-1}^{-1}(\Soc_\Lambda(M/\Soc_\Lambda^{i-1}(M)))$.}
+\item $M$ is called \textbf{semi-simple}\index{semi-simple module} if $\Soc_\Lambda(M)=M$.
+\end{enumerate}
+\end{definition}
